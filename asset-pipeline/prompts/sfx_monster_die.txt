@@ -1,0 +1,1 @@
+[ÂM THANH] Hiệu ứng âm thanh monster_die. Yêu cầu: WAV PCM 16-bit, chỉ dùng âm thanh tự tạo hoặc có giấy phép thương mại rõ ràng; ghi lại nguồn/giấy phép. (ChatGPT không tạo âm thanh — dùng công cụ được cấp phép rồi nhập qua asset-pipeline.)

@@ -1,0 +1,7 @@
+TU TIÊN TRUYỆN 2D — HD Chibi Pixel Art. Nhân vật chibi đầu lớn vừa phải, thân cân đối, khí chất tiên hiệp phương Đông nguyên bản.
+Pixel rõ ràng (không nhòe, không khử răng cưa, không gradient mềm), viền tối 1px, bảng màu sống động nhưng không chói, nền TRONG SUỐT (PNG RGBA).
+Góc nhìn ngang (side-view), nhân vật quay mặt sang PHẢI. Không sao chép bất kỳ game nào (không Ninja School, không tài sản có bản quyền).
+
+Tài nguyên: icons_skills — Atlas icon kỹ năng 64×64 (77 kỹ năng)
+Atlas lưới 8 cột, ô 64×64px, mỗi ô một biểu tượng theo đúng thứ tự trong assets/icons/*.json.
+Đầu ra: một file PNG duy nhất đúng kích thước trên.

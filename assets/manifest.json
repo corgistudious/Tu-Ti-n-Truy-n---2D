@@ -1,0 +1,5377 @@
+{
+  "version": 1,
+  "styleGuide": "TU TIÊN TRUYỆN 2D — HD Chibi Pixel Art. Nhân vật chibi đầu lớn vừa phải, thân cân đối, khí chất tiên hiệp phương Đông nguyên bản.\nPixel rõ ràng (không nhòe, không khử răng cưa, không gradient mềm), viền tối 1px, bảng màu sống động nhưng không chói, nền TRONG SUỐT (PNG RGBA).\nGóc nhìn ngang (side-view), nhân vật quay mặt sang PHẢI. Không sao chép bất kỳ game nào (không Ninja School, không tài sản có bản quyền).",
+  "assets": {
+    "char_body_male": {
+      "id": "char_body_male",
+      "category": "character",
+      "path": "assets/characters/body_male.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Lớp thân (da) nam — xám để tô màu da",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "8a9042b747b6c00aea1c722a46a4ff58be297d264230e162d07a21578116e32e"
+    },
+    "char_body_female": {
+      "id": "char_body_female",
+      "category": "character",
+      "path": "assets/characters/body_female.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Lớp thân (da) nữ — xám để tô màu da",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "8a9042b747b6c00aea1c722a46a4ff58be297d264230e162d07a21578116e32e"
+    },
+    "char_face_0_0": {
+      "id": "char_face_0_0",
+      "category": "character",
+      "path": "assets/characters/face_0_0.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 0, mắt 0",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "0697523b55b502ce6bb6b39c0357ea509948b36be92537636cc10112a95e1a00"
+    },
+    "char_face_0_1": {
+      "id": "char_face_0_1",
+      "category": "character",
+      "path": "assets/characters/face_0_1.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 0, mắt 1",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "70d91f532c70156fe85032454b6d8bf20d2c5dcda73ecdf04c55114f0bf1b5c3"
+    },
+    "char_face_0_2": {
+      "id": "char_face_0_2",
+      "category": "character",
+      "path": "assets/characters/face_0_2.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 0, mắt 2",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "f6d7b9941804ff32fa678363c83247a123d152bd57704e67abf76c366ab79417"
+    },
+    "char_face_0_3": {
+      "id": "char_face_0_3",
+      "category": "character",
+      "path": "assets/characters/face_0_3.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 0, mắt 3",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ee87ea835be749fa9caf60f0c39d335eea5e8b3fd42b4b1eb5c2db5ce4d69b89"
+    },
+    "char_face_1_0": {
+      "id": "char_face_1_0",
+      "category": "character",
+      "path": "assets/characters/face_1_0.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 1, mắt 0",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "43ba5578835d7240bbdbf31fc6f05dc9c25590107a17495d9028fe909222c31c"
+    },
+    "char_face_1_1": {
+      "id": "char_face_1_1",
+      "category": "character",
+      "path": "assets/characters/face_1_1.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 1, mắt 1",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "895970944f69eee61d2ecc01c03ca7f2dfff71f62c7a21f62c8e52d2803d5f35"
+    },
+    "char_face_1_2": {
+      "id": "char_face_1_2",
+      "category": "character",
+      "path": "assets/characters/face_1_2.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 1, mắt 2",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "5b82264eaecbba822e583b226248f51e8d4f324fac0d4c87a2255d3e6a90f7a4"
+    },
+    "char_face_1_3": {
+      "id": "char_face_1_3",
+      "category": "character",
+      "path": "assets/characters/face_1_3.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 1, mắt 3",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "4e5cac7e110d2f3bbdfcb23f7d89ab41fa96fd20acf9189b42cc82f43a4a856a"
+    },
+    "char_face_2_0": {
+      "id": "char_face_2_0",
+      "category": "character",
+      "path": "assets/characters/face_2_0.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 2, mắt 0",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "e86e8826af8bc9ba17d818c4760682ade9d8233662f5f201ed7bbd8e245cabe3"
+    },
+    "char_face_2_1": {
+      "id": "char_face_2_1",
+      "category": "character",
+      "path": "assets/characters/face_2_1.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 2, mắt 1",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ed232d55dc06b3b691a1cb616cc6b106f248bbc74413dd7c9c3e6e8de7082f5a"
+    },
+    "char_face_2_2": {
+      "id": "char_face_2_2",
+      "category": "character",
+      "path": "assets/characters/face_2_2.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 2, mắt 2",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "5ba7693c25145b249d25f1cf5d0e14c0287778f4c7bbc8e9361828281fd6e727"
+    },
+    "char_face_2_3": {
+      "id": "char_face_2_3",
+      "category": "character",
+      "path": "assets/characters/face_2_3.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 2, mắt 3",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "b1b27b27a5362b18006911679b5b627d03e2d36450f9452f3fbef10225028789"
+    },
+    "char_face_3_0": {
+      "id": "char_face_3_0",
+      "category": "character",
+      "path": "assets/characters/face_3_0.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 3, mắt 0",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "5bc10be3ecc957254fa2d27b6c45297987fa03349dc072a618a6933b8155515d"
+    },
+    "char_face_3_1": {
+      "id": "char_face_3_1",
+      "category": "character",
+      "path": "assets/characters/face_3_1.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 3, mắt 1",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "23cb0a7a6bafd6482c22501895b045241ded7338300d4d285bec6e32aee32ec0"
+    },
+    "char_face_3_2": {
+      "id": "char_face_3_2",
+      "category": "character",
+      "path": "assets/characters/face_3_2.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 3, mắt 2",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "61c8e5c5a7c188235c0eef7c8b8fd2c29905b04a964ad09a4f8031c083ef5e86"
+    },
+    "char_face_3_3": {
+      "id": "char_face_3_3",
+      "category": "character",
+      "path": "assets/characters/face_3_3.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Khuôn mặt 3, mắt 3",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "7ae2588c174b4dddffdfb063a427323810f86e82c36ef9d38bfce22d26e21de8"
+    },
+    "char_hair_0": {
+      "id": "char_hair_0",
+      "category": "character",
+      "path": "assets/characters/hair_0.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Kiểu tóc 0 — xám để tô màu tóc",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "3a497960e766ab17466e8fe09621e3d3b1de0b3e35e4031945e331a6edc09aa4"
+    },
+    "char_hair_1": {
+      "id": "char_hair_1",
+      "category": "character",
+      "path": "assets/characters/hair_1.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Kiểu tóc 1 — xám để tô màu tóc",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "f220da0f05b2d4d3467c623148be7d9ff2b35db574c0397bb5a38867cfeef042"
+    },
+    "char_hair_2": {
+      "id": "char_hair_2",
+      "category": "character",
+      "path": "assets/characters/hair_2.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Kiểu tóc 2 — xám để tô màu tóc",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d0eae66464b28ff1f24537956212fae660da9dc47bf4d81bd2dd90b2a4793a1b"
+    },
+    "char_hair_3": {
+      "id": "char_hair_3",
+      "category": "character",
+      "path": "assets/characters/hair_3.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Kiểu tóc 3 — xám để tô màu tóc",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "7a2d225072d06d4fbf1d90ae60e16331845415150709ef95ec2390b646af586d"
+    },
+    "char_hair_4": {
+      "id": "char_hair_4",
+      "category": "character",
+      "path": "assets/characters/hair_4.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Kiểu tóc 4 — xám để tô màu tóc",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "acaceeefa410a4cd04aa082a7478760ab8814e87843cd6c5ee4f779563a1c45f"
+    },
+    "char_hair_5": {
+      "id": "char_hair_5",
+      "category": "character",
+      "path": "assets/characters/hair_5.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Kiểu tóc 5 — xám để tô màu tóc",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "4f61f980a121b4585df6bfe5c5dd60e8220b6fe9cc423a79019ae325e24608ef"
+    },
+    "char_outfit_0": {
+      "id": "char_outfit_0",
+      "category": "character",
+      "path": "assets/characters/outfit_0.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Trang phục 0 — xám để tô màu áo",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "fa24edfada7f02cd30456e7298497286431671e2248e4ff03ddc594adae141a8"
+    },
+    "char_legs_0": {
+      "id": "char_legs_0",
+      "category": "character",
+      "path": "assets/characters/legs_0.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quần/giày trang phục 0",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ae740b6af0f9c12771b8b10f116eeb2e6ef5eeda7b454446d5cf394bffcea06e"
+    },
+    "char_belt_0": {
+      "id": "char_belt_0",
+      "category": "character",
+      "path": "assets/characters/belt_0.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Đai/cổ áo trang phục 0",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "b135f9c8fd814808e9a5bf74e10993bbd27ffa10d07610b1b4c3b6549b5a7341"
+    },
+    "char_outfit_1": {
+      "id": "char_outfit_1",
+      "category": "character",
+      "path": "assets/characters/outfit_1.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Trang phục 1 — xám để tô màu áo",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "0ba96f5dc3320fdacd74fd5a95e57a379ff817a0486dd24763b53702c0bf0acb"
+    },
+    "char_legs_1": {
+      "id": "char_legs_1",
+      "category": "character",
+      "path": "assets/characters/legs_1.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quần/giày trang phục 1",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ae740b6af0f9c12771b8b10f116eeb2e6ef5eeda7b454446d5cf394bffcea06e"
+    },
+    "char_belt_1": {
+      "id": "char_belt_1",
+      "category": "character",
+      "path": "assets/characters/belt_1.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Đai/cổ áo trang phục 1",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "b135f9c8fd814808e9a5bf74e10993bbd27ffa10d07610b1b4c3b6549b5a7341"
+    },
+    "char_outfit_2": {
+      "id": "char_outfit_2",
+      "category": "character",
+      "path": "assets/characters/outfit_2.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Trang phục 2 — xám để tô màu áo",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "5ef99df9a36bc8190ad81683331b4fe93dda114da67a8c34384d9e9f7d7ee5dc"
+    },
+    "char_legs_2": {
+      "id": "char_legs_2",
+      "category": "character",
+      "path": "assets/characters/legs_2.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quần/giày trang phục 2",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ae740b6af0f9c12771b8b10f116eeb2e6ef5eeda7b454446d5cf394bffcea06e"
+    },
+    "char_belt_2": {
+      "id": "char_belt_2",
+      "category": "character",
+      "path": "assets/characters/belt_2.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Đai/cổ áo trang phục 2",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "0fcb2ca685be47ee1644affab13667a723b5e9217c00abeed5c0acc9583f53ab"
+    },
+    "char_outfit_3": {
+      "id": "char_outfit_3",
+      "category": "character",
+      "path": "assets/characters/outfit_3.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Trang phục 3 — xám để tô màu áo",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ec5480bf02cfd4ba85cc818bdea546267702609cd3063bde3b76ae77c09d803a"
+    },
+    "char_legs_3": {
+      "id": "char_legs_3",
+      "category": "character",
+      "path": "assets/characters/legs_3.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quần/giày trang phục 3",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "5f28bdc78e981b24913918a6748b9384cf5333a93d472b68bfbafc6abcd05b50"
+    },
+    "char_belt_3": {
+      "id": "char_belt_3",
+      "category": "character",
+      "path": "assets/characters/belt_3.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Đai/cổ áo trang phục 3",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "b135f9c8fd814808e9a5bf74e10993bbd27ffa10d07610b1b4c3b6549b5a7341"
+    },
+    "wpn_sword_0": {
+      "id": "wpn_sword_0",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_sword_0.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí sword bậc 0 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "8e8c7c29294c3d26edce15715b2c2a904aa46978eea629630b59020387f237b4"
+    },
+    "wpn_sword_1": {
+      "id": "wpn_sword_1",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_sword_1.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí sword bậc 1 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d514e59cc7b1fa37a628d53ba09bae2be97f88052df62d8b1c1faef5bde4b7eb"
+    },
+    "wpn_sword_2": {
+      "id": "wpn_sword_2",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_sword_2.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí sword bậc 2 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "9e8262c5cfbbc92176f01bb9a83936a72bdd02548cdc3f28a177ab7c4ca13a8e"
+    },
+    "wpn_sword_3": {
+      "id": "wpn_sword_3",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_sword_3.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí sword bậc 3 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "f00f5c57015100ccea481c8a113a8a3dbf71edb445ae48af2ce0430a8d1b1a51"
+    },
+    "wpn_sword_4": {
+      "id": "wpn_sword_4",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_sword_4.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí sword bậc 4 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "3b2eb66d06aa0ce38dbd34c052fc6831cf9dec01a7afccbafe591a1b85125744"
+    },
+    "wpn_saber_0": {
+      "id": "wpn_saber_0",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_saber_0.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí saber bậc 0 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "879709718740d8f2f29e6c5986baf4aa203f3bab97262d2f4e0bcc29d2f1b287"
+    },
+    "wpn_saber_1": {
+      "id": "wpn_saber_1",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_saber_1.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí saber bậc 1 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d14fec16f44fffe3d9a89eeb777ef1d820017b1369059d6eb85c4fa84ad3794d"
+    },
+    "wpn_saber_2": {
+      "id": "wpn_saber_2",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_saber_2.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí saber bậc 2 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "b7b78576e72fa6c363acdf5cb92c3638726aa4ae8f08f346216c58a0fff9dec5"
+    },
+    "wpn_saber_3": {
+      "id": "wpn_saber_3",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_saber_3.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí saber bậc 3 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d20d5f0727d0ab4a77149817323955fd420ed6ad000aa5a8602c8f345bc36217"
+    },
+    "wpn_saber_4": {
+      "id": "wpn_saber_4",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_saber_4.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí saber bậc 4 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "de4dbeb250e219f45b95a9e772ace320dc6762230ca80c8c9ab2d49942d21b9e"
+    },
+    "wpn_staff_0": {
+      "id": "wpn_staff_0",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_staff_0.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí staff bậc 0 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "8e7ededc261f434ce3b53b6e146f02e629e54fbb02dc549fe0229fe29697adae"
+    },
+    "wpn_staff_1": {
+      "id": "wpn_staff_1",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_staff_1.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí staff bậc 1 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "3e06ecf93a423ccaa10cd34b200cc3a6878f100f5be2abc0908b580712bd41fb"
+    },
+    "wpn_staff_2": {
+      "id": "wpn_staff_2",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_staff_2.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí staff bậc 2 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "75f2a0328aae8e36da7451162254a6127f2208f97418443575df1006484ae8cd"
+    },
+    "wpn_staff_3": {
+      "id": "wpn_staff_3",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_staff_3.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí staff bậc 3 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ebab701d8797f193ecb11f303faaf3107c4cbd36f94c3a5f16e123d6b412c294"
+    },
+    "wpn_staff_4": {
+      "id": "wpn_staff_4",
+      "category": "weapon",
+      "path": "assets/weapons/wpn_staff_4.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Vũ khí staff bậc 4 cầm tay theo khung hình nhân vật",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "b170b90268d056a64fedb865ffb7b9cc1344cb792b51c392f92f240bfc0b763f"
+    },
+    "mon_slime": {
+      "id": "mon_slime",
+      "category": "monster",
+      "path": "assets/monsters/slime.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu slime; dùng cho: Lục Linh Nhầy, Độc Thiềm, Bảo Rương Yêu",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "815da3f3901d6d83026d377a68c3149d1b70e7f1f61769ca4ee5b7765653b054"
+    },
+    "mon_bird": {
+      "id": "mon_bird",
+      "category": "monster",
+      "path": "assets/monsters/bird.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu bird; dùng cho: Gà Rừng Hung Dữ, Dược Đường Lang, Kiếm Hạc, Linh Ưng, Lôi Điểu, Lôi Bằng Vương, Tiên Hạc Hộ Đài",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "926e559ce3d0bb8b1eee82b3722c910221cff1b7306e9132b4274f2471380125"
+    },
+    "mon_fox": {
+      "id": "mon_fox",
+      "category": "monster",
+      "path": "assets/monsters/fox.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu fox; dùng cho: Tiểu Linh Hồ, Kim Vĩ Linh Hồ, Vân Thú",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "2198cb2d0783a3f6c7df211744cc37a41c61e15b0e0363dbec6188181b151ddb"
+    },
+    "mon_treant": {
+      "id": "mon_treant",
+      "category": "monster",
+      "path": "assets/monsters/treant.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu treant; dùng cho: Trúc Yêu, Thanh Trúc Yêu Vương, Cổ Mộc Tinh, Thụ Yêu Thiên Niên",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "778a7ff8ed3c026d8ec4c717a4106b44d1c592a2c32201feaaa257c5f40b600e"
+    },
+    "mon_wolf": {
+      "id": "mon_wolf",
+      "category": "monster",
+      "path": "assets/monsters/wolf.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu wolf; dùng cho: Hắc Phong Lang, Phong Lang",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "607f3749274dc6bd530b0adc9f5983ccd1002f3ec810d2ac1c4a6c448da59952"
+    },
+    "mon_boar": {
+      "id": "mon_boar",
+      "category": "monster",
+      "path": "assets/monsters/boar.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu boar; dùng cho: Thiết Bì Trư, Chiến Thú Cổ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "3afdcaceccf8b3ed7dba2cc1a26f470d538e13163e4b758f07d57d5c181868ad"
+    },
+    "mon_golem": {
+      "id": "mon_golem",
+      "category": "monster",
+      "path": "assets/monsters/golem.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu golem; dùng cho: Mộc Nhân Luyện Công, Thạch Khôi Lỗi, Thiết Vệ Rỉ Sét, Sơn Viên, Thủ Sơn Khôi Lỗi, Lôi Khôi, Thượng Cổ Thủ Vệ, Thiên Đế Ngự Tiền Kim Giáp, Thượng Cổ Khôi Lỗi",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "1e8e41d009441f9bc92854fe5efb087728a9cf2bf33d89b5f9e127a672b19e79"
+    },
+    "mon_spirit": {
+      "id": "mon_spirit",
+      "category": "monster",
+      "path": "assets/monsters/spirit.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu spirit; dùng cho: Kiếm Linh, Cổ Kiếm Chi Hồn, U Hồn, Hư Không Hành Giả, Tinh Linh, Oán Linh, Tiên Ảnh",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ec31cf07ab141bc42569605708ee4670fef21448131be41769f6be117b4b4a09"
+    },
+    "mon_tiger": {
+      "id": "mon_tiger",
+      "category": "monster",
+      "path": "assets/monsters/tiger.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu tiger; dùng cho: Ban Lan Hổ, Yêu Thú Vương Bạch Ngạch, Hộ Sơn Kiếm Thú, Ấu Kỳ Lân, Niên Thú Đèn Lồng",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "8595bb238a2e9912bef0a0864f433855eda0ac6acb1753b16947bf09e5c55cd2"
+    },
+    "mon_snake": {
+      "id": "mon_snake",
+      "category": "monster",
+      "path": "assets/monsters/snake.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu snake; dùng cho: Lục Ngọc Xà, Vạn Độc Tri Chu Hậu, Thượng Cổ Mãng, Hỗn Độn Man",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d448231e1c94dfed4449300d71a6d7c2c351d21f283cbb668a97ab017171725e"
+    },
+    "mon_skeleton": {
+      "id": "mon_skeleton",
+      "category": "monster",
+      "path": "assets/monsters/skeleton.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu skeleton; dùng cho: Khô Lâu Chiến Sĩ, Quỷ Tướng, Chiến Hồn",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "bfe729475c4ec53c514de045f22f6b6e16119ab4bbe5d92c33ce692c5116d166"
+    },
+    "mon_demon": {
+      "id": "mon_demon",
+      "category": "monster",
+      "path": "assets/monsters/demon.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 256,
+        "h": 320,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu demon; dùng cho: U Minh Quỷ Vương, Cổ Chiến Thần Tàn Hồn, Ma Binh, Ma Pháp Sư, Ma Vực Huyết Quân, Thiên Ngoại Cự Thần, Hỗn Độn Thú, Quỷ Mẫu, Đọa Tiên",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "f938f1c4896765c577f51c5e43eaa0546030d5daac67700e26833a6b4952bba9"
+    },
+    "mon_dragon": {
+      "id": "mon_dragon",
+      "category": "monster",
+      "path": "assets/monsters/dragon.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 128,
+        "frameH": 128,
+        "cols": 4,
+        "rows": [
+          "idle(4)",
+          "move(4)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)"
+        ],
+        "w": 512,
+        "h": 640,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Quái nguyên mẫu dragon; dùng cho: Hỗn Độn Cổ Long, Thượng Cổ Thao Thiết",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "2b14754a356a5723ff9dabaa9f8b1c3edb78d88f4f1f9dbbddfd388100051a2c"
+    },
+    "tiles_village": {
+      "id": "tiles_village",
+      "category": "tileset",
+      "path": "assets/tiles/village.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset village: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "f5698a8cbb31e452b57c66d297b8e68759a87cf000dee5a2f007173cb95d9a6f"
+    },
+    "parallax_village_0": {
+      "id": "parallax_village_0",
+      "category": "parallax",
+      "path": "assets/parallax/village_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax village lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "cce599be6970080695931e6a776d8a314706dd73a208d1718d92fcef2b2ed4e8"
+    },
+    "parallax_village_1": {
+      "id": "parallax_village_1",
+      "category": "parallax",
+      "path": "assets/parallax/village_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax village lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "247c73bd84e41870a3c8dcfaf61702399e065c2156d42f40a04d7453a082bb24"
+    },
+    "parallax_village_2": {
+      "id": "parallax_village_2",
+      "category": "parallax",
+      "path": "assets/parallax/village_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax village lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "2c4f1cbab9f289968c52b14345be5d26bc8955924ebaf8de3ffaaa512e3ee469"
+    },
+    "tiles_bamboo": {
+      "id": "tiles_bamboo",
+      "category": "tileset",
+      "path": "assets/tiles/bamboo.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset bamboo: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "03d63127fa6e1fad3f431afab7b4d41c6f8cdf677deb6d1467969881c4f016d8"
+    },
+    "parallax_bamboo_0": {
+      "id": "parallax_bamboo_0",
+      "category": "parallax",
+      "path": "assets/parallax/bamboo_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax bamboo lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "a920f4664c9d9f4d54e78a3b8c4626aa7f82a3426c210b5aa958c01cb25d50c9"
+    },
+    "parallax_bamboo_1": {
+      "id": "parallax_bamboo_1",
+      "category": "parallax",
+      "path": "assets/parallax/bamboo_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax bamboo lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "c9fb46f9b953f7a2824de9b5ed448252f95e8fffce527d3024bc577b08bf5105"
+    },
+    "parallax_bamboo_2": {
+      "id": "parallax_bamboo_2",
+      "category": "parallax",
+      "path": "assets/parallax/bamboo_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax bamboo lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "939d5b8db7dbef0b40bc0838bbe56ae0d88961d5b9e2c6e791920ccd6750bbb1"
+    },
+    "tiles_dark_mountain": {
+      "id": "tiles_dark_mountain",
+      "category": "tileset",
+      "path": "assets/tiles/dark_mountain.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset dark_mountain: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "770d5af2b676d5aa1aa6e1cc37b8b1d1f490ed43ceac95cb132170a79995b701"
+    },
+    "parallax_dark_mountain_0": {
+      "id": "parallax_dark_mountain_0",
+      "category": "parallax",
+      "path": "assets/parallax/dark_mountain_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax dark_mountain lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d9f44e2be656b861c77bed2fffbd914b70492d254dee81a8e80ce271f2f6ee7b"
+    },
+    "parallax_dark_mountain_1": {
+      "id": "parallax_dark_mountain_1",
+      "category": "parallax",
+      "path": "assets/parallax/dark_mountain_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax dark_mountain lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "c569972dcecdd86ba0201c26a5cecb8908b52cebb51a8bfd38fe90fe14d9c37e"
+    },
+    "parallax_dark_mountain_2": {
+      "id": "parallax_dark_mountain_2",
+      "category": "parallax",
+      "path": "assets/parallax/dark_mountain_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax dark_mountain lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d7c0da5dcea4701bfd066781ab0800b8b33f275237403d4af9399480b34ee277"
+    },
+    "tiles_city": {
+      "id": "tiles_city",
+      "category": "tileset",
+      "path": "assets/tiles/city.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset city: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "1ee039c8a1c02ad2d56a4b114e96368a35db7c02347e4382578dcc1048799d0b"
+    },
+    "parallax_city_0": {
+      "id": "parallax_city_0",
+      "category": "parallax",
+      "path": "assets/parallax/city_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax city lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "9132afc5d74188ea48e109a255d7597aa82b997fc56310482676986b80c5fe95"
+    },
+    "parallax_city_1": {
+      "id": "parallax_city_1",
+      "category": "parallax",
+      "path": "assets/parallax/city_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax city lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "c707f76fbfa7bc38fae39e4de47bae05928a14bc89b992ee237d51f31ab9f1c7"
+    },
+    "parallax_city_2": {
+      "id": "parallax_city_2",
+      "category": "parallax",
+      "path": "assets/parallax/city_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax city lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "616c358d17c896a99e2f260aff31fc31d85107e3bbaecffb936e3a61600479a9"
+    },
+    "tiles_academy": {
+      "id": "tiles_academy",
+      "category": "tileset",
+      "path": "assets/tiles/academy.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset academy: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "96890f5c6c5f74b1ab58f7e625402a58e80d9fc7a9a20d50ec654ba1fe98c22f"
+    },
+    "parallax_academy_0": {
+      "id": "parallax_academy_0",
+      "category": "parallax",
+      "path": "assets/parallax/academy_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax academy lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "8fbbc4ee4b8634e9784c01c95e68ef21ef56eac7f62c96a745611a56661f30a8"
+    },
+    "parallax_academy_1": {
+      "id": "parallax_academy_1",
+      "category": "parallax",
+      "path": "assets/parallax/academy_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax academy lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "f9ff9ebdd2b91b1eb5e2537237b46089f1b4fe4f549d755ffe8c951cb5e8d63e"
+    },
+    "parallax_academy_2": {
+      "id": "parallax_academy_2",
+      "category": "parallax",
+      "path": "assets/parallax/academy_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax academy lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ddd5a4db719a2cf8689e23cab9ee83a338ae2a8e837c3ce18f6ce3e1f245de6c"
+    },
+    "tiles_villa": {
+      "id": "tiles_villa",
+      "category": "tileset",
+      "path": "assets/tiles/villa.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset villa: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "3d3893222203115d0974bd4e0fbacfb65b1a71ba1c798efdf7088ed30f30acc0"
+    },
+    "parallax_villa_0": {
+      "id": "parallax_villa_0",
+      "category": "parallax",
+      "path": "assets/parallax/villa_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax villa lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "761601bf7ad2c757ef4ef87a1afd4dc1f87fbc9ac56df8c665794a81c3b44791"
+    },
+    "parallax_villa_1": {
+      "id": "parallax_villa_1",
+      "category": "parallax",
+      "path": "assets/parallax/villa_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax villa lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "bce104d9e84f40cbd9a4f8cc5f959c7a69ffc6b725c3cdf6adddd174b5164af7"
+    },
+    "parallax_villa_2": {
+      "id": "parallax_villa_2",
+      "category": "parallax",
+      "path": "assets/parallax/villa_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax villa lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "314bb1fcaad72c63b085a667e3fd3b26a83966233c9951e899a5560a24f1c438"
+    },
+    "tiles_wild_mountain": {
+      "id": "tiles_wild_mountain",
+      "category": "tileset",
+      "path": "assets/tiles/wild_mountain.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset wild_mountain: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "527d0ce564fd4a4007feb5554ba7c2b4673a8b94366f9076d198dc7f2db8fbb1"
+    },
+    "parallax_wild_mountain_0": {
+      "id": "parallax_wild_mountain_0",
+      "category": "parallax",
+      "path": "assets/parallax/wild_mountain_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax wild_mountain lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "6309703f25a287ff9498d8f108d49b4ed9e12d748646133a3adfa173496015de"
+    },
+    "parallax_wild_mountain_1": {
+      "id": "parallax_wild_mountain_1",
+      "category": "parallax",
+      "path": "assets/parallax/wild_mountain_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax wild_mountain lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "31e0a7d0ba679704eebd07a2e61ae52820df3e65dce8cf781f723df2ca8bd17c"
+    },
+    "parallax_wild_mountain_2": {
+      "id": "parallax_wild_mountain_2",
+      "category": "parallax",
+      "path": "assets/parallax/wild_mountain_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax wild_mountain lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "39eca07b7067c43a0abeae54bcccaf023d8134cdf046128b5b8ab12bba6528e0"
+    },
+    "tiles_herb_valley": {
+      "id": "tiles_herb_valley",
+      "category": "tileset",
+      "path": "assets/tiles/herb_valley.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset herb_valley: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "f0c2b53fdf5de443e5afa7ea79a3a92b8cf734dfc25381857246ddac127a2587"
+    },
+    "parallax_herb_valley_0": {
+      "id": "parallax_herb_valley_0",
+      "category": "parallax",
+      "path": "assets/parallax/herb_valley_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax herb_valley lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "e4f0e29e798e18be3fc4befbf7995a9be76d757b98efe71a7ddbc32398dbf602"
+    },
+    "parallax_herb_valley_1": {
+      "id": "parallax_herb_valley_1",
+      "category": "parallax",
+      "path": "assets/parallax/herb_valley_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax herb_valley lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "118356162e83f09dd22fb055be2af084181e0b05954fdb52c419e47f30ad94f5"
+    },
+    "parallax_herb_valley_2": {
+      "id": "parallax_herb_valley_2",
+      "category": "parallax",
+      "path": "assets/parallax/herb_valley_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax herb_valley lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "05df846510fc5147f1714104c424d94cb9cb63927ca2e70b80a0ed00a384b6e1"
+    },
+    "tiles_sect": {
+      "id": "tiles_sect",
+      "category": "tileset",
+      "path": "assets/tiles/sect.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset sect: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "6694cefd9b39d0210f8b3044392932a9a38d3fc50f14920e0fd3eb13daa257a5"
+    },
+    "parallax_sect_0": {
+      "id": "parallax_sect_0",
+      "category": "parallax",
+      "path": "assets/parallax/sect_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax sect lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "5ea39ea0533d6c845b905c6ee591c9e6b10795ed6be028b30adc67a82381cc6b"
+    },
+    "parallax_sect_1": {
+      "id": "parallax_sect_1",
+      "category": "parallax",
+      "path": "assets/parallax/sect_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax sect lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "5aee98aab41958a412f0e57f86443ba22e06e2f7118f6ec884d133622ce323c1"
+    },
+    "parallax_sect_2": {
+      "id": "parallax_sect_2",
+      "category": "parallax",
+      "path": "assets/parallax/sect_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax sect lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "133012c20b0f14f9ea6fb825739236ae46a5b94babedfea6c307377b458ed1ab"
+    },
+    "tiles_ghost_cave": {
+      "id": "tiles_ghost_cave",
+      "category": "tileset",
+      "path": "assets/tiles/ghost_cave.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset ghost_cave: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "796d18da89601eab9620ce52c6284646ecbabd058c52c541439c36d918c1b7aa"
+    },
+    "parallax_ghost_cave_0": {
+      "id": "parallax_ghost_cave_0",
+      "category": "parallax",
+      "path": "assets/parallax/ghost_cave_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax ghost_cave lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "0711074a4463a4449fb925cc004b5ac6171022b5934f0cd7215ac836c3e4964c"
+    },
+    "parallax_ghost_cave_1": {
+      "id": "parallax_ghost_cave_1",
+      "category": "parallax",
+      "path": "assets/parallax/ghost_cave_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax ghost_cave lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "60adb36513a437498e50c756c6f7e23292c83b69da9e4941143235a42720a80c"
+    },
+    "parallax_ghost_cave_2": {
+      "id": "parallax_ghost_cave_2",
+      "category": "parallax",
+      "path": "assets/parallax/ghost_cave_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax ghost_cave lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "af85a74d95d885541778f0c3a8b6e105bcc406fd952e3fc820fc2b34eb388fd1"
+    },
+    "tiles_battlefield": {
+      "id": "tiles_battlefield",
+      "category": "tileset",
+      "path": "assets/tiles/battlefield.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset battlefield: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "aa3fcae4153b5c33a812f8fede20fd22e15ca0bc8691e8b4506585eefa1c1572"
+    },
+    "parallax_battlefield_0": {
+      "id": "parallax_battlefield_0",
+      "category": "parallax",
+      "path": "assets/parallax/battlefield_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax battlefield lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "fe2a0b475865954203e453dd0929718110db6b71b914f1043d1a679c52cbe2fe"
+    },
+    "parallax_battlefield_1": {
+      "id": "parallax_battlefield_1",
+      "category": "parallax",
+      "path": "assets/parallax/battlefield_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax battlefield lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "6a4131a1b6b1fb92ff0489b35289de827ede3e5ec2e9dbee58fa0c07368e16bf"
+    },
+    "parallax_battlefield_2": {
+      "id": "parallax_battlefield_2",
+      "category": "parallax",
+      "path": "assets/parallax/battlefield_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax battlefield lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "7bb535cf5a7017a1f9fb9764fdf2ab3a624065472d33d5f6b586314cf4a087ad"
+    },
+    "tiles_cloud_land": {
+      "id": "tiles_cloud_land",
+      "category": "tileset",
+      "path": "assets/tiles/cloud_land.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset cloud_land: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "1d2921c3811f630f6dcfd8b3c8f7890cbc7000ab8fc27882e4e65622bc79f102"
+    },
+    "parallax_cloud_land_0": {
+      "id": "parallax_cloud_land_0",
+      "category": "parallax",
+      "path": "assets/parallax/cloud_land_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax cloud_land lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "7ca115d688c9d6f542dd85398b0956f0cf68868fc24f1e09d2f1cec668822ce7"
+    },
+    "parallax_cloud_land_1": {
+      "id": "parallax_cloud_land_1",
+      "category": "parallax",
+      "path": "assets/parallax/cloud_land_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax cloud_land lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "2a65d842dba084bdf7aa86c160f15c748e538130606b62b70df85ac192d68430"
+    },
+    "parallax_cloud_land_2": {
+      "id": "parallax_cloud_land_2",
+      "category": "parallax",
+      "path": "assets/parallax/cloud_land_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax cloud_land lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "4442df21d5a1375b7a5b6ef3547b370fc2cab37e20c8785e5919a7c218db0bf5"
+    },
+    "tiles_cult_city": {
+      "id": "tiles_cult_city",
+      "category": "tileset",
+      "path": "assets/tiles/cult_city.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset cult_city: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d7cad64dec03e6febb7b3a3aa7aaae861735413a905e3732d7a1c15d0540d7b6"
+    },
+    "parallax_cult_city_0": {
+      "id": "parallax_cult_city_0",
+      "category": "parallax",
+      "path": "assets/parallax/cult_city_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax cult_city lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "5589f5d8f997e3fc1b4b1d93804571a7c20d933d1bc8088ceb79282442ac3ef6"
+    },
+    "parallax_cult_city_1": {
+      "id": "parallax_cult_city_1",
+      "category": "parallax",
+      "path": "assets/parallax/cult_city_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax cult_city lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "0832172aa5bcde2f529beaad98114aec4f0d0d83b99632e1002d8ec73ba8bdd1"
+    },
+    "parallax_cult_city_2": {
+      "id": "parallax_cult_city_2",
+      "category": "parallax",
+      "path": "assets/parallax/cult_city_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax cult_city lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "a4ad32273a5bd3e6ca97f8ea368b846d6b0ee326164670307da71c2fc0eac0ad"
+    },
+    "tiles_pavilion": {
+      "id": "tiles_pavilion",
+      "category": "tileset",
+      "path": "assets/tiles/pavilion.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset pavilion: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "6c3d54d53319ee294483d9d431526e6ef418bc433dc2a5d8460f1aabeca5de03"
+    },
+    "parallax_pavilion_0": {
+      "id": "parallax_pavilion_0",
+      "category": "parallax",
+      "path": "assets/parallax/pavilion_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax pavilion lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "2a97cfa68b5d6f35a81454de07de6ee91e97556e64119ddbff04e56ded4d39ed"
+    },
+    "parallax_pavilion_1": {
+      "id": "parallax_pavilion_1",
+      "category": "parallax",
+      "path": "assets/parallax/pavilion_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax pavilion lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "a507707ff80060c579e0424b39bc75d5adc27d140ba1f0efb41ef8481dbba679"
+    },
+    "parallax_pavilion_2": {
+      "id": "parallax_pavilion_2",
+      "category": "parallax",
+      "path": "assets/parallax/pavilion_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax pavilion lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "af38d8083f48784a9d0547fdbb0d7d539265d549e1ec8649d738f4884ca89493"
+    },
+    "tiles_thunder_peak": {
+      "id": "tiles_thunder_peak",
+      "category": "tileset",
+      "path": "assets/tiles/thunder_peak.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset thunder_peak: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "dde3a1ff56f196808d1bd47c8a90c89ad58bc77b2f49e26b04c12e9e21fcb03d"
+    },
+    "parallax_thunder_peak_0": {
+      "id": "parallax_thunder_peak_0",
+      "category": "parallax",
+      "path": "assets/parallax/thunder_peak_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax thunder_peak lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "76559c50d9008a2bc28162e419c0af4006ee14a648b1186420a1da6827da27f3"
+    },
+    "parallax_thunder_peak_1": {
+      "id": "parallax_thunder_peak_1",
+      "category": "parallax",
+      "path": "assets/parallax/thunder_peak_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax thunder_peak lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "db3f625dae41206f8136d8492a965b014920d2e7d426c0e7726f3ac39676b26a"
+    },
+    "parallax_thunder_peak_2": {
+      "id": "parallax_thunder_peak_2",
+      "category": "parallax",
+      "path": "assets/parallax/thunder_peak_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax thunder_peak lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "123a112eb13ed1ac0a8904117d195694aaaa6b8e851c52fb9c55fbf6547a7480"
+    },
+    "tiles_ancient_ruins": {
+      "id": "tiles_ancient_ruins",
+      "category": "tileset",
+      "path": "assets/tiles/ancient_ruins.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset ancient_ruins: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "875f9ab495b5241bc4661e9957fcda87b8a56424855f96a3f31edfa8c83123c2"
+    },
+    "parallax_ancient_ruins_0": {
+      "id": "parallax_ancient_ruins_0",
+      "category": "parallax",
+      "path": "assets/parallax/ancient_ruins_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax ancient_ruins lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "102c134438932bd0f5b51171dc020fd30cab2a9ea03e1e0bb9688ef00fa90485"
+    },
+    "parallax_ancient_ruins_1": {
+      "id": "parallax_ancient_ruins_1",
+      "category": "parallax",
+      "path": "assets/parallax/ancient_ruins_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax ancient_ruins lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "c6805588b2825fadf0660634dacb0293ddd351004ed87a325f7a7e512227d0a1"
+    },
+    "parallax_ancient_ruins_2": {
+      "id": "parallax_ancient_ruins_2",
+      "category": "parallax",
+      "path": "assets/parallax/ancient_ruins_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax ancient_ruins lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "0ea48cc6c6dadce6204d2ae05795976e1bf25bc7b93a4080f98460f96b08a309"
+    },
+    "tiles_demon_realm": {
+      "id": "tiles_demon_realm",
+      "category": "tileset",
+      "path": "assets/tiles/demon_realm.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset demon_realm: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "831415a32225f011bbff26a129e63778f816813fed337c9993c19406329075b7"
+    },
+    "parallax_demon_realm_0": {
+      "id": "parallax_demon_realm_0",
+      "category": "parallax",
+      "path": "assets/parallax/demon_realm_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax demon_realm lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ca8c994340b2f4bf23dc20bc66354c291d44b935e57da1a6c9208f73ddb7d090"
+    },
+    "parallax_demon_realm_1": {
+      "id": "parallax_demon_realm_1",
+      "category": "parallax",
+      "path": "assets/parallax/demon_realm_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax demon_realm lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "9606d8e18cd8835a21597607986116680d0cc5295573e4a417957d705316c0d7"
+    },
+    "parallax_demon_realm_2": {
+      "id": "parallax_demon_realm_2",
+      "category": "parallax",
+      "path": "assets/parallax/demon_realm_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax demon_realm lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "499b5e1ebb6ab23cfe693f42b7528a18f917713f23621c2cc9888b7d7669f7ae"
+    },
+    "tiles_void": {
+      "id": "tiles_void",
+      "category": "tileset",
+      "path": "assets/tiles/void.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset void: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "5c092f94f527313fe4c7f6b9411344c4c95f6d76284ab6f93bdbd0d03c7a0200"
+    },
+    "parallax_void_0": {
+      "id": "parallax_void_0",
+      "category": "parallax",
+      "path": "assets/parallax/void_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax void lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "531f904d6d17282c4509ae8d2c9826be80a1b225dc9367eead35b6714d1993b1"
+    },
+    "parallax_void_1": {
+      "id": "parallax_void_1",
+      "category": "parallax",
+      "path": "assets/parallax/void_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax void lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "aba6f0e38e264a79623b15d4b2126642c1a40290135209147c09dea5ec4d0656"
+    },
+    "parallax_void_2": {
+      "id": "parallax_void_2",
+      "category": "parallax",
+      "path": "assets/parallax/void_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax void lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "cfbda0de24f3ebb5a8932498b54d8693ea5e1b783b262f27ae4f15f9976b191c"
+    },
+    "tiles_ascension": {
+      "id": "tiles_ascension",
+      "category": "tileset",
+      "path": "assets/tiles/ascension.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset ascension: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "08cad3e1357c9d4e9fd3b4e28a41ad17e2e04edc020a314dbeb675252ae4cf2d"
+    },
+    "parallax_ascension_0": {
+      "id": "parallax_ascension_0",
+      "category": "parallax",
+      "path": "assets/parallax/ascension_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax ascension lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "aa6efc19ed42e39fc8e727517e8c9ebea8044eda36b9ad9c47b2b70eb18c1d71"
+    },
+    "parallax_ascension_1": {
+      "id": "parallax_ascension_1",
+      "category": "parallax",
+      "path": "assets/parallax/ascension_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax ascension lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ebd98938e935f85c679e58e19904971d174ff88973dd1a6d7a5418caa27e0b1c"
+    },
+    "parallax_ascension_2": {
+      "id": "parallax_ascension_2",
+      "category": "parallax",
+      "path": "assets/parallax/ascension_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax ascension lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "a8137c2e3339724fb9a98b15e95191b8cdc327cb2092b2893510a879724e8f48"
+    },
+    "tiles_immortal_city": {
+      "id": "tiles_immortal_city",
+      "category": "tileset",
+      "path": "assets/tiles/immortal_city.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset immortal_city: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "8c474fc06ab716b7ab2fa80bd5e7bbf2a456617184ef5f26576181c506fc916d"
+    },
+    "parallax_immortal_city_0": {
+      "id": "parallax_immortal_city_0",
+      "category": "parallax",
+      "path": "assets/parallax/immortal_city_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax immortal_city lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "86bfd222e3f1fc6c7d6818e664d90eee4a57b3312e9ce56b0edfc9ef70f16097"
+    },
+    "parallax_immortal_city_1": {
+      "id": "parallax_immortal_city_1",
+      "category": "parallax",
+      "path": "assets/parallax/immortal_city_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax immortal_city lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "0ff14f0abd59c39b3a50de08966998014d6847970bb3ce1f3878aa706802d4ee"
+    },
+    "parallax_immortal_city_2": {
+      "id": "parallax_immortal_city_2",
+      "category": "parallax",
+      "path": "assets/parallax/immortal_city_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax immortal_city lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "cf121d9ca89cbdc94fcfeec94f3e57b7859f4388a5234e104ac0b75b4978a7b8"
+    },
+    "tiles_immortal_mountain": {
+      "id": "tiles_immortal_mountain",
+      "category": "tileset",
+      "path": "assets/tiles/immortal_mountain.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset immortal_mountain: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "45d43895b8ea40041b9c8c15e73d088dec38d231a542bf92186a10a118628dc0"
+    },
+    "parallax_immortal_mountain_0": {
+      "id": "parallax_immortal_mountain_0",
+      "category": "parallax",
+      "path": "assets/parallax/immortal_mountain_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax immortal_mountain lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "25b04a18dd5dfa305ffe0464d4e1cf4198f75ad76928cc3a309aac1598bbac0a"
+    },
+    "parallax_immortal_mountain_1": {
+      "id": "parallax_immortal_mountain_1",
+      "category": "parallax",
+      "path": "assets/parallax/immortal_mountain_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax immortal_mountain lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "4922b438f269cf6782f0fa5f4777495e37032872e1a3c6fbbfe5a3cc20d9cdf9"
+    },
+    "parallax_immortal_mountain_2": {
+      "id": "parallax_immortal_mountain_2",
+      "category": "parallax",
+      "path": "assets/parallax/immortal_mountain_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax immortal_mountain lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "7d5122f804130713a53583190fd68d8d0fbabee26fb9e7245c73e5bce058bc0e"
+    },
+    "tiles_heaven_palace": {
+      "id": "tiles_heaven_palace",
+      "category": "tileset",
+      "path": "assets/tiles/heaven_palace.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset heaven_palace: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "9a578d170467106e2472419c90e6bba403a48e5eb674fc195fb0ed45607e72da"
+    },
+    "parallax_heaven_palace_0": {
+      "id": "parallax_heaven_palace_0",
+      "category": "parallax",
+      "path": "assets/parallax/heaven_palace_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax heaven_palace lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "a51557d539e46bda716f27dcfb5a5eca9adc783e1bef70684cd9ca6b4369febf"
+    },
+    "parallax_heaven_palace_1": {
+      "id": "parallax_heaven_palace_1",
+      "category": "parallax",
+      "path": "assets/parallax/heaven_palace_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax heaven_palace lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "f72637dd1bc7d6f85ab00555726d9e641c87579000ad0e17b13129c4e220e8d6"
+    },
+    "parallax_heaven_palace_2": {
+      "id": "parallax_heaven_palace_2",
+      "category": "parallax",
+      "path": "assets/parallax/heaven_palace_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax heaven_palace lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "40ba64450a57cff2949367a0e746427d5352dd7fe2f822406b8b75440bcc508a"
+    },
+    "tiles_chaos_sea": {
+      "id": "tiles_chaos_sea",
+      "category": "tileset",
+      "path": "assets/tiles/chaos_sea.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset chaos_sea: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "e6fbb73d132f09ba2d965089492628c215ad4b7ef06037403f6f5fc0cd469c43"
+    },
+    "parallax_chaos_sea_0": {
+      "id": "parallax_chaos_sea_0",
+      "category": "parallax",
+      "path": "assets/parallax/chaos_sea_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax chaos_sea lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "72186325bbfa17e857b832db7135d205135269e4f16f686fc69dc1fb1a4ca2a2"
+    },
+    "parallax_chaos_sea_1": {
+      "id": "parallax_chaos_sea_1",
+      "category": "parallax",
+      "path": "assets/parallax/chaos_sea_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax chaos_sea lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "56db29d73c404b9421398c6179a1fc091583d404dc310b318d40267a8ece9116"
+    },
+    "parallax_chaos_sea_2": {
+      "id": "parallax_chaos_sea_2",
+      "category": "parallax",
+      "path": "assets/parallax/chaos_sea_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax chaos_sea lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "c96983acfacedcf72e22d6370d24edffb9399ed79a1803ccf9f34264bd3ccb84"
+    },
+    "tiles_inner_world": {
+      "id": "tiles_inner_world",
+      "category": "tileset",
+      "path": "assets/tiles/inner_world.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset inner_world: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "51f018e59a725fb9203369956dd0d993f8ab098b69299f6c2ea6ff6ceea4a895"
+    },
+    "parallax_inner_world_0": {
+      "id": "parallax_inner_world_0",
+      "category": "parallax",
+      "path": "assets/parallax/inner_world_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax inner_world lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "583479cbce50a049071f933f44a6b843c780f15723a5694c35b0fe49b279321b"
+    },
+    "parallax_inner_world_1": {
+      "id": "parallax_inner_world_1",
+      "category": "parallax",
+      "path": "assets/parallax/inner_world_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax inner_world lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "5421967e23287240ac25d3472c945b220c99d7f571454accc5f0cfdd1994239d"
+    },
+    "parallax_inner_world_2": {
+      "id": "parallax_inner_world_2",
+      "category": "parallax",
+      "path": "assets/parallax/inner_world_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax inner_world lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "7fb5af427ed8bdcfad32cd11b992d7116ddc46013f94875fc622233df48b1637"
+    },
+    "tiles_cave_home": {
+      "id": "tiles_cave_home",
+      "category": "tileset",
+      "path": "assets/tiles/cave_home.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset cave_home: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "07495a3820a0f44ff274d448908de92eaced511b65ac6af1946d3acf65ddf04d"
+    },
+    "parallax_cave_home_0": {
+      "id": "parallax_cave_home_0",
+      "category": "parallax",
+      "path": "assets/parallax/cave_home_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax cave_home lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "c45e092c0e3b00a96d739f14e570d38934760ffa14fd7d017a9efcd08bfddf16"
+    },
+    "parallax_cave_home_1": {
+      "id": "parallax_cave_home_1",
+      "category": "parallax",
+      "path": "assets/parallax/cave_home_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax cave_home lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d79dccc0ddc8223677a351ac6d99064c5f487aed6db39313d42af5aa6d90c1be"
+    },
+    "parallax_cave_home_2": {
+      "id": "parallax_cave_home_2",
+      "category": "parallax",
+      "path": "assets/parallax/cave_home_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax cave_home lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "396431932f405220df5ceb63bbdaa8b383be69ba5aa606f97b602459c0e7fc60"
+    },
+    "tiles_arena": {
+      "id": "tiles_arena",
+      "category": "tileset",
+      "path": "assets/tiles/arena.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 32,
+        "frameW": 32,
+        "frameH": 32,
+        "transparent": true
+      },
+      "desc": "Tileset arena: [0 mặt đất, 1 lấp đầy, 2 bục, 3 cỏ, 4 hoa, 5 đá, 6 đèn, 7 trần hang]",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "5011e010ab85894ca56c49923724609a7fcba47c91ca16d36d05b133fbc89ebc"
+    },
+    "parallax_arena_0": {
+      "id": "parallax_arena_0",
+      "category": "parallax",
+      "path": "assets/parallax/arena_0.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": false
+      },
+      "desc": "Nền parallax arena lớp 0 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ee3d1eb3a10b69820df325c210db3ce77634eb1d1f3870ccdea3e04a1d90e806"
+    },
+    "parallax_arena_1": {
+      "id": "parallax_arena_1",
+      "category": "parallax",
+      "path": "assets/parallax/arena_1.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax arena lớp 1 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d28ec9881eae72a3e1bcec5c6390f46cf37fdf4b45ba894f39c71956465d13d5"
+    },
+    "parallax_arena_2": {
+      "id": "parallax_arena_2",
+      "category": "parallax",
+      "path": "assets/parallax/arena_2.png",
+      "spec": {
+        "kind": "image",
+        "w": 640,
+        "h": 360,
+        "transparent": true
+      },
+      "desc": "Nền parallax arena lớp 2 (0 trời, 1 núi xa, 2 cận cảnh) — lặp ngang liền mạch",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "dc3a3a2cfb6e9857ced71660eda46b082a33b5081a693e7e9d8321622fc15be9"
+    },
+    "icons_items": {
+      "id": "icons_items",
+      "category": "icon",
+      "path": "assets/icons/items.png",
+      "spec": {
+        "kind": "atlas",
+        "frameW": 32,
+        "frameH": 32,
+        "cols": 16,
+        "transparent": true
+      },
+      "desc": "Atlas icon vật phẩm 32×32 (94 icon)",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "25c73081666fcfbb74fcc54e958b51e0f81989011e63337f7d11856ae8f788a0"
+    },
+    "icons_skills": {
+      "id": "icons_skills",
+      "category": "icon",
+      "path": "assets/icons/skills.png",
+      "spec": {
+        "kind": "atlas",
+        "frameW": 64,
+        "frameH": 64,
+        "cols": 8,
+        "transparent": false
+      },
+      "desc": "Atlas icon kỹ năng 64×64 (77 kỹ năng)",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "3440d18579197be799a8392e6fa186714f8216db1e7b59ea86d829708ce7db27"
+    },
+    "portrait_npc_village_chief": {
+      "id": "portrait_npc_village_chief",
+      "category": "portrait",
+      "path": "assets/portraits/npc_village_chief.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Lý Bá — Trưởng Thôn",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_father": {
+      "id": "portrait_npc_father",
+      "category": "portrait",
+      "path": "assets/portraits/npc_father.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Lâm Đại Sơn — Thợ Săn Già",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_martial_teacher": {
+      "id": "portrait_npc_martial_teacher",
+      "category": "portrait",
+      "path": "assets/portraits/npc_martial_teacher.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Trần Cương — Võ Sư",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_herbalist_girl": {
+      "id": "portrait_npc_herbalist_girl",
+      "category": "portrait",
+      "path": "assets/portraits/npc_herbalist_girl.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tiểu Dược Linh — Dược Đồng",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_blacksmith_village": {
+      "id": "portrait_npc_blacksmith_village",
+      "category": "portrait",
+      "path": "assets/portraits/npc_blacksmith_village.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Vương Thiết — Thợ Rèn",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_storage_village": {
+      "id": "portrait_npc_storage_village",
+      "category": "portrait",
+      "path": "assets/portraits/npc_storage_village.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Lão Chu — Thủ Kho",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_grandma": {
+      "id": "portrait_npc_grandma",
+      "category": "portrait",
+      "path": "assets/portraits/npc_grandma.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Bà Lão Mù — Người Kể Chuyện",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_hunter": {
+      "id": "portrait_npc_hunter",
+      "category": "portrait",
+      "path": "assets/portraits/npc_hunter.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung A Tứ — Thợ Săn",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_lost_child": {
+      "id": "portrait_npc_lost_child",
+      "category": "portrait",
+      "path": "assets/portraits/npc_lost_child.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tiểu Bảo — Đứa Trẻ Lạc",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_scout": {
+      "id": "portrait_npc_scout",
+      "category": "portrait",
+      "path": "assets/portraits/npc_scout.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Triệu Ảnh — Trinh Sát Thanh Vân",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_captive_merchant": {
+      "id": "portrait_npc_captive_merchant",
+      "category": "portrait",
+      "path": "assets/portraits/npc_captive_merchant.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tiền Phú Quý — Thương Nhân",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_city_lord": {
+      "id": "portrait_npc_city_lord",
+      "category": "portrait",
+      "path": "assets/portraits/npc_city_lord.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Mộ Dung Thanh — Thành Chủ Thanh Vân",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_merchant_city": {
+      "id": "portrait_npc_merchant_city",
+      "category": "portrait",
+      "path": "assets/portraits/npc_merchant_city.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Hà Ký — Tạp Hóa",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_market": {
+      "id": "portrait_npc_market",
+      "category": "portrait",
+      "path": "assets/portraits/npc_market.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Lục Kim — Quản Sự Chợ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_guild_manager": {
+      "id": "portrait_npc_guild_manager",
+      "category": "portrait",
+      "path": "assets/portraits/npc_guild_manager.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Bạch Vân Sứ — Tông Môn Sứ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_arena_master": {
+      "id": "portrait_npc_arena_master",
+      "category": "portrait",
+      "path": "assets/portraits/npc_arena_master.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Thiết Diện — Chủ Đấu Trường",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_housing_agent": {
+      "id": "portrait_npc_housing_agent",
+      "category": "portrait",
+      "path": "assets/portraits/npc_housing_agent.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Phương Địa Chủ — Địa Chủ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_teleporter": {
+      "id": "portrait_npc_teleporter",
+      "category": "portrait",
+      "path": "assets/portraits/npc_teleporter.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Phi Mã Dịch Trạm — Dịch Trạm",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_storage_city": {
+      "id": "portrait_npc_storage_city",
+      "category": "portrait",
+      "path": "assets/portraits/npc_storage_city.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Kim Khố Quản — Thủ Kho",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_alchemist_master": {
+      "id": "portrait_npc_alchemist_master",
+      "category": "portrait",
+      "path": "assets/portraits/npc_alchemist_master.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Đan Thánh Tôn — Đan Sư",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_forge_master": {
+      "id": "portrait_npc_forge_master",
+      "category": "portrait",
+      "path": "assets/portraits/npc_forge_master.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Âu Dã Tử — Đại Sư Luyện Khí",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_pet_keeper": {
+      "id": "portrait_npc_pet_keeper",
+      "category": "portrait",
+      "path": "assets/portraits/npc_pet_keeper.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Linh Nhi — Ngự Thú Sư",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_event": {
+      "id": "portrait_npc_event",
+      "category": "portrait",
+      "path": "assets/portraits/npc_event.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Nguyệt Sứ — Sứ Giả Sự Kiện",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_tailor": {
+      "id": "portrait_npc_tailor",
+      "category": "portrait",
+      "path": "assets/portraits/npc_tailor.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tô Cẩm Nương — Thợ May",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_bounty_board": {
+      "id": "portrait_npc_bounty_board",
+      "category": "portrait",
+      "path": "assets/portraits/npc_bounty_board.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Bảng Treo Thưởng — Nhiệm Vụ Hằng Ngày",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_fisherman": {
+      "id": "portrait_npc_fisherman",
+      "category": "portrait",
+      "path": "assets/portraits/npc_fisherman.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Ngư Ông — Ngư Phủ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_academy_dean": {
+      "id": "portrait_npc_academy_dean",
+      "category": "portrait",
+      "path": "assets/portraits/npc_academy_dean.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tư Mã Huyền — Viện Trưởng",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_academy_instructor": {
+      "id": "portrait_npc_academy_instructor",
+      "category": "portrait",
+      "path": "assets/portraits/npc_academy_instructor.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Lôi Chấn — Giáo Đầu",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_academy_librarian": {
+      "id": "portrait_npc_academy_librarian",
+      "category": "portrait",
+      "path": "assets/portraits/npc_academy_librarian.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Thư Lão — Quản Thư",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_sword_villa_master": {
+      "id": "portrait_npc_sword_villa_master",
+      "category": "portrait",
+      "path": "assets/portraits/npc_sword_villa_master.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Âu Dương Kiếm — Trang Chủ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_old_servant": {
+      "id": "portrait_npc_old_servant",
+      "category": "portrait",
+      "path": "assets/portraits/npc_old_servant.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Phúc Bá — Lão Bộc",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_beast_tamer": {
+      "id": "portrait_npc_beast_tamer",
+      "category": "portrait",
+      "path": "assets/portraits/npc_beast_tamer.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Mạc Hổ — Thợ Săn Yêu Thú",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_injured_disciple": {
+      "id": "portrait_npc_injured_disciple",
+      "category": "portrait",
+      "path": "assets/portraits/npc_injured_disciple.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tống Viễn — Đệ Tử Bị Thương",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_valley_master": {
+      "id": "portrait_npc_valley_master",
+      "category": "portrait",
+      "path": "assets/portraits/npc_valley_master.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Dược Vương — Cốc Chủ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_poisoned_villager": {
+      "id": "portrait_npc_poisoned_villager",
+      "category": "portrait",
+      "path": "assets/portraits/npc_poisoned_villager.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Lưu Nhị — Dân Làng Trúng Độc",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_sect_master": {
+      "id": "portrait_npc_sect_master",
+      "category": "portrait",
+      "path": "assets/portraits/npc_sect_master.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Kiếm Vô Trần — Tông Chủ Thiên Kiếm Tông",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_sect_elder": {
+      "id": "portrait_npc_sect_elder",
+      "category": "portrait",
+      "path": "assets/portraits/npc_sect_elder.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Thanh Phong Trưởng Lão — Truyền Công Trưởng Lão",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_sect_quartermaster": {
+      "id": "portrait_npc_sect_quartermaster",
+      "category": "portrait",
+      "path": "assets/portraits/npc_sect_quartermaster.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Hoàng Quản Sự — Quản Sự Tông Môn",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_sect_mission": {
+      "id": "portrait_npc_sect_mission",
+      "category": "portrait",
+      "path": "assets/portraits/npc_sect_mission.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Nhiệm Vụ Đường — Chấp Sự",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_sect_gate": {
+      "id": "portrait_npc_sect_gate",
+      "category": "portrait",
+      "path": "assets/portraits/npc_sect_gate.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Thủ Giới Sứ — Người Giữ Cổng Giới",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_ghost_hunter": {
+      "id": "portrait_npc_ghost_hunter",
+      "category": "portrait",
+      "path": "assets/portraits/npc_ghost_hunter.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Chung Quỳ Hậu Nhân — Trừ Quỷ Sư",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_war_veteran": {
+      "id": "portrait_npc_war_veteran",
+      "category": "portrait",
+      "path": "assets/portraits/npc_war_veteran.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Lão Binh Tần — Cựu Binh",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_immortal_guide": {
+      "id": "portrait_npc_immortal_guide",
+      "category": "portrait",
+      "path": "assets/portraits/npc_immortal_guide.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Vân Du Tử — Tiếp Dẫn Sứ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_th_city_lord": {
+      "id": "portrait_npc_th_city_lord",
+      "category": "portrait",
+      "path": "assets/portraits/npc_th_city_lord.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Huyền Cơ Chân Nhân — Thành Chủ Thiên Huyền",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_th_merchant": {
+      "id": "portrait_npc_th_merchant",
+      "category": "portrait",
+      "path": "assets/portraits/npc_th_merchant.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Đa Bảo Thương — Thương Nhân",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_th_market": {
+      "id": "portrait_npc_th_market",
+      "category": "portrait",
+      "path": "assets/portraits/npc_th_market.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Kim Ngọc Quản Sự — Quản Sự Chợ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_th_teleporter": {
+      "id": "portrait_npc_th_teleporter",
+      "category": "portrait",
+      "path": "assets/portraits/npc_th_teleporter.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Truyền Tống Trận Sư — Trận Sư",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_th_storage": {
+      "id": "portrait_npc_th_storage",
+      "category": "portrait",
+      "path": "assets/portraits/npc_th_storage.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tàng Bảo Sứ — Thủ Kho",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_th_guild": {
+      "id": "portrait_npc_th_guild",
+      "category": "portrait",
+      "path": "assets/portraits/npc_th_guild.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tông Vụ Sứ — Tông Môn Sứ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_th_arena": {
+      "id": "portrait_npc_th_arena",
+      "category": "portrait",
+      "path": "assets/portraits/npc_th_arena.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Luận Đạo Đài Chủ — Đấu Trường",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_th_skill_master": {
+      "id": "portrait_npc_th_skill_master",
+      "category": "portrait",
+      "path": "assets/portraits/npc_th_skill_master.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tàng Kinh Các Chủ — Truyền Pháp",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_treasure_pavilion": {
+      "id": "portrait_npc_treasure_pavilion",
+      "category": "portrait",
+      "path": "assets/portraits/npc_treasure_pavilion.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Vạn Bảo Lão Nhân — Các Chủ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_auctioneer": {
+      "id": "portrait_npc_auctioneer",
+      "category": "portrait",
+      "path": "assets/portraits/npc_auctioneer.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Ngọc Thù — Đấu Giá Sư",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_tribulation_elder": {
+      "id": "portrait_npc_tribulation_elder",
+      "category": "portrait",
+      "path": "assets/portraits/npc_tribulation_elder.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Độ Ách Lão Tổ — Hộ Kiếp Nhân",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_ancient_spirit": {
+      "id": "portrait_npc_ancient_spirit",
+      "category": "portrait",
+      "path": "assets/portraits/npc_ancient_spirit.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Cổ Linh — Tàn Hồn Thượng Cổ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_demon_defector": {
+      "id": "portrait_npc_demon_defector",
+      "category": "portrait",
+      "path": "assets/portraits/npc_demon_defector.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Mặc Uyên — Ma Tu Quy Thuận",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_frontline_commander": {
+      "id": "portrait_npc_frontline_commander",
+      "category": "portrait",
+      "path": "assets/portraits/npc_frontline_commander.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Thiết Huyết Tướng Quân — Thống Lĩnh",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_ascension_envoy": {
+      "id": "portrait_npc_ascension_envoy",
+      "category": "portrait",
+      "path": "assets/portraits/npc_ascension_envoy.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tiếp Dẫn Tiên Quan — Tiên Quan",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_ct_city_lord": {
+      "id": "portrait_npc_ct_city_lord",
+      "category": "portrait",
+      "path": "assets/portraits/npc_ct_city_lord.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Cửu Thiên Huyền Nữ — Thành Chủ Tiên Thành",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_ct_merchant": {
+      "id": "portrait_npc_ct_merchant",
+      "category": "portrait",
+      "path": "assets/portraits/npc_ct_merchant.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tiên Thương — Thương Nhân",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_ct_market": {
+      "id": "portrait_npc_ct_market",
+      "category": "portrait",
+      "path": "assets/portraits/npc_ct_market.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Thiên Thị Quản Sự — Quản Sự Chợ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_ct_storage": {
+      "id": "portrait_npc_ct_storage",
+      "category": "portrait",
+      "path": "assets/portraits/npc_ct_storage.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tiên Khố Sứ — Thủ Kho",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_ct_teleporter": {
+      "id": "portrait_npc_ct_teleporter",
+      "category": "portrait",
+      "path": "assets/portraits/npc_ct_teleporter.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tinh Môn Sứ — Truyền Tống",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_ct_skill_master": {
+      "id": "portrait_npc_ct_skill_master",
+      "category": "portrait",
+      "path": "assets/portraits/npc_ct_skill_master.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Tiên Pháp Truyền Nhân — Truyền Pháp",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_immortal_hermit": {
+      "id": "portrait_npc_immortal_hermit",
+      "category": "portrait",
+      "path": "assets/portraits/npc_immortal_hermit.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Ẩn Tiên — Ẩn Sĩ",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_heaven_herald": {
+      "id": "portrait_npc_heaven_herald",
+      "category": "portrait",
+      "path": "assets/portraits/npc_heaven_herald.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Truyền Lệnh Tiên Quan — Tiên Quan",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "portrait_npc_chaos_ferryman": {
+      "id": "portrait_npc_chaos_ferryman",
+      "category": "portrait",
+      "path": "assets/portraits/npc_chaos_ferryman.png",
+      "spec": {
+        "kind": "image",
+        "w": 256,
+        "h": 256,
+        "transparent": true
+      },
+      "desc": "Chân dung Độ Hải Nhân — Người Chèo Đò",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "notes": "Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT"
+    },
+    "bgm_village": {
+      "id": "bgm_village",
+      "category": "audio",
+      "path": "assets/audio/bgm_village.wav",
+      "spec": {
+        "kind": "audio",
+        "seconds": 16
+      },
+      "desc": "Nhạc nền chủ đề village (ngũ cung, lặp)",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "34917c74158b0a6fe26da1d5da704a43fa6d8280bf6e52437f26bb15b89a528b"
+    },
+    "bgm_forest": {
+      "id": "bgm_forest",
+      "category": "audio",
+      "path": "assets/audio/bgm_forest.wav",
+      "spec": {
+        "kind": "audio",
+        "seconds": 16
+      },
+      "desc": "Nhạc nền chủ đề forest (ngũ cung, lặp)",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "045266614df511eb2659364c6e4c208a6f6c54cf6eb4dac5e8f3c6c692d0c0d9"
+    },
+    "bgm_mountain": {
+      "id": "bgm_mountain",
+      "category": "audio",
+      "path": "assets/audio/bgm_mountain.wav",
+      "spec": {
+        "kind": "audio",
+        "seconds": 16
+      },
+      "desc": "Nhạc nền chủ đề mountain (ngũ cung, lặp)",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ebe9468f97d4d1d4788845e9aa1e05ccc0140837d73c5c4c9e6f4459685c1edd"
+    },
+    "bgm_city": {
+      "id": "bgm_city",
+      "category": "audio",
+      "path": "assets/audio/bgm_city.wav",
+      "spec": {
+        "kind": "audio",
+        "seconds": 16
+      },
+      "desc": "Nhạc nền chủ đề city (ngũ cung, lặp)",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "2183c0e07f337306486e863502a5b333cba2a86b22d49f010ffebe980e5d604d"
+    },
+    "bgm_cave": {
+      "id": "bgm_cave",
+      "category": "audio",
+      "path": "assets/audio/bgm_cave.wav",
+      "spec": {
+        "kind": "audio",
+        "seconds": 16
+      },
+      "desc": "Nhạc nền chủ đề cave (ngũ cung, lặp)",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "8822e09d62aaabb96e9320d1fcbb1fb7941b78a530eff5b4c39828e778fb96fb"
+    },
+    "bgm_battle": {
+      "id": "bgm_battle",
+      "category": "audio",
+      "path": "assets/audio/bgm_battle.wav",
+      "spec": {
+        "kind": "audio",
+        "seconds": 16
+      },
+      "desc": "Nhạc nền chủ đề battle (ngũ cung, lặp)",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "6f8713f6f74f08ed01f6a143495eef874eb77640e5a2c5542932319997f2abf3"
+    },
+    "bgm_celestial": {
+      "id": "bgm_celestial",
+      "category": "audio",
+      "path": "assets/audio/bgm_celestial.wav",
+      "spec": {
+        "kind": "audio",
+        "seconds": 16
+      },
+      "desc": "Nhạc nền chủ đề celestial (ngũ cung, lặp)",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "30d0063428906ccf78787f9719c77726a319c6bced9e1bd4c5833b9a23412da7"
+    },
+    "bgm_chaos": {
+      "id": "bgm_chaos",
+      "category": "audio",
+      "path": "assets/audio/bgm_chaos.wav",
+      "spec": {
+        "kind": "audio",
+        "seconds": 16
+      },
+      "desc": "Nhạc nền chủ đề chaos (ngũ cung, lặp)",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "e6e3d686dda2bd7b58b56a392e64b3bf29ed28b03c5760668f0a6c54705b5c0a"
+    },
+    "sfx_slash": {
+      "id": "sfx_slash",
+      "category": "audio",
+      "path": "assets/audio/sfx_slash.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh slash",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "671b13e6acbd2583fe91c6aec6cfa2b4462f2e2106ba5e8a86692b05d65a3872"
+    },
+    "sfx_hit": {
+      "id": "sfx_hit",
+      "category": "audio",
+      "path": "assets/audio/sfx_hit.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh hit",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ed64bec92b20a1abf1538775bdde1ffbbaedfa7f1437cb1b982beda5e9847da6"
+    },
+    "sfx_crit": {
+      "id": "sfx_crit",
+      "category": "audio",
+      "path": "assets/audio/sfx_crit.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh crit",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "13cb416e3d8aedfded75b58a5a972597702eb649741d8caeb67edb5313b16848"
+    },
+    "sfx_magic": {
+      "id": "sfx_magic",
+      "category": "audio",
+      "path": "assets/audio/sfx_magic.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh magic",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "ea3723e931a6f190949c5d5b346bccbe690f6e8d7f4127f528c414d730de70cd"
+    },
+    "sfx_fire": {
+      "id": "sfx_fire",
+      "category": "audio",
+      "path": "assets/audio/sfx_fire.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh fire",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d345d481643591a84f7fd8722840e9603f87632c8ba944acf34a96a179a8c148"
+    },
+    "sfx_ice": {
+      "id": "sfx_ice",
+      "category": "audio",
+      "path": "assets/audio/sfx_ice.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh ice",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "2218cf709dbebc79ee529787bc9568e01ad84a4168263328a3f9524def9bf297"
+    },
+    "sfx_thunder": {
+      "id": "sfx_thunder",
+      "category": "audio",
+      "path": "assets/audio/sfx_thunder.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh thunder",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "975d2f652f461dbc2473bafc52f149398f4dff6c245409ea5087d137b54f3377"
+    },
+    "sfx_poison": {
+      "id": "sfx_poison",
+      "category": "audio",
+      "path": "assets/audio/sfx_poison.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh poison",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "627de505b1793feb5117e137b9aafd89ca8167452fb8a7f72135a4d5e2423a4c"
+    },
+    "sfx_jump": {
+      "id": "sfx_jump",
+      "category": "audio",
+      "path": "assets/audio/sfx_jump.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh jump",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "73e2ae2dc75a49672c9b9d7acb79510ba599ccf9574e476b77c9247acaec3595"
+    },
+    "sfx_pickup": {
+      "id": "sfx_pickup",
+      "category": "audio",
+      "path": "assets/audio/sfx_pickup.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh pickup",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "f25b9dff4280588587d241e316859b735e7c89f8bea41a01211f93de21f5742d"
+    },
+    "sfx_coin": {
+      "id": "sfx_coin",
+      "category": "audio",
+      "path": "assets/audio/sfx_coin.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh coin",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "a2505379e180c909e89685219618e2c945b494c5068b0ac88c5edaf1ca36cc3a"
+    },
+    "sfx_ui_click": {
+      "id": "sfx_ui_click",
+      "category": "audio",
+      "path": "assets/audio/sfx_ui_click.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh ui_click",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "1ad7c9769204a2e304973a790fb56dd73e08997508fec205a4176994924e3d27"
+    },
+    "sfx_ui_open": {
+      "id": "sfx_ui_open",
+      "category": "audio",
+      "path": "assets/audio/sfx_ui_open.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh ui_open",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "9ac1d3b869e28285c6c360dd93d2e230afc53a757cac7b83bad911691f98f5d5"
+    },
+    "sfx_levelup": {
+      "id": "sfx_levelup",
+      "category": "audio",
+      "path": "assets/audio/sfx_levelup.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh levelup",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "206aff9bad386d70cca7fa637194da4461472f06589240d2f38512f415d9cad1"
+    },
+    "sfx_breakthrough": {
+      "id": "sfx_breakthrough",
+      "category": "audio",
+      "path": "assets/audio/sfx_breakthrough.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh breakthrough",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "0f8511dfb54af429feb5a0306943751530d2c2d79c7d56cb3db206f11ccd6fa3"
+    },
+    "sfx_tribulation": {
+      "id": "sfx_tribulation",
+      "category": "audio",
+      "path": "assets/audio/sfx_tribulation.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh tribulation",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "a66fd50f441184818d4bc18406737b6525e075264039f445777b85f5c48a2bcc"
+    },
+    "sfx_monster_hit": {
+      "id": "sfx_monster_hit",
+      "category": "audio",
+      "path": "assets/audio/sfx_monster_hit.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh monster_hit",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "0dcec42654f77977c3f8d78c9b61d10053862f19769c7707908f03e52a6da729"
+    },
+    "sfx_monster_die": {
+      "id": "sfx_monster_die",
+      "category": "audio",
+      "path": "assets/audio/sfx_monster_die.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh monster_die",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "205be3e06e2654ec05b1e06dd56aff4f72d07f5ccd39355c2f7978de7a9c95c7"
+    },
+    "sfx_boss_roar": {
+      "id": "sfx_boss_roar",
+      "category": "audio",
+      "path": "assets/audio/sfx_boss_roar.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh boss_roar",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "98ab2d03795bae4d8dc3b400a9f872f7eec1e1a24f7af8f6b33ecfc7fe200181"
+    },
+    "sfx_step": {
+      "id": "sfx_step",
+      "category": "audio",
+      "path": "assets/audio/sfx_step.wav",
+      "spec": {
+        "kind": "audio"
+      },
+      "desc": "Hiệu ứng âm thanh step",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "8b2dde0a935954e7ef73b5b414bde67a7637b1132cd15142404d795180110e5d"
+    },
+    "CHR_001": {
+      "id": "CHR_001",
+      "category": "character_preview",
+      "path": "assets/characters/CHR_001_preview.png",
+      "spec": {
+        "kind": "sheet",
+        "frameW": 64,
+        "frameH": 96,
+        "cols": 8,
+        "rows": [
+          "idle(4)",
+          "run(6)",
+          "jump(2)",
+          "attack(4)",
+          "hurt(2)",
+          "death(4)",
+          "cast(4)",
+          "meditate(2)"
+        ],
+        "w": 512,
+        "h": 768,
+        "transparent": true,
+        "maxColors": 256
+      },
+      "desc": "Thiếu Niên Nhập Đạo: tóc đen, mắt sáng, áo võ sinh xanh lam, đai nâu, quần tối, giày vải, kiếm gỗ. Idle/Run/Jump/Attack/Hurt/Death/Cast.",
+      "status": "placeholder",
+      "source": "procedural-original",
+      "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
+      "version": 1,
+      "sha256": "d3ce4311e1501599440e55753081f0a73903d42ef26bb98b0b2851be7414e506"
+    }
+  }
+}

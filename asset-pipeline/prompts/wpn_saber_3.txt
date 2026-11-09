@@ -1,0 +1,8 @@
+TU TIÊN TRUYỆN 2D — HD Chibi Pixel Art. Nhân vật chibi đầu lớn vừa phải, thân cân đối, khí chất tiên hiệp phương Đông nguyên bản.
+Pixel rõ ràng (không nhòe, không khử răng cưa, không gradient mềm), viền tối 1px, bảng màu sống động nhưng không chói, nền TRONG SUỐT (PNG RGBA).
+Góc nhìn ngang (side-view), nhân vật quay mặt sang PHẢI. Không sao chép bất kỳ game nào (không Ninja School, không tài sản có bản quyền).
+
+Tài nguyên: wpn_saber_3 — Vũ khí saber bậc 3 cầm tay theo khung hình nhân vật
+Sprite sheet 512×768px, lưới 8 cột, mỗi khung 64×96px, các hàng theo thứ tự: idle(4), run(6), jump(2), attack(4), hurt(2), death(4), cast(4), meditate(2). Khung thừa để trống trong suốt. Chân nhân vật chạm đáy khung, căn giữa.
+Nền trong suốt PNG RGBA, không bóng đổ nền, không chữ, không watermark.
+Đầu ra: một file PNG duy nhất đúng kích thước trên.

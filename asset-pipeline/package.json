@@ -1,0 +1,27 @@
+{
+  "name": "@tt/asset-pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "tsx src/cli.ts generate",
+    "manifest": "tsx src/cli.ts manifest",
+    "prompts": "tsx src/cli.ts prompts",
+    "validate": "tsx src/cli.ts validate",
+    "import": "tsx src/cli.ts import",
+    "approve": "tsx src/cli.ts approve",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@tt/shared": "*",
+    "pngjs": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/pngjs": "^6.0.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}
