@@ -81,6 +81,7 @@ async function finishHidden(s: PlayerSession, qid: string) {
     await s.flushQuests(c);
   });
   s.addTuVi(d.rewards.tuvi + d.rewards.exp * 0.5, 'quest');
+  (await import('../achievements.js')).achEvent(s, 'quest_any', 1);
   return { ok: true, text: d.dialogue.complete.map((l) => l.text).join(' '), rewards: d.rewards };
 }
 
@@ -211,7 +212,7 @@ rpc('settings.keybinds', async (s, p) => {
 });
 rpc('title.set', async (s, p) => {
   const t = p.title === null ? null : str(p, 'title', 40);
-  assert(t === null || s.row.titles.includes(t), 'Chưa sở hữu danh hiệu này');
+  assert(t === null || s.row.titles.includes(t) || s.dynamicTitles.includes(t), 'Chưa sở hữu danh hiệu này');
   s.row.title = t;
   await q('UPDATE characters SET title = $2 WHERE id = $1', [s.charId, t]);
   s.known.clear();

@@ -674,7 +674,16 @@ func _autotest() -> void:
 	log.call("inv.list ok=%s bag=%d" % [str(inv.ok), inv.d.bag.size() if inv.ok else -1])
 	var ql = await Net.rpc_call("quest.list")
 	log.call("quest.list active=%d" % (ql.d.active.size() if ql.ok else -1))
-	var passed: bool = r.ok and r2.ok and inv.ok and ql.ok and ents.size() >= 0
+	# mở các bảng phiên 2 để bắt lỗi runtime GDScript
+	for pn in ["ranking", "power", "map"]:
+		hud.panels.open(pn)
+		await get_tree().create_timer(0.8).timeout
+	hud.panels._ranking("achievements")
+	await get_tree().create_timer(0.8).timeout
+	var st = await Net.rpc_call("rank.strongest")
+	log.call("rank.strongest ok=%s top=%d" % [str(st.ok), st.d.top.size() if st.ok else -1])
+	hud.panels.close_all()
+	var passed: bool = r.ok and r2.ok and inv.ok and ql.ok and st.ok and ents.size() >= 0
 	log.call("FPS=%d entities=%d drops=%d" % [Engine.get_frames_per_second(), ents.size(), drops.size()])
 	log.call("KẾT QUẢ: %s" % ("PASS" if passed else "FAIL"))
 	if not OS.has_feature("web"):

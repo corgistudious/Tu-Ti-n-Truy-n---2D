@@ -763,3 +763,80 @@ describe('Hệ thống sức mạnh & cơ duyên (phiên 2)', () => {
     b.close();
   }, 60000);
 });
+
+describe('Thành tựu, danh hiệu cạnh tranh, liên minh & lãnh thổ (phiên 2)', () => {
+  it('thành tựu có thưởng, bảng Vạn Giới, kết minh chặn PvP, chiếm lãnh thổ khi hạ Thủ Hộ Linh Mạch', async () => {
+    const a = await newPlayer('ha'); const b = await newPlayer('hb');
+    const sa = session(a), sb = session(b);
+    for (const x of [a, b]) { setRealm(x, 6); await sql('UPDATE character_currencies SET gold = 500000 WHERE character_id = $1', [x.charId]); }
+    await teleport(a, 'thanh_van_thanh', MAPS['thanh_van_thanh'].npcs.find((n) => n.npc === 'npc_guild_manager')!.x);
+    await teleport(b, 'thanh_van_thanh', MAPS['thanh_van_thanh'].npcs.find((n) => n.npc === 'npc_guild_manager')!.x);
+    const ga = `Minh ${uniq()}`.slice(0, 12), gb = `Hữu ${uniq()}`.slice(0, 12);
+    const g0 = await gold(a);
+    await a.rpc('guild.create', { name: ga });
+    await b.rpc('guild.create', { name: gb });
+    // thành tựu "Nhập Môn Tông Phái" trao ngay + ghi DB
+    await a.waitFor((m) => m.t === 'ev' && m.k === 'achievement' && m.id === 'ach_guild');
+    const al = await a.rpc('achievement.list');
+    expect(al.list.find((x: any) => x.id === 'ach_guild').done).toBe(true);
+    expect(al.points).toBeGreaterThanOrEqual(10);
+    expect((await sql("SELECT 1 FROM achievement_progress WHERE character_id = $1 AND achievement_id = 'ach_guild'", [a.charId])).length).toBe(1);
+    void g0;
+    // bộ đếm thành tích được lưu bền
+    const { achEvent } = await import('../src/game/achievements.js');
+    achEvent(sa, 'kill', 99); achEvent(sa, 'kill', 1);
+    await a.waitFor((m) => m.t === 'ev' && m.k === 'achievement' && m.id === 'ach_kill_100');
+    await sa.save();
+    expect(Number((await sql("SELECT value FROM character_counters WHERE character_id = $1 AND key = 'kills'", [a.charId]))[0].value)).toBe(100);
+    // liên minh: chỉ tông chủ; mời -> chấp nhận -> không thể tấn công nhau ở vùng PvP mở
+    await a.rpc('guild.ally', { action: 'request', name: gb });
+    const ev = await b.waitFor((m) => m.t === 'ev' && m.k === 'allyReq');
+    await b.rpc('guild.ally', { action: 'accept', guild: ev.guildId });
+    expect(world().allied(sa.guildId!, sb.guildId!)).toBe(true);
+    const dip = await a.rpc('guild.diplomacy');
+    expect(dip.allies.map((g: any) => g.name)).toContain(gb);
+    const openMap = Object.values(MAPS).find((m) => m.pvp === 'open' && !m.safe && m.minRealm <= 6)!;
+    await teleport(a, openMap.id, 600); await teleport(b, openMap.id, 640);
+    sa.row.pvp_mode = 'all'; sb.row.pvp_mode = 'all';
+    expect(world().pvpAllowed(sa.ent, sb.ent)).toBe(false);
+    await a.rpc('guild.ally', { action: 'break', guild: sb.guildId });
+    expect(world().pvpAllowed(sa.ent, sb.ent)).toBe(true);
+    // lãnh thổ: sự kiện sinh Thủ Hộ ở mọi lãnh thổ; tông môn gây nhiều sát thương nhất chiếm giữ
+    const w = world();
+    const evId = 900000 + Math.floor(Math.random() * 1000);
+    const active = w.startEvent(evId, 'ev_territory_war', Date.now() + 60_000)!;
+    expect(active.guardians!.length).toBeGreaterThanOrEqual(5);
+    const g = active.guardians!.find((x) => x.instKey.startsWith('long_ho_son'))!;
+    const inst = w.instances.get(g.instKey)!;
+    const guardian = inst.monsters.get(g.id)!;
+    await teleport(a, 'long_ho_son', guardian.x); await teleport(b, 'long_ho_son', guardian.x + 30);
+    guardian.threat.set(sa.ent.id, 5000); guardian.threat.set(sb.ent.id, 1000);
+    const { captureTerritory } = await import('../src/game/rpc/honor.js');
+    expect(await captureTerritory(inst, guardian)).toBe(sa.guildId);
+    const tl = await a.rpc('territory.list');
+    expect(tl.maps.find((m: any) => m.map === 'long_ho_son').owner).toBe(ga);
+    await a.waitFor((m) => m.t === 'ev' && m.k === 'achievement' && m.id === 'ach_territory');
+    // +10% tu vi khi tu luyện trong lãnh thổ của tông môn
+    sa.row.tu_vi = 0; sb.row.tu_vi = 0; sb.row.realm_idx = sa.row.realm_idx; sb.row.layer = sa.row.layer;
+    sa.addTuVi(1000, 'quest'); sb.addTuVi(1000, 'quest');
+    expect(sa.row.tu_vi).toBeGreaterThan(sb.row.tu_vi);
+    w.endEvent(evId);
+    expect(inst.monsters.has(g.id)).toBe(false);
+    // bảng Vạn Giới: tiêu chí công khai, danh hiệu cạnh tranh được trao & dùng được
+    const { recomputeStrongest } = await import('../src/game/achievements.js');
+    const r = await recomputeStrongest();
+    expect(r.top.length).toBeGreaterThan(0);
+    const champ = r.titles['Vạn Giới Chí Tôn'][0];
+    const champSession = w.sessions.get(champ);
+    if (champSession) {
+      expect(champSession.dynamicTitles).toContain('Vạn Giới Chí Tôn');
+    }
+    const rs = await a.rpc('rank.strongest');
+    expect(rs.formula).toBeTruthy();
+    expect(rs.titles.length).toBeGreaterThanOrEqual(5);
+    expect(rs.holders.some((h: any) => h.title === 'Vạn Giới Chí Tôn')).toBe(true);
+    // danh hiệu cạnh tranh không sở hữu thì không đeo được
+    if (!sa.dynamicTitles.includes('Vạn Giới Chí Tôn')) await expect(a.rpc('title.set', { title: 'Vạn Giới Chí Tôn' })).rejects.toThrow(/sở hữu/);
+    a.close(); b.close();
+  }, 60000);
+});

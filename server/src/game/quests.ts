@@ -6,6 +6,7 @@ import { GameError, assert } from '../services/errors.js';
 import type { PlayerSession } from './player.js';
 import { addRep, awakenRoot } from './power.js';
 import type { EscortEnt } from './entities.js';
+import { achEvent } from './achievements.js';
 
 export function questEvent(s: PlayerSession, type: ObjectiveType, target: string, n: number): void {
   for (const [qid, qs] of s.quests) {
@@ -170,6 +171,8 @@ export async function turnIn(s: PlayerSession, qid: string, choiceId?: string): 
   if (d.rewards.title) s.notify(`Nhận danh hiệu: ${d.rewards.title}`, 'good');
   // nhiệm vụ cho phép gọi sự kiện "talk" của các nhiệm vụ khác
   questEvent(s, 'talk', d.turnIn, 1);
+  achEvent(s, 'quest_any', 1);
+  if (d.kind === 'main') achEvent(s, 'quest_main', 1);
   s.recomputeStats();
   return { rewards: d.rewards, outcome: choice?.outcome };
 }

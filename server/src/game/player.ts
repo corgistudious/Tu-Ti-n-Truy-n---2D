@@ -66,6 +66,11 @@ export class PlayerSession {
   power: import('./power.js').PowerState = { element: null, grade: 0, physique: 'pham_the', meridians: 0 };
   rep = new Map<string, number>();
   fortuneAcc = 0;
+  achDone = new Set<string>();
+  counters = new Map<string, number>();
+  dirtyCounters = new Set<string>();
+  dynamicTitles: string[] = [];
+  achCaughtUp = false;
   lastAggressorAt = 0;
   private queue: Promise<unknown> = Promise.resolve();
   private msgWindow = { start: 0, count: 0 };
@@ -95,6 +100,7 @@ export class PlayerSession {
     const h = await q<{ buildings: Record<string, number> }>('SELECT buildings FROM housing WHERE character_id = $1', [this.charId]);
     this.housingBonus = (h[0]?.buildings?.tu_linh_tran ?? 0) * 0.15;
     await (await import('./power.js')).loadPower(this);
+    await (await import('./achievements.js')).loadAchievements(this);
     await this.reloadEquipment();
     this.resetDailyQuests();
     this.loaded = true;
@@ -159,7 +165,7 @@ export class PlayerSession {
     return {
       id: this.ent.id, charId: this.charId, name: this.row.name, appearance: this.visual(), realm: this.row.realm_idx, layer: this.row.layer, realmName: this.realmLabel(),
       tuVi: this.row.tu_vi, tuViReq: req, exp: this.row.exp, hp: Math.round(this.ent.hp), mp: Math.round(this.mp), stats: eff(this.ent), hotbar: this.row.hotbar,
-      skills: Object.fromEntries(this.skills), keybinds: this.row.keybinds, title: this.row.title, titles: this.row.titles, pvpMode: this.row.pvp_mode,
+      skills: Object.fromEntries(this.skills), keybinds: this.row.keybinds, title: this.row.title, titles: [...new Set([...this.row.titles, ...this.dynamicTitles])], pvpMode: this.row.pvp_mode,
       guild: this.guildId ? { id: this.guildId, name: this.guildName, rank: this.guildRank } : null, partyId: this.partyId, power: combatPower(this.stats),
       btCooldown: this.row.bt_cooldown_until, arenaRating: this.row.arena_rating, pk: this.row.pk_points,
     };
@@ -173,7 +179,9 @@ export class PlayerSession {
   addTuVi(amount: number, source: string): void {
     if (amount <= 0 || !Number.isFinite(amount)) return;
     const rootMult = source === 'meditate' ? cultivationMultiplier(this) : source === 'kill' ? 1 + (cultivationMultiplier(this) - 1) / 2 : 1;
-    let gained = Math.floor(amount * rootMult * this.world.expMultiplier(this.ent?.inst?.def.id));
+    const terr = this.guildId && this.ent ? this.world.territories.get(this.ent.inst.def.id) : undefined;
+    const terrMult = terr && terr.guildId === this.guildId ? 1.1 : 1;
+    let gained = Math.floor(amount * rootMult * terrMult * this.world.expMultiplier(this.ent?.inst?.def.id));
     let leveled = false;
     while (gained > 0) {
       const req = tuViRequired(this.row.realm_idx, this.row.layer);
@@ -376,6 +384,7 @@ export class PlayerSession {
     const params = [this.charId, this.row.realm_idx, this.row.layer, Math.floor(this.row.tu_vi), Math.floor(this.row.exp), e.dead ? eff(e).maxHp * 0.5 : e.hp, this.mp, pos.map, pos.x, pos.y, playtime, combatPower(this.stats), this.row.bt_fail_streak, this.row.bt_cooldown_until];
     if (c) await c.query(sql, params); else await q(sql, params);
     await this.flushQuests(c);
+    if (this.dirtyCounters.size) await (await import('./achievements.js')).flushCounters(this);
     this.dirty = false;
   }
   async flushQuests(c?: Tx): Promise<void> {

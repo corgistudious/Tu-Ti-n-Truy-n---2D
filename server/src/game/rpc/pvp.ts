@@ -10,6 +10,7 @@ import type { PlayerSession } from '../player.js';
 import { questEvent } from '../quests.js';
 import { world } from '../world.js';
 import { requireService } from './core.js';
+import { achEvent } from '../achievements.js';
 import { pushInventory } from './inventory.js';
 import { int, rpc, str } from './registry.js';
 
@@ -67,6 +68,7 @@ class ArenaController implements InstanceController {
       await c.query('INSERT INTO arena_matches(char_a, char_b, winner, rating_a_before, rating_b_before) VALUES ($1,$2,$3,$4,$5)', [this.a.charId, this.b.charId, winner?.charId ?? null, ra, rb]);
       if (winner) await changeCurrency(c, winner.charId, 'gold', 500 * (1 + winner.realmIdx), 'arena_win');
     }).catch(() => undefined);
+    if (winner) achEvent(winner, 'arena_win', 1);
     for (const s of [this.a, this.b]) s.send({ t: 'ev', k: 'arenaEnd', win: winner === s, draw: winner === null, rating: s.row.arena_rating });
     setTimeout(() => { for (const s of [this.a, this.b]) if (s.ent.inst === inst) { if (s.ent.dead) s.revive(1); else { s.ent.hp = eff(s.ent).maxHp; } world().leaveInstance(s); } }, 3000);
   }
@@ -146,6 +148,7 @@ class DungeonController implements InstanceController {
     for (const p of present) {
       p.s.addTuVi(d.rewards.tuvi, 'dungeon'); p.s.addExp(d.rewards.exp);
       questEvent(p.s, 'dungeon', d.id, 1);
+      achEvent(p.s, 'dungeon', 1);
       const items = d.rewards.items.filter((i) => Math.random() < i.chance).map((i) => ({ item: i.item, qty: i.qty }));
       p.s.enqueue(() => tx(async (c) => {
         await changeCurrency(c, p.s.charId, 'gold', d.rewards.gold, 'dungeon_reward', 'dungeon', d.id);

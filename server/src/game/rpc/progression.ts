@@ -13,6 +13,7 @@ import type { PlayerSession } from '../player.js';
 import { questEvent } from '../quests.js';
 import { checkFortunes } from '../power.js';
 import { requireService } from './core.js';
+import { achEvent } from '../achievements.js';
 import { pushInventory } from './inventory.js';
 import { int, rpc, str } from './registry.js';
 
@@ -172,6 +173,7 @@ async function applyBreakthrough(s: PlayerSession, success: boolean, trial: stri
     s.send({ t: 'ev', k: 'breakthrough', ok: true, realm: s.realmIdx, name });
     if (s.realmIdx >= 6) s.world.announce(`${s.name} đã đột phá thành công cảnh giới ${name}!`);
     s.world.questRealmCheck(s);
+    achEvent(s, 'realm', s.realmIdx);
     const unlocked = realmDef(s.realmIdx).unlockMaps;
     if (unlocked.length) s.notify(`Mở khóa khu vực: ${unlocked.map((m) => m).join(', ')}`, 'info');
   } else {
@@ -280,7 +282,7 @@ rpc('craft.claim', async (s, p) => {
     await addProfExp(c, s, r.profession, job.success ? r.exp : Math.ceil(r.exp / 2));
     return { ok: true, success: job.success, item: r.output.item, qty: r.output.qty, recipe: r.id };
   }));
-  if (res.success) questEvent(s, 'craft', res.recipe, 1);
+  if (res.success) { questEvent(s, 'craft', res.recipe, 1); achEvent(s, 'craft', 1); }
   s.notify(res.success ? `Chế tạo thành công: ${ITEMS[res.item].name} x${res.qty}` : 'Chế tạo thất bại — nguyên liệu đã tiêu hao.', res.success ? 'good' : 'warn');
   await pushInventory(s);
   return res;

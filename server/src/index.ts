@@ -9,6 +9,8 @@ import { arenaMatchmake } from './game/rpc/pvp.js';
 import { runEventScheduler } from './http/admin.js';
 import { finalizeDeletions } from './http/characters.js';
 import { closeDb } from './db.js';
+import { loadDiplomacy } from './game/rpc/honor.js';
+import { recomputeStrongest } from './game/achievements.js';
 import { closeRedis } from './redis.js';
 
 export async function startServer(port = config().PORT): Promise<{ close: () => Promise<void>; port: number }> {
@@ -20,14 +22,18 @@ export async function startServer(port = config().PORT): Promise<{ close: () => 
   const wss = attachWebSocket(app.server);
   const w = world();
   w.housekeepingHook = async () => { await economyHousekeeping(); await runEventScheduler(); };
+  await loadDiplomacy();
   w.start();
+  const strongest = () => recomputeStrongest().catch((e) => log.warn('strongest', { err: String(e) }));
+  void strongest();
+  const st = setInterval(strongest, 5 * 60_000);
   const mm = setInterval(arenaMatchmake, 2000);
   const del = setInterval(() => finalizeDeletions().catch(() => undefined), 3600_000);
   log.info('server started', { port: realPort, env: config().NODE_ENV });
   return {
     port: realPort,
     close: async () => {
-      clearInterval(mm); clearInterval(del);
+      clearInterval(mm); clearInterval(del); clearInterval(st);
       await w.stop();
       wss.close();
       await app.close();

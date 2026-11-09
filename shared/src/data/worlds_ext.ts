@@ -433,3 +433,13 @@ q('mq_10_05', { chapter: 10, name: 'Trường Hà Thời Không', giver: 'npc_kn
 q('mq_10_06', { chapter: 10, name: 'Vạn Giới Tranh Bá', giver: 'npc_tkth_ferry', turnIn: 'van_gioi_chan_thanh_lord', prereq: ['mq_10_05'], reqRealm: 64,
   offer: ['Khi ngươi là Thái Cổ Đạo Tổ, hãy đến Vạn Giới Chân Thành. Ở đó, hành trình mới thật sự bắt đầu.'], progress: 'Đạt Thái Cổ Đạo Tổ, đến Vạn Giới Chân Thành.', complete: ['Tên ngươi đã được khắc lên bia Vạn Giới. Nhưng ngai Người Mạnh Nhất Vạn Giới — phải giành lấy mỗi ngày.'],
   obj: [['realm', '64', 1, 'Đạt Thái Cổ Đạo Tổ'], ['reach', 'van_gioi_chan_thanh', 1, 'Đến Vạn Giới Chân Thành'], ['talk', 'van_gioi_chan_thanh_lord', 1, 'Gặp Thành Chủ Vạn Giới Chân Thành']], rw: { ...R(64, 5), items: [{ item: 'qi_myriad_crown', qty: 1 }, { item: 'pill_bt_65', qty: 1 }], title: 'Vạn Giới Chí Tôn' } });
+
+// ---------- LÃNH THỔ TÔNG MÔN ----------
+import { TERRITORY_MAPS } from './achievements.js';
+for (const mid of TERRITORY_MAPS) {
+  const m = MAPS[mid];
+  mob(`${mid}_guardian`, `Thủ Hộ Linh Mạch ${m.name}`, 'golem', 'boss', m.reqRealm, 9, { mat: 'mat_spirit_crystal', skills: ['m_slam', 'm_shield', 'm_barrage'],
+    phases: phases(`Thủ Hộ ${m.name}`, 'holy', 'shield', m.spawns[0]?.monster ?? 'slime_green'), extraDrops: [{ item: 'stone_refine', chance: 1, min: 2, max: 4 }] });
+}
+Object.assign(WORLD_EVENTS, { ev_territory_war: { id: 'ev_territory_war', name: 'Lãnh Thổ Chiến', desc: 'Thủ Hộ Linh Mạch xuất hiện ở mọi lãnh thổ — tông môn gây nhiều sát thương nhất sẽ chiếm lĩnh vùng đất.', map: '*', durationMin: 60, territory: true } });
+EVENT_SCHEDULE.push({ key: 'ev_territory_war', hoursUtc: [19] });

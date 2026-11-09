@@ -13,6 +13,8 @@ import { MapInstance, type InstanceController } from './mapInstance.js';
 import { PlayerSession } from './player.js';
 import { checkRealmObjectives, questEvent as qEvent } from './quests.js';
 import { checkFortunes } from './power.js';
+import { achEvent } from './achievements.js';
+import { TERRITORY_MAPS } from '@tt/shared';
 
 const CHANNEL_CAP = 60;
 const MAX_CHANNELS = 40;
@@ -20,7 +22,7 @@ const RECONNECT_GRACE_MS = 30_000;
 const SERVER_ID = `node-${process.pid}`;
 
 export interface Party { id: number; leader: number; members: Set<number> }
-export interface ActiveEvent { id: number; key: string; name: string; endsAt: number; expMult: number; dropMult: number; map: string; bossId?: string; instKey?: string }
+export interface ActiveEvent { id: number; key: string; name: string; endsAt: number; expMult: number; dropMult: number; map: string; bossId?: string; instKey?: string; guardians?: { instKey: string; id: string }[] }
 
 export class World {
   readonly sessions = new Map<number, PlayerSession>();
@@ -31,6 +33,10 @@ export class World {
   readonly duelRequests = new Map<number, { from: number; at: number }>();
   readonly guildWars = new Map<string, { id: number; a: number; b: number; endsAt: number }>();
   activeEvents: ActiveEvent[] = [];
+  /** liên minh tông môn: khóa `${min}:${max}` */
+  readonly alliances = new Set<string>();
+  /** lãnh thổ: map -> tông môn chiếm giữ */
+  readonly territories = new Map<string, { guildId: number; guildName: string }>();
   private furnitureBonus = new Map<number, number>();
   private timer: NodeJS.Timeout | null = null;
   private jobs: NodeJS.Timeout[] = [];
@@ -129,11 +135,17 @@ export class World {
     });
     qEvent(s, 'reach', inst.def.id, 1);
     if (!inst.instanceKind) this.recordDiscovery(s, inst.def.id);
+    if (!s.achCaughtUp) { s.achCaughtUp = true; achEvent(s, 'realm', s.realmIdx); }
   }
   /** Lưu trạng thái khám phá (sương mù bản đồ thế giới); lần đầu tới khu vực mới có thông báo */
   recordDiscovery(s: PlayerSession, mapId: string): void {
     q<{ visits: number }>('INSERT INTO map_discovery(character_id, map_id) VALUES ($1,$2) ON CONFLICT (character_id, map_id) DO UPDATE SET visits = map_discovery.visits + 1 RETURNING visits', [s.charId, mapId])
-      .then((r) => { if (r[0]?.visits === 1) { s.notify(`Khám phá khu vực mới: ${MAPS[mapId].name}`, 'good'); this.discoveryHook?.(s, mapId); } })
+      .then(async (r) => {
+        if (r[0]?.visits !== 1) return;
+        s.notify(`Khám phá khu vực mới: ${MAPS[mapId].name}`, 'good'); this.discoveryHook?.(s, mapId);
+        const n = await q<{ n: number }>('SELECT count(*)::int AS n FROM map_discovery WHERE character_id = $1', [s.charId]);
+        achEvent(s, 'discover', n[0]?.n ?? 0);
+      })
       .catch(() => undefined);
   }
   discoveryHook?: (s: PlayerSession, mapId: string) => void;
@@ -272,6 +284,7 @@ export class World {
   /** Phần thưởng khi hạ quái: tu vi cho mọi người góp sức (theo tổ đội), vật phẩm rơi thuộc về người/tổ đội góp nhiều nhất */
   rewardKill(inst: MapInstance, m: MonsterEnt, _src: CombatEnt | null): void {
     if (m.tag === 'trial') return;
+    if (m.tag === 'territory') this.territoryHook?.(inst, m);
     const contributors: PlayerEnt[] = [];
     let top: PlayerEnt | undefined; let topV = 0;
     for (const [id, v] of m.threat) {
@@ -292,6 +305,8 @@ export class World {
       p.s.addExp(m.def.exp * scale);
       qEvent(p.s, 'kill', m.def.id, 1);
       checkFortunes(p.s, 'kill', { map: inst.def.id, target: m.def.id }).catch(() => undefined);
+      achEvent(p.s, 'kill', 1); achEvent(p.s, 'kill_monster', 1, m.def.id);
+      if (m.def.rank.includes('boss')) achEvent(p.s, 'kill_rank', 1, 'boss');
       this.petExpHook?.(p.s, Math.round(m.def.exp * scale * 0.3));
     }
     const owners = top.s.partyId ? [...recipients].filter((p) => p.s.partyId === top!.s.partyId).map((p) => p.s.charId) : [top.s.charId];
@@ -317,6 +332,7 @@ export class World {
     }
   }
   petExpHook?: (s: PlayerSession, exp: number) => void;
+  territoryHook?: (inst: MapInstance, m: MonsterEnt) => void;
 
   questEvent(charId: number, type: string, target: string, n: number): void {
     const s = this.sessions.get(charId);
@@ -337,6 +353,7 @@ export class World {
     if (inst.def.safe || inst.instanceKind) return false;
     if (pa.s.partyId && pa.s.partyId === pb.s.partyId) return false;
     if (pa.s.guildId && pa.s.guildId === pb.s.guildId) return false;
+    if (pa.s.guildId && pb.s.guildId && this.allied(pa.s.guildId, pb.s.guildId)) return false;
     // bảo hộ tân thủ & chống bắt nạt: cảnh giới < 3 miễn PvP; chênh > 2 cảnh giới thì người mạnh không tấn công được
     if (pb.s.realmIdx < 3 || pa.s.realmIdx < 3) return false;
     if (pa.s.realmIdx - pb.s.realmIdx > 2) return false;
@@ -346,6 +363,7 @@ export class World {
     // chế độ hòa bình: chỉ được phản kích kẻ vừa tấn công mình trong 30 giây
     return pa.s.lastAggressor === pb.s.charId && Date.now() - pa.s.lastAggressorAt < 30_000;
   }
+  allied(a: number, b: number): boolean { return this.alliances.has(a < b ? `${a}:${b}` : `${b}:${a}`); }
   atWar(a: number, b: number): boolean { return this.guildWars.has(a < b ? `${a}:${b}` : `${b}:${a}`); }
 
   onPlayerDeath(s: PlayerSession, killer: CombatEnt | null, handled: boolean): void {
@@ -356,6 +374,7 @@ export class World {
     }
     if (handled || !kp) return;
     // chiến tranh tông môn: cộng điểm
+    if (s.ent.inst.def.pvp === 'open' || (kp.s.guildId && s.guildId && this.atWar(kp.s.guildId, s.guildId))) achEvent(kp.s, 'pvp_kill', 1);
     if (kp.s.guildId && s.guildId && this.atWar(kp.s.guildId, s.guildId)) this.guildWarScoreHook?.(kp.s.guildId, s.guildId);
     else if (s.ent.inst.def.pvp === 'open') {
       // điểm PK khi giết người không khiêu chiến trước
@@ -420,6 +439,15 @@ export class World {
       if (def.boss) { const m = inst.spawnMonster(def.boss, inst.grid.w * TILE * 0.5, { noRespawn: true, tag: 'event' }); ev.bossId = m.id; ev.instKey = inst.key; }
       for (const sp of def.spawns ?? []) for (let i = 0; i < sp.count; i++) inst.spawnMonster(sp.monster, sp.x1 + Math.random() * (sp.x2 - sp.x1), { noRespawn: true, tag: 'event' });
     }
+    if (def.territory) {
+      ev.guardians = [];
+      for (const mid of TERRITORY_MAPS) {
+        if (!MAPS[mid]) continue;
+        const inst = this.getPublicInstance(mid, 1);
+        const m = inst.spawnMonster(`${mid}_guardian`, inst.grid.w * TILE * 0.5, { noRespawn: true, tag: 'territory' });
+        ev.guardians.push({ instKey: inst.key, id: m.id });
+      }
+    }
     this.activeEvents.push(ev);
     this.announce(`[Sự kiện] ${def.name}: ${def.desc}`);
     return ev;
@@ -429,6 +457,7 @@ export class World {
     if (!ev) return;
     this.activeEvents = this.activeEvents.filter((e) => e !== ev);
     if (ev.instKey && ev.bossId) { const inst = this.instances.get(ev.instKey); const m = inst?.monsters.get(ev.bossId); if (m && !m.dead) inst!.monsters.delete(m.id); }
+    for (const g of ev.guardians ?? []) { const inst = this.instances.get(g.instKey); const m = inst?.monsters.get(g.id); if (m && !m.dead) inst!.monsters.delete(m.id); }
     this.announce(`[Sự kiện] ${ev.name} đã kết thúc.`);
   }
 

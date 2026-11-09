@@ -6,3 +6,4 @@ import './social.js';
 import './pets_housing.js';
 import './pvp.js';
 import './power.js';
+import './honor.js';

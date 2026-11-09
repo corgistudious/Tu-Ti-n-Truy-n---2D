@@ -317,13 +317,16 @@ export interface Appearance {
 
 export interface SetDef { id: string; name: string; pieces: string[]; bonuses: { count: number; stats: PartialStats }[] }
 
-export interface WorldEventDef { id: string; name: string; desc: string; map: string; boss?: string; durationMin: number; spawns?: SpawnDef[]; expMult?: number; dropMult?: number }
+export interface WorldEventDef { id: string; name: string; desc: string; map: string; boss?: string; durationMin: number; spawns?: SpawnDef[]; expMult?: number; dropMult?: number; territory?: boolean }
 
 export interface GameData {
   version: string;
   tiers: WorldTierDef[];
   chapters: Record<number, string>;
   power: Record<string, unknown>;
+  achievements: Record<string, unknown>;
+  strongest: Record<string, unknown>;
+  territories: string[];
   realms: RealmDef[];
   items: Record<string, ItemDef>;
   skills: Record<string, SkillDef>;

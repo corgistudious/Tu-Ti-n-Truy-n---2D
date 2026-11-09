@@ -483,4 +483,6 @@ func on_event(m: Dictionary) -> void:
 		"combo": pass
 		"house": panels.house_state = m.d
 		"fortune": banner("CƠ DUYÊN: " + str(m.name)); Sfx.play("breakthrough"); toast(str(m.desc) + " — " + str(m.rewards), "good")
+		"achievement": banner("THÀNH TỰU: " + str(m.name)); Sfx.play("quest"); toast("+%d điểm thành tựu" % int(m.points) + ((" — danh hiệu " + str(m.title)) if m.get("title") != null else ""), "good")
+		"allyReq": toast("Tông môn %s muốn kết minh — mở Tông môn > Ngoại giao" % str(m.from), "info")
 		"rep": toast("Danh vọng %s %+d" % [GameData.data.get("power", {}).get("factions", {}).get(m.faction, {}).get("name", m.faction), int(m.delta)], "good" if int(m.delta) > 0 else "warn")

@@ -9,6 +9,7 @@ import type { MonsterEnt } from '../entities.js';
 import type { PlayerSession } from '../player.js';
 import { world } from '../world.js';
 import { requireService } from './core.js';
+import { achEvent } from '../achievements.js';
 import { pushInventory } from './inventory.js';
 import { int, oneOf, optStr, rpc, str } from './registry.js';
 
@@ -172,6 +173,7 @@ rpc('guild.create', async (s, p) => {
     return r.id as number;
   }));
   refreshGuildMember(s.charId, g, name, 'leader');
+  achEvent(s, 'guild_join', 1);
   await guildLog(g, s.charId, 'create');
   await pushInventory(s);
   return { ok: true, id: g };
@@ -210,6 +212,7 @@ rpc('guild.respond', async (s, p) => {
   assert((n?.n ?? 0) < guildMaxMembers(g.level), 'Tông môn đã đủ người');
   await q("INSERT INTO guild_members(guild_id, character_id, rank) VALUES ($1,$2,'member')", [inv.guildId, s.charId]);
   refreshGuildMember(s.charId, inv.guildId, g.name, 'member');
+  achEvent(s, 'guild_join', 1);
   await guildLog(inv.guildId, s.charId, 'join');
   return { ok: true };
 });

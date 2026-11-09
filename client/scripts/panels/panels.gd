@@ -59,7 +59,7 @@ func open(name: String) -> void:
 		"housing": _housing()
 		"crafting": _crafting()
 		"mail": _mail()
-		"ranking": _ranking("realm")
+		"ranking": _ranking("strongest")
 		"dungeon": _dungeon()
 		"settings": _settings()
 		"power": _power()
@@ -751,6 +751,33 @@ func _guild() -> void:
 	for l in info.logs:
 		logs.add_child(UI.lbl("%s %s %s" % [str(l.created_at).substr(5, 11), str(l.name), l.action], 12, UI.DIM))
 	tabs.add_child(logs)
+	# ngoại giao: liên minh (tối đa 2) & lãnh thổ
+	var dip = UI.vbox(4); dip.name = "Ngoại giao"
+	tabs.add_child(dip)
+	var dr = await _rpc("guild.diplomacy")
+	if dr.ok:
+		dip.add_child(UI.lbl("Đồng minh (%d/%d) — không thể tấn công nhau ở vùng PvP:" % [dr.d.allies.size(), int(dr.d.maxAllies)], 14, UI.GOLD))
+		for a in dr.d.allies:
+			var agid = int(a.id)
+			var arow = UI.hbox()
+			arow.add_child(UI.lbl("  %s (cấp %d)" % [a.name, int(a.level)], 13))
+			arow.add_child(UI.btn("Hủy minh", func(): confirm("Hủy liên minh với %s?" % a.name, func(ok): if ok: await _rpc("guild.ally", {"action": "break", "guild": agid}, "Đã hủy liên minh"))))
+			dip.add_child(arow)
+		for rq in dr.d.requests:
+			var rgid = int(rq.from)
+			var rrow = UI.hbox()
+			rrow.add_child(UI.lbl("Lời mời kết minh từ " + str(rq.fromName), 13, UI.GREEN))
+			rrow.add_child(UI.btn("Đồng ý", func(): await _rpc("guild.ally", {"action": "accept", "guild": rgid}, "Đã kết minh!"); w.root.queue_free(); _guild()))
+			rrow.add_child(UI.btn("Từ chối", func(): await _rpc("guild.ally", {"action": "decline", "guild": rgid})))
+			dip.add_child(rrow)
+		var ae = UI.edit("Tên tông môn muốn kết minh")
+		dip.add_child(ae)
+		dip.add_child(UI.btn("Gửi lời kết minh (tông chủ)", func(): await _rpc("guild.ally", {"action": "request", "name": ae.text.strip_edges()}, "Đã gửi lời mời")))
+	var tl = await _rpc("territory.list")
+	if tl.ok:
+		dip.add_child(UI.lbl("Lãnh thổ — Lãnh Thổ Chiến 19:00 UTC hằng ngày; %s:" % tl.d.bonus, 14, UI.GOLD, true))
+		for t in tl.d.maps:
+			dip.add_child(UI.lbl("  %s — %s" % [t.name, t.owner if t.owner != null else "vô chủ"], 13, UI.GREEN if t.owner == info.guild.name else UI.PAPER))
 	show_window(w.root, "guild")
 
 # ======================= LINH THÚ =======================
@@ -906,14 +933,13 @@ func _mail() -> void:
 
 # ======================= XẾP HẠNG =======================
 func _ranking(kind: String) -> void:
+	if kind == "strongest" or kind == "achievements":
+		_ranking_honor(kind)
+		return
 	var r = await _rpc("rank.get", {"kind": kind})
 	if not r.ok: return
-	var w = UI.window("Bảng Xếp Hạng", 600, 480)
-	var tabs = UI.hbox()
-	for k in [["Cảnh giới", "realm"], ["Lực chiến", "power"], ["Tài phú", "wealth"], ["Đấu trường", "arena"], ["Tông môn", "guild"], ["PK", "pk"]]:
-		var kk: String = k[1]
-		tabs.add_child(UI.btn(k[0], func(): w.root.queue_free(); _ranking(kk)))
-	w.body.add_child(tabs)
+	var w = UI.window("Bảng Xếp Hạng", 680, 480)
+	w.body.add_child(_ranking_tabs(w))
 	var sc = UI.scroll(380); var v := UI.vbox(2); sc.add_child(v); w.body.add_child(sc)
 	var i = 0
 	for row in r.d.rows:
@@ -927,6 +953,46 @@ func _ranking(kind: String) -> void:
 			"guild": txt = "%s — cấp %d (%d người)" % [row.name, int(row.level), int(row.members)]
 			"pk": txt = "%s — %d điểm PK" % [row.name, int(row.pk_points)]
 		v.add_child(UI.lbl("%d. %s" % [i, txt], 14, UI.GOLD if i <= 3 else UI.PAPER))
+	show_window(w.root, "ranking")
+
+func _ranking_tabs(w) -> Control:
+	var tabs = UI.hbox()
+	for k in [["Vạn Giới", "strongest"], ["Thành tựu", "achievements"], ["Cảnh giới", "realm"], ["Lực chiến", "power"], ["Tài phú", "wealth"], ["Đấu trường", "arena"], ["Tông môn", "guild"], ["PK", "pk"]]:
+		var kk: String = k[1]
+		tabs.add_child(UI.btn(k[0], func(): w.root.queue_free(); _ranking(kk)))
+	return tabs
+
+## Bảng Vạn Giới (tiêu chí công khai, danh hiệu cạnh tranh) và sổ thành tựu
+func _ranking_honor(kind: String) -> void:
+	var r = await _rpc("rank.strongest" if kind == "strongest" else "achievement.list")
+	if not r.ok: return
+	var w = UI.window("Bảng Vạn Giới" if kind == "strongest" else "Thành Tựu", 680, 500)
+	w.body.add_child(_ranking_tabs(w))
+	var sc = UI.scroll(400); var v := UI.vbox(2); sc.add_child(v); w.body.add_child(sc)
+	if kind == "strongest":
+		v.add_child(UI.lbl("Điểm Vạn Giới = " + str(r.d.formula), 12, UI.DIM, true))
+		v.add_child(UI.lbl("Danh hiệu cạnh tranh — tính lại mỗi 5 phút, không thể mua, mất khi tụt hạng:", 14, UI.GOLD, true))
+		for t in r.d.titles:
+			var hs: Array = []
+			for h in r.d.holders:
+				if h.title == t.id: hs.append(str(h.name))
+			v.add_child(UI.lbl("  【%s】 %s — %s" % [t.id, t.rule, ", ".join(hs) if hs.size() else "chưa có"], 13, UI.GREEN if t.id in r.d.mine else UI.PAPER, true))
+		var i = 0
+		for row in r.d.top:
+			i += 1
+			v.add_child(UI.lbl("%d. %s — %s tầng %d — %s điểm" % [i, row.name, GameData.realm_name(int(row.realm_idx)), int(row.layer), GameData.fmt(row.score)], 14, UI.GOLD if i <= 3 else UI.PAPER))
+	else:
+		v.add_child(UI.lbl("Điểm thành tựu: %d" % int(r.d.points), 16, UI.GOLD))
+		var cats := {}
+		for a in r.d.list:
+			if not cats.has(a.category): cats[a.category] = []
+			cats[a.category].append(a)
+		for c in cats:
+			v.add_child(UI.lbl(str(c), 15, UI.GOLD))
+			for a in cats[c]:
+				var t = "  %s %s — %s (+%d)" % ["✔" if a.done else "○", a.name, a.desc, int(a.points)]
+				if a.title != null: t += " — danh hiệu \"%s\"" % a.title
+				v.add_child(UI.lbl(t, 13, UI.GREEN if a.done else UI.DIM, true))
 	show_window(w.root, "ranking")
 
 # ======================= PHÓ BẢN =======================

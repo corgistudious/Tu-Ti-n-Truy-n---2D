@@ -100,6 +100,7 @@ export async function openMeridian(s: PlayerSession, idx: number): Promise<{ ok:
   }));
   s.recomputeStats();
   s.pushStats();
+  if (ok) (await import('./achievements.js')).achEvent(s, 'meridian', s.power.meridians.toString(2).replace(/0/g, '').length);
   s.notify(ok ? `Đả thông ${m.name}!` : `Xung kích ${m.name} thất bại — đan dược đã tiêu hao, kinh mạch không tổn thương.`, ok ? 'good' : 'warn');
   return { ok };
 }
@@ -170,6 +171,7 @@ export async function grantFortune(s: PlayerSession, f: FortuneDef): Promise<boo
   s.recomputeStats();
   s.pushStats();
   const desc = f.rewards.map((r) => r.kind === 'discover_map' ? `khám phá ${MAPS[r.value]?.name}` : r.kind === 'physique' ? `thể chất ${PHYSIQUES[r.value]?.name}` : r.kind === 'spirit_root' ? 'linh căn thăng phẩm' : r.kind === 'tuvi' ? 'tu vi tăng vọt' : `${ITEMS[r.value]?.name} x${r.qty ?? 1}`).join(', ');
+  (await import('./achievements.js')).achEvent(s, 'fortune', 1);
   s.send({ t: 'ev', k: 'fortune', id: f.id, name: f.name, desc: f.desc, rewards: desc });
   s.notify(`【Cơ Duyên】 ${f.name}: ${desc}`, 'good');
   if (f.globalCap) s.world.announce(`${s.name} gặp cơ duyên hiếm: ${f.name}!`);
