@@ -1,0 +1,18 @@
+{
+  "name": "tu-tien-truyen-2d",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Tu Tiên Truyện 2D — HD Chibi Pixel Art MMORPG (Godot 4 client, Node.js/TypeScript authoritative server)",
+  "workspaces": ["shared", "server", "asset-pipeline"],
+  "scripts": {
+    "typecheck": "npm run typecheck -w shared && npm run typecheck -w server && npm run typecheck -w asset-pipeline",
+    "test": "npm run test -w shared && npm run test -w server && npm run test -w asset-pipeline",
+    "dev": "npm run dev -w server",
+    "build": "npm run build -w server",
+    "migrate": "npm run migrate -w server",
+    "assets:generate": "npm run generate -w asset-pipeline",
+    "assets:validate": "npm run validate -w asset-pipeline",
+    "loadtest": "node --import tsx tests/load/bots.ts"
+  },
+  "engines": { "node": ">=20" }
+}

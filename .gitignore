@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+*.log
+.env
+.env.*
+!.env.example
+coverage/
+client/.godot/
+client/export/
+client/android/
+*.keystore
+*.jks
+backups/
+infrastructure/certs/
+tests/reports/tmp/
+.DS_Store
