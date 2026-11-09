@@ -66,3 +66,9 @@ Node 22, PostgreSQL 16, Redis 7, Godot 4.3-stable + export templates, apksigner/
 3. Playtest chương 1-3, chỉnh cân bằng và UI.
 4. Sharding theo bản đồ (gateway định tuyến WS), Grafana.
 5. Chiến trường đội, level design thủ công cho các bản đồ chính.
+
+## Ảnh chụp (lượt 1)
+- `docs/screenshots/web-client-chromium.png` — bản xuất Godot Web chạy trong Chromium, đã vào Tân Thủ Thôn, mở túi đồ.
+- `docs/screenshots/admin-dashboard.png` — Admin Dashboard sau khi đăng nhập.
+- `docs/screenshots/chr001-placeholder-sheet.png` — sprite sheet placeholder của CHR_001 (8 animation).
+- `docs/screenshots/monsters-tiles-parallax.png` — quái, tileset, icon, parallax placeholder.
