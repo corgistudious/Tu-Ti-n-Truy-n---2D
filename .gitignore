@@ -16,3 +16,4 @@ infrastructure/certs/
 tests/reports/tmp/
 .DS_Store
 client/export/
+*.rdb
