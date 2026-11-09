@@ -7,7 +7,7 @@ export type StatKey =
 export type Stats = Record<StatKey, number>;
 export type PartialStats = Partial<Stats>;
 
-export type RealmStage = 'vo_dao' | 'tu_chan' | 'tien_gioi' | 'hon_don';
+export type RealmStage = 'vo_dao' | 'tu_chan' | 'tien_gioi' | 'thuong_tien' | 'than' | 'hon_don' | 'thai_co' | 'van_gioi';
 export type TrialKind = 'none' | 'tam_ma' | 'thien_kiep' | 'both';
 
 export interface RealmDef {
@@ -169,17 +169,36 @@ export interface NodeDef { id: string; kind: 'herb' | 'ore' | 'fishing'; x: numb
 export interface MapNpcDef { npc: string; x: number; y: number }
 export interface InteractDef { id: string; x: number; y: number; name: string; quest: string; objective: string }
 
+export type WorldTierId = 'pham_nhan' | 'vo_dao' | 'tu_chan' | 'linh_gioi' | 'tien_gioi' | 'thuong_tien' | 'than_vuc' | 'hon_don' | 'thai_co' | 'van_gioi' | 'special';
+
+export interface WorldTierDef {
+  id: WorldTierId;
+  name: string;
+  order: number;
+  minRealm: number;         // cảnh giới tối thiểu để chịu được linh khí tầng thế giới này (giới hạn cứng)
+  desc: string;
+  continents: { id: string; name: string; regions: { id: string; name: string }[] }[];
+  hub: string;              // thành chính / điểm hồi sinh mặc định
+}
+
 export interface MapDef {
   id: string;
   name: string;
   world: 'nhan_gioi' | 'tu_chan_gioi' | 'tien_gioi' | 'special';
+  tier: WorldTierId;
+  continent: string;
+  region: string;
+  danger: number;           // 1..10 — mức nguy hiểm hiển thị
+  minRealm: number;         // giới hạn cứng (theo tầng thế giới); reqRealm chỉ là KHUYẾN NGHỊ
+  hidden?: boolean;         // khu vực ẩn — chỉ vào được khi đã khám phá (cơ duyên)
+  coords: { x: number; y: number }; // vị trí trên bản đồ thế giới
   theme: string;
   width: number;   // ô
   height: number;  // ô
   seed: number;
   terrain: 'plains' | 'hills' | 'mountain' | 'city' | 'cave' | 'sky' | 'arena' | 'sea';
   platforms: number;
-  reqRealm: number;
+  reqRealm: number;         // cảnh giới khuyến nghị (vào sớm hơn được cảnh báo nguy hiểm)
   reqQuest?: string;
   safe: boolean;
   pvp: 'none' | 'open' | 'arena';
@@ -299,6 +318,8 @@ export interface WorldEventDef { id: string; name: string; desc: string; map: st
 
 export interface GameData {
   version: string;
+  tiers: WorldTierDef[];
+  chapters: Record<number, string>;
   realms: RealmDef[];
   items: Record<string, ItemDef>;
   skills: Record<string, SkillDef>;

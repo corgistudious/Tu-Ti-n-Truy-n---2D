@@ -339,22 +339,26 @@ func _cultivation() -> void:
 
 # ======================= BẢN ĐỒ THẾ GIỚI =======================
 func _map() -> void:
-	var w = UI.window("Bản Đồ Thế Giới", 760, 520)
-	var sc = UI.scroll(440)
-	var v = UI.vbox(3)
+	var r = await _rpc("world.info")
+	if not r.ok: return
+	var w := UI.window("Bản Đồ Vạn Giới — đã khám phá %d/%d" % [int(r.d.discovered), int(r.d.total)], 900, 560)
+	var sc := UI.scroll(470)
+	var v := UI.vbox(4)
 	sc.add_child(v)
 	w.body.add_child(sc)
-	var realm = int(hud.game.self_state.get("realm", 0))
-	for world_key in [["nhan_gioi", "NHÂN GIỚI"], ["tu_chan_gioi", "TU CHÂN GIỚI"], ["tien_gioi", "TIÊN GIỚI"]]:
-		v.add_child(UI.lbl(world_key[1], 18, UI.GOLD))
-		for m in GameData.maps.values():
-			if m.world != world_key[0]: continue
-			var here: bool = m.id == hud.game.map_id
-			var ok: bool = realm >= int(m.reqRealm)
-			var tags = []
-			if m.safe: tags.append("an toàn")
-			if m.pvp == "open": tags.append("PK")
-			v.add_child(UI.lbl("%s %s — yêu cầu %s %s\n     %s" % [">" if here else "-", m.name, GameData.realm_name(int(m.reqRealm)), ("[" + ", ".join(tags) + "]") if tags.size() else "", m.description], 13, Color("#ffe080") if here else (UI.PAPER if ok else UI.DIM), true))
+	for t in r.d.tiers:
+		v.add_child(UI.lbl("%s — %s%s" % [t.name, t.desc, "" if t.accessible else "  [cần %s]" % GameData.realm_name(int(t.minRealm))], 16, UI.GOLD if t.accessible else UI.DIM, true))
+		var grid := GridContainer.new()
+		grid.columns = 4
+		for m in r.d.maps:
+			if m.tier != t.id: continue
+			var here: bool = m.id == r.d.current
+			var col := Color("#ffe080") if here else (UI.PAPER if m.discovered else UI.DIM)
+			var tag := ("PK " if m.pvp == "open" else "") + ("An toàn " if m.safe else "") + ("Ẩn " if m.hidden else "")
+			var l := UI.lbl("%s%s\n  %s · nguy hiểm %d/10 %s" % ["> " if here else "", m.name, GameData.realm_name(int(m.reqRealm)), int(m.danger), tag], 12, col)
+			l.custom_minimum_size.x = 210
+			grid.add_child(l)
+		v.add_child(grid)
 	show_window(w.root, "map")
 
 # ======================= NPC =======================
@@ -415,12 +419,17 @@ func _dialog_lines(title: String, text: String) -> void:
 	w.body.add_child(UI.lbl(text, 14, UI.PAPER, true))
 	show_window(w.root, "dialog_lines")
 
+func _teleport_go(npc_id: String, mid: String, force: bool) -> void:
+	var r = await _rpc("teleport.npc", {"npc": npc_id, "map": mid, "force": force})
+	if r.ok and r.d.has("warn"):
+		confirm(str(r.d.warn), func(ok): if ok: _teleport_go(npc_id, mid, true))
+
 func _teleport(npc_id: String, dests: Array) -> void:
 	var w = UI.window("Dịch Chuyển", 420, 360)
 	for m in dests:
 		var mid: String = m
 		var md = GameData.maps.get(mid, {})
-		w.body.add_child(UI.btn("%s (yêu cầu %s)" % [md.get("name", mid), GameData.realm_name(int(md.get("reqRealm", 0)))], func(): w.root.queue_free(); close_named("npc"); await _rpc("teleport.npc", {"npc": npc_id, "map": mid})))
+		w.body.add_child(UI.btn("%s (khuyến nghị %s, nguy hiểm %d/10)" % [md.get("name", mid), GameData.realm_name(int(md.get("reqRealm", 0))), int(md.get("danger", 1))], func(): w.root.queue_free(); close_named("npc"); _teleport_go(npc_id, mid, false)))
 	show_window(w.root, "teleport")
 
 # ======================= CỬA HÀNG / KHO =======================

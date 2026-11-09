@@ -1,8 +1,8 @@
 import type { DialogueLine, QuestDef, QuestObjective } from '../types.js';
 
 const quests: Record<string, QuestDef> = {};
-type O = [QuestObjective['type'], string, number, string, Partial<QuestObjective>?];
-interface Q {
+export type O = [QuestObjective['type'], string, number, string, Partial<QuestObjective>?];
+export interface Q {
   name: string; kind?: QuestDef['kind']; chapter?: number; category?: QuestDef['category']; giver: string; turnIn?: string; reqRealm?: number; prereq?: string[];
   offer: (string | [string, string])[]; progress: string; complete: (string | [string, string])[]; obj: O[]; rw: QuestDef['rewards']; repeatable?: 'daily' | 'weekly';
 }
@@ -10,7 +10,7 @@ const P = 'Bạn';
 function lines(giver: string, arr: (string | [string, string])[]): DialogueLine[] {
   return arr.map((l) => (typeof l === 'string' ? { speaker: giver, text: l } : { speaker: l[0], text: l[1] }));
 }
-function q(id: string, d: Q): void {
+export function q(id: string, d: Q): void {
   if (quests[id]) throw new Error('dup quest ' + id);
   quests[id] = {
     id, name: d.name, kind: d.kind ?? 'main', chapter: d.chapter, category: d.category ?? (d.kind === 'main' || !d.kind ? 'story' : undefined),

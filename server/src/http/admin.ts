@@ -1,6 +1,6 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { ITEMS, MAPS, MONSTERS, QUESTS, TILE, WORLD_EVENTS } from '@tt/shared';
+import { EVENT_SCHEDULE, ITEMS, MAPS, MONSTERS, QUESTS, TILE, WORLD_EVENTS } from '@tt/shared';
 import { q, q1, tx } from '../db.js';
 import { adminLog } from '../services/audit.js';
 import { changeCurrency } from '../services/currency.js';
@@ -274,8 +274,18 @@ export function adminRoutes(app: FastifyInstance): void {
   app.get('/api/admin/mail-outbox', async (req, reply) => { if (!(await staff(req, reply, 'admin'))) return; return q('SELECT id, to_email, subject, body, sent_at, error, created_at FROM mail_outbox ORDER BY id DESC LIMIT 100'); });
 }
 
-/** Bộ lập lịch sự kiện: chạy định kỳ */
+/** Bộ lập lịch sự kiện: tạo bản ghi sự kiện định kỳ theo EVENT_SCHEDULE (idempotent nhờ unique (event_key, starts_at)) rồi bật/tắt sự kiện */
 export async function runEventScheduler(): Promise<void> {
+  const now = new Date();
+  for (const sch of EVENT_SCHEDULE) {
+    const def = WORLD_EVENTS[sch.key];
+    if (!def) continue;
+    for (const h of sch.hoursUtc) {
+      const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), h, 0, 0));
+      const end = new Date(start.getTime() + def.durationMin * 60000);
+      if (now >= start && now < end) await q('INSERT INTO events(event_key, name, starts_at, ends_at) VALUES ($1,$2,$3,$4) ON CONFLICT (event_key, starts_at) DO NOTHING', [def.id, def.name, start, end]);
+    }
+  }
   const due = await q<{ id: number; event_key: string; ends_at: Date }>('SELECT id, event_key, ends_at FROM events WHERE cancelled_at IS NULL AND starts_at <= now() AND ends_at > now()');
   for (const e of due) world().startEvent(e.id, e.event_key, new Date(e.ends_at).getTime());
   for (const a of [...world().activeEvents]) if (Date.now() >= a.endsAt) world().endEvent(a.id);

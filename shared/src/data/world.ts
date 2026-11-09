@@ -1,12 +1,13 @@
-import type { Appearance, DungeonDef, GatherTable, HousingBuildingDef, MapDef, NpcDef, PetDef, ShopDef, WorldEventDef } from '../types.js';
+import type { WorldTierId, Appearance, DungeonDef, GatherTable, HousingBuildingDef, MapDef, NpcDef, PetDef, ShopDef, WorldEventDef } from '../types.js';
 import { TILE } from '../constants.js';
 
 // ======================= BẢN ĐỒ =======================
-type MapSeed = Omit<MapDef, 'portals' | 'npcs' | 'spawns' | 'nodes' | 'interacts' | 'spawnX' | 'channels' | 'seed'> & { channels?: number };
+export type MapSeed = Omit<MapDef, 'portals' | 'npcs' | 'spawns' | 'nodes' | 'interacts' | 'spawnX' | 'channels' | 'seed' | 'tier' | 'continent' | 'region' | 'danger' | 'minRealm' | 'coords'> & { channels?: number } & Partial<Pick<MapDef, 'tier' | 'continent' | 'region' | 'danger' | 'minRealm' | 'coords'>>;
 const maps: Record<string, MapDef> = {};
 let seedCounter = 1000;
-function map(m: MapSeed): MapDef {
-  const d: MapDef = { ...m, seed: (seedCounter += 7919), spawnX: 6 * TILE, portals: [], npcs: [], spawns: [], nodes: [], interacts: [], channels: m.channels ?? (m.instance ? 1 : 2) };
+export function map(m: MapSeed): MapDef {
+  // seed tăng dần theo thứ tự khai báo: bản đồ mới luôn thêm ở CUỐI để không đổi lưới của bản đồ cũ
+  const d: MapDef = { tier: 'special', continent: '', region: '', danger: 1, minRealm: 0, coords: { x: 0, y: 0 }, ...m, seed: (seedCounter += 7919), spawnX: 6 * TILE, portals: [], npcs: [], spawns: [], nodes: [], interacts: [], channels: m.channels ?? (m.instance ? 1 : 2) };
   maps[d.id] = d;
   return d;
 }
@@ -62,7 +63,7 @@ function takeSlot(m: MapDef, preferLeft: boolean): number {
   for (const s of slotOrder(preferLeft)) if (!used[m.id].has(s)) { used[m.id].add(s); return slotX(m, s); }
   throw new Error('no portal slot ' + m.id);
 }
-function link(a: string, b: string): void {
+export function link(a: string, b: string): void {
   const A = maps[a], B = maps[b];
   const ax = takeSlot(A, false), bx = takeSlot(B, true);
   A.portals.push({ id: `to_${b}`, x: ax, y: 0, to: b, toPortal: `to_${a}`, reqRealm: B.reqRealm, reqQuest: B.reqQuest });
@@ -90,16 +91,16 @@ link('van_tien_son', 'thien_de_cung');
 link('thien_de_cung', 'hon_don_hai');
 
 // ----- NPC đặt trên bản đồ -----
-function place(mapId: string, npc: string, xTile: number): void { maps[mapId].npcs.push({ npc, x: xTile * TILE + 16, y: 0 }); }
-function spawn(mapId: string, monster: string, count: number, from: number, to: number): void {
+export function place(mapId: string, npc: string, xTile: number): void { maps[mapId].npcs.push({ npc, x: xTile * TILE + 16, y: 0 }); }
+export function spawn(mapId: string, monster: string, count: number, from: number, to: number): void {
   const m = maps[mapId];
   maps[mapId].spawns.push({ monster, count, x1: Math.round(m.width * from) * TILE, x2: Math.round(m.width * to) * TILE });
 }
-function node(mapId: string, kind: 'herb' | 'ore' | 'fishing', table: string, ...xs: number[]): void {
+export function node(mapId: string, kind: 'herb' | 'ore' | 'fishing', table: string, ...xs: number[]): void {
   const m = maps[mapId];
   xs.forEach((f, i) => m.nodes.push({ id: `${kind}_${i}_${m.nodes.length}`, kind, table, x: Math.round(m.width * f) * TILE + 16, y: 0, respawn: kind === 'fishing' ? 5 : 45 }));
 }
-function interact(mapId: string, id: string, name: string, quest: string, objective: string, f: number): void {
+export function interact(mapId: string, id: string, name: string, quest: string, objective: string, f: number): void {
   const m = maps[mapId];
   m.interacts.push({ id, name, quest, objective, x: Math.round(m.width * f) * TILE + 16, y: 0 });
 }
@@ -201,10 +202,10 @@ node('dong_phu', 'fishing', 'gt_fish_1', 0.85);
 
 // ======================= NPC =======================
 const npcs: Record<string, NpcDef> = {};
-function ap(gender: 'male' | 'female', hair: number, hairColor: string, outfit: number, outfitColor: string, skin = '#f2c9a0', face = 0): Appearance {
+export function ap(gender: 'male' | 'female', hair: number, hairColor: string, outfit: number, outfitColor: string, skin = '#f2c9a0', face = 0): Appearance {
   return { gender, hair, hairColor, face, eyes: 0, skin, outfit, outfitColor };
 }
-function npc(id: string, name: string, title: string, a: Appearance, greeting: string, extra: Partial<NpcDef> = {}): void {
+export function npc(id: string, name: string, title: string, a: Appearance, greeting: string, extra: Partial<NpcDef> = {}): void {
   npcs[id] = { id, name, title, sprite: 'npc', appearance: a, greeting, ...extra };
 }
 npc('npc_village_chief', 'Lý Bá', 'Trưởng Thôn', ap('male', 3, '#d8d8d8', 2, '#7a5a3a'), 'Hài tử, thôn ta tuy nhỏ nhưng người người đều chân chất.');
@@ -277,7 +278,7 @@ npc('npc_chaos_ferryman', 'Độ Hải Nhân', 'Người Chèo Đò', ap('male',
 
 // ======================= CỬA HÀNG =======================
 const shops: Record<string, ShopDef> = {};
-function shop(id: string, name: string, items: [string, number, ('gold' | 'spirit_stones')?][]): void {
+export function shop(id: string, name: string, items: [string, number, ('gold' | 'spirit_stones')?][]): void {
   shops[id] = { id, name, items: items.map(([item, price, currency]) => ({ item, price, currency: currency ?? 'gold' })) };
 }
 shop('shop_village_general', 'Tạp Hóa Thôn', [['pill_hp_1', 15], ['pill_mp_1', 12], ['tal_return', 40], ['tool_pick_1', 60], ['tool_sickle_1', 60], ['tool_rod_1', 60], ['tool_furnace_1', 120], ['seed_t1', 6], ['pet_food_1', 20], ['mat_paper', 5], ['mat_cinnabar', 12], ['mat_silk', 14], ['mat_wood', 8], ['tal_capture_1', 100]]);
@@ -344,7 +345,7 @@ export const HOUSING_LEVELS = [
 
 // ======================= BẢNG THU THẬP =======================
 export const GATHER_TABLES: Record<string, GatherTable> = {};
-for (let t = 1; t <= 7; t++) {
+for (let t = 1; t <= 10; t++) {
   GATHER_TABLES[`gt_herb_${t}`] = { id: `gt_herb_${t}`, profession: 'herbalism', level: (t - 1) * 8, seconds: 2.5 + t * 0.3, exp: 10 * t * t, loot: [{ item: `herb_t${t}`, weight: 80, min: 1, max: 2 }, { item: `seed_t${t}`, weight: 15, min: 1, max: 1 }, ...(t < 7 ? [{ item: `herb_t${t + 1}`, weight: 5, min: 1, max: 1 }] : [])] };
   GATHER_TABLES[`gt_ore_${t}`] = { id: `gt_ore_${t}`, profession: 'mining', level: (t - 1) * 8, seconds: 3 + t * 0.3, exp: 10 * t * t, loot: [{ item: `ore_t${t}`, weight: 80, min: 1, max: 2 }, { item: 'stone_enhance', weight: 12, min: 1, max: 1 }, { item: `gem_topaz_${Math.min(5, Math.ceil(t / 1.5))}`, weight: 3, min: 1, max: 1 }, ...(t < 7 ? [{ item: `ore_t${t + 1}`, weight: 5, min: 1, max: 1 }] : [])] };
   GATHER_TABLES[`gt_fish_${t}`] = { id: `gt_fish_${t}`, profession: 'fishing', level: (t - 1) * 8, seconds: 4 + t * 0.4, exp: 8 * t * t, loot: [{ item: `fish_t${t}`, weight: 75, min: 1, max: 1 }, { item: 'pet_food_1', weight: 15, min: 1, max: 2 }, { item: 'qi_lost_ring', weight: 2, min: 1, max: 1 }, ...(t < 7 ? [{ item: `fish_t${t + 1}`, weight: 8, min: 1, max: 1 }] : [])] };
@@ -362,3 +363,32 @@ export const MAPS = maps;
 export const NPCS = npcs;
 export const SHOPS = shops;
 export const NEAREST_CITY: Record<string, string> = { nhan_gioi: 'thanh_van_thanh', tu_chan_gioi: 'thien_huyen_thanh', tien_gioi: 'cuu_thien_tien_thanh', special: 'thanh_van_thanh' };
+
+// ======================= PHÂN CẤP THẾ GIỚI (bản đồ gốc) =======================
+const CLASSIFY: Record<string, [WorldTierId, string, string]> = {
+  tan_thu_thon: ['pham_nhan', 'dong_hoang', 'bien_thuy'], rung_thanh_truc: ['pham_nhan', 'dong_hoang', 'bien_thuy'], hac_phong_son: ['pham_nhan', 'dong_hoang', 'bien_thuy'],
+  thanh_van_thanh: ['pham_nhan', 'dong_hoang', 'thanh_van'], vo_dao_hoc_vien: ['pham_nhan', 'dong_hoang', 'thanh_van'], co_kiem_son_trang: ['pham_nhan', 'dong_hoang', 'thanh_van'],
+  yeu_thu_son_mach: ['pham_nhan', 'tay_man', 'yeu_son'], van_duoc_coc: ['pham_nhan', 'tay_man', 'yeu_son'], thien_kiem_tong: ['pham_nhan', 'tay_man', 'kiem_phong'],
+  u_minh_dong: ['pham_nhan', 'tay_man', 'kiem_phong'], co_chien_truong: ['pham_nhan', 'tay_man', 'co_chien'],
+  linh_van_chau: ['tu_chan', 'linh_van', 'linh_van_dong'], thien_huyen_thanh: ['tu_chan', 'linh_van', 'linh_van_dong'], van_bao_cac: ['tu_chan', 'linh_van', 'linh_van_dong'],
+  loi_kiep_dai: ['tu_chan', 'linh_van', 'loi_vuc'], thuong_co_bi_canh: ['tu_chan', 'thuong_co', 'thuong_co_di_tich'], ma_vuc: ['tu_chan', 'ma_chau', 'ma_vuc_noi'], thien_ngoai_chien_truong: ['tu_chan', 'ma_chau', 'thien_ngoai'],
+  phi_thang_dai: ['tien_gioi', 'cuu_thien', 'phi_thang'], cuu_thien_tien_thanh: ['tien_gioi', 'cuu_thien', 'phi_thang'], van_tien_son: ['tien_gioi', 'cuu_thien', 'van_tien'], thien_de_cung: ['tien_gioi', 'cuu_thien', 'thien_de'],
+  hon_don_hai: ['hon_don', 'hon_don_bien', 'hon_don_ngoai'],
+};
+const TIER_MIN: Record<string, number> = { pham_nhan: 0, vo_dao: 4, tu_chan: 10, linh_gioi: 13, tien_gioi: 19, thuong_tien: 29, than_vuc: 38, hon_don: 28, thai_co: 56, van_gioi: 65, special: 0 };
+const coordCounter: Record<string, number> = {};
+const TIER_ORDER: WorldTierId[] = ['pham_nhan', 'vo_dao', 'tu_chan', 'linh_gioi', 'tien_gioi', 'thuong_tien', 'than_vuc', 'hon_don', 'thai_co', 'van_gioi'];
+/** Gán tầng/vùng/mức nguy hiểm/tọa độ bản đồ thế giới — bỏ khóa bản đồ theo nhiệm vụ (khám phá tự do) */
+export function classify(id: string, tier: WorldTierId, continent: string, region: string): void {
+  const m = maps[id];
+  m.tier = tier; m.continent = continent; m.region = region;
+  m.minRealm = m.instance ? 0 : TIER_MIN[tier];
+  m.danger = Math.max(1, Math.min(10, 1 + Math.round((m.reqRealm - m.minRealm) / 2) + (m.pvp === 'open' ? 2 : 0)));
+  m.reqQuest = undefined;
+  const ti = Math.max(0, TIER_ORDER.indexOf(tier));
+  coordCounter[tier] = (coordCounter[tier] ?? 0) + 1;
+  m.coords = { x: coordCounter[tier], y: ti };
+}
+for (const [id, [t, c, r]] of Object.entries(CLASSIFY)) classify(id, t, c, r);
+for (const m of Object.values(maps)) if (m.instance) { m.tier = 'special'; m.continent = 'instance'; m.region = m.instance; }
+for (const p of Object.values(maps).flatMap((m) => m.portals)) p.reqQuest = undefined;

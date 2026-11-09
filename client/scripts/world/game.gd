@@ -588,8 +588,7 @@ func do_interact() -> void:
 			continue
 		match mk.kind:
 			"portal":
-				var r = await Net.rpc_call("portal.use", {"id": mk.id})
-				if not r.ok: hud.toast(r.e, "warn")
+				use_portal(mk.id, false)
 				return
 			"interact":
 				var r2 = await Net.rpc_call("interact.use", {"id": mk.id})
@@ -601,6 +600,14 @@ func do_interact() -> void:
 				if not r3.ok: hud.toast(r3.e, "warn")
 				return
 	hud.toast("Không có gì để tương tác gần đây", "info")
+
+## Cổng dịch chuyển: server trả cảnh báo nếu khu vực vượt cảnh giới khuyến nghị — người chơi xác nhận mới vào
+func use_portal(id: String, force: bool) -> void:
+	var r = await Net.rpc_call("portal.use", {"id": id, "force": force})
+	if not r.ok:
+		hud.toast(r.e, "warn")
+	elif r.d.has("warn"):
+		hud.panels.confirm(str(r.d.warn), func(ok): if ok: use_portal(id, true))
 
 func _auto_pickup(rng: float) -> void:
 	if me == null:

@@ -31,6 +31,35 @@ export const THEMES: Record<string, ThemePal> = {
   inner_world: P('#4a4a5a', '#3a3a4a', '#2a2a3a', '#5a5a6a', '#100818', '#402040', '#301830', '#201020', '#100810', '#ff60a0', '#a0a0ff'),
   cave_home: P('#7a9a6a', '#6a5a4a', '#5a5a5a', '#9a7a5a', '#3a3020', '#7a6040', '#5a4830', '#4a3a28', '#2a2018', '#ffd060', '#60ff90'),
   arena: P('#a09080', '#7a6a5a', '#8a7a6a', '#b09070', '#d08050', '#ffe0b0', '#c08060', '#a06040', '#603020', '#ffd040', '#ff4040'),
+  martial_city: P('#a09070', '#7a5a3a', '#8a8070', '#b07a40', '#e0a070', '#fff0d8', '#c08a60', '#a0603a', '#6a3a20', '#ffd060', '#c03030'),
+  tiger_mountain: P('#6aa050', '#6a5030', '#706a5a', '#8a6a3a', '#90c0d8', '#e0f0f0', '#7a9aa0', '#5a7a50', '#3a5a30', '#e0a040', '#202020'),
+  war_temple: P('#b0a080', '#8a6a4a', '#a09080', '#c09050', '#e8c890', '#fff8e0', '#d0b080', '#a08050', '#705030', '#ffd860', '#a02020'),
+  blood_valley: P('#7a4a3a', '#5a2a20', '#4a3030', '#6a3a2a', '#802020', '#e07050', '#702020', '#501818', '#300c0c', '#ff4030', '#ffb040'),
+  sword_peak: P('#e0e8f0', '#8a8a9a', '#a0a8b8', '#b0b0c0', '#a0c0e0', '#ffffff', '#b8c8e0', '#90a0b8', '#607088', '#e0f0ff', '#80c0ff'),
+  nether_battle: P('#4a4a5a', '#3a2a3a', '#2a2a3a', '#4a3a4a', '#1a1028', '#503050', '#30203a', '#20142a', '#100818', '#a0ffd0', '#ff4060'),
+  spirit_city: P('#90d0b0', '#6a7a6a', '#90a0a0', '#a0c0a0', '#a0f0e0', '#f0fff8', '#a0e0d0', '#70b0a0', '#408070', '#ffe0ff', '#60ffd0'),
+  spirit_mountain: P('#70c890', '#6a6a4a', '#7a8a7a', '#90b070', '#b0f0d0', '#f0fff0', '#a0d8c0', '#60a080', '#307050', '#ffffa0', '#a0ffa0'),
+  beast_valley: P('#80b050', '#7a5a3a', '#7a7060', '#9a7a4a', '#f0d0a0', '#fff8e8', '#d0b080', '#a08050', '#6a5030', '#ff9040', '#ffffff'),
+  spirit_sea: P('#60a0c0', '#4a6a7a', '#5a7a8a', '#7aa0b0', '#80d0ff', '#e0f8ff', '#80b8e0', '#5090c0', '#306090', '#c0ffff', '#ffffff'),
+  spirit_tower: P('#8a90b0', '#5a5a7a', '#7a7a9a', '#9a9ac0', '#304060', '#8090c0', '#506080', '#3a4a6a', '#202a40', '#c0d0ff', '#ffe080'),
+  tienma_battle: P('#8a6a6a', '#5a3a4a', '#6a5060', '#8a5a6a', '#401030', '#c06080', '#702040', '#501830', '#300c1c', '#ffe080', '#a0a0ff'),
+  taixu_sky: P('#f0f0ff', '#c0c0e0', '#b0b0d0', '#e0e0ff', '#c0d0ff', '#ffffff', '#e0e8ff', '#c0d0f0', '#a0b0e0', '#ffffe0', '#a0e0ff'),
+  wuji_palace: P('#e0d0a0', '#b09060', '#d0c0a0', '#f0d080', '#f0e0c0', '#fffff0', '#e8d8b0', '#c8b080', '#a08850', '#ffffff', '#ffd040'),
+  ninefold_heaven: P('#a0a0d0', '#6a6aa0', '#7a7ab0', '#a0a0e0', '#20205a', '#7070c0', '#40408a', '#30306a', '#18184a', '#e0e0ff', '#ffff80'),
+  ancient_immortal: P('#8aa080', '#6a6a5a', '#8a8a7a', '#a09a7a', '#3a4a3a', '#8aa08a', '#5a6a5a', '#404a40', '#283028', '#e0ffd0', '#c0a0ff'),
+  god_court: P('#f0e0b0', '#c0a060', '#e0d0a0', '#ffe090', '#ffe8b0', '#fffff8', '#ffecc0', '#f0d090', '#d0a050', '#ffffff', '#ff6040'),
+  god_battle: P('#c0a080', '#8a6a4a', '#a08a70', '#c09060', '#ff9050', '#ffe0b0', '#e08050', '#b05030', '#702010', '#ffff80', '#ffffff'),
+  god_mountain: P('#e8f0f8', '#a0a0b0', '#c0c8d8', '#d0d0e0', '#ffc080', '#fff8f0', '#f0d0b0', '#d0b090', '#a08060', '#ffd040', '#ff8040'),
+  forbidden_land: P('#5a4a5a', '#3a2a3a', '#2a2030', '#4a3a4a', '#200818', '#602040', '#401030', '#2a0820', '#180410', '#ff60a0', '#80ffff'),
+  void_endless: P('#3a3060', '#1a1440', '#100c30', '#4a4080', '#000008', '#200c48', '#140838', '#0c0628', '#060318', '#c0a0ff', '#40ffff'),
+  chaos_palace: P('#6a5a8a', '#3a2a5a', '#4a3a6a', '#7a6aa0', '#100820', '#503080', '#302060', '#201040', '#100820', '#ffd0ff', '#ffd040'),
+  chaos_road: P('#5a5a6a', '#3a3a4a', '#4a4a5a', '#6a6a7a', '#181020', '#504060', '#383048', '#282038', '#181020', '#c0c0ff', '#ff8040'),
+  ancient_city: P('#c0b090', '#8a7a5a', '#a09a80', '#c0a070', '#d8c090', '#fff8e8', '#c8b088', '#a08a60', '#706040', '#ffe0a0', '#80ffe0'),
+  origin_mountain: P('#a0b890', '#7a7a6a', '#9a9a8a', '#b0a080', '#d0e8f0', '#ffffff', '#c0d0d8', '#90a8a8', '#607878', '#ffffff', '#ffe040'),
+  dao_realm: P('#8090a0', '#5a6070', '#707a8a', '#8a9ab0', '#202838', '#607090', '#405068', '#303a50', '#1a2030', '#a0ffff', '#ffe0a0'),
+  time_river: P('#5080a0', '#3a5070', '#4a6080', '#6a90b0', '#102030', '#4080a0', '#285068', '#183848', '#0c2030', '#e0f0ff', '#ffd080'),
+  myriad_city: P('#e0d0f0', '#a090c0', '#c0b0e0', '#e0c0ff', '#d0c0ff', '#fff8ff', '#e0d0ff', '#c0b0f0', '#a090d0', '#ffffff', '#ffd040'),
+  myriad_battle: P('#8a7a9a', '#5a4a6a', '#6a5a7a', '#8a6aa0', '#200830', '#7030a0', '#501a70', '#300a50', '#180428', '#ffd040', '#40ffff'),
 };
 
 export function renderTileset(theme: string): Canvas {
@@ -95,7 +124,7 @@ export function renderParallax(theme: string, layer: 0 | 1 | 2): Canvas {
       if (['bamboo', 'herb_valley'].includes(theme)) { for (let k = 0; k < 4; k++) c.line(x + 2, H - h + k * 12, x + 14 + rng() * 6, H - h + k * 12 - 6, tree, 2); }
       else c.ellipse(x + 2, H - h, 18 + rng() * 10, 14 + rng() * 8, tree);
     }
-    if (['city', 'cult_city', 'immortal_city', 'heaven_palace', 'sect', 'academy', 'pavilion'].includes(theme)) {
+    if (['city', 'cult_city', 'immortal_city', 'heaven_palace', 'sect', 'academy', 'pavilion', 'martial_city', 'war_temple', 'spirit_city', 'wuji_palace', 'god_court', 'chaos_palace', 'ancient_city', 'myriad_city'].includes(theme)) {
       for (let i = 0; i < 5; i++) { const x = 60 + i * 120, w = 50, h = 60 + rng() * 40; c.rect(x, H - h, w, h, shade(hex(p.mid), 0.8)); c.poly([[x - 10, H - h], [x + w + 10, H - h], [x + w / 2, H - h - 22]], hex(p.accent)); }
     }
   }

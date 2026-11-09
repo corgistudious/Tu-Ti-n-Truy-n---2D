@@ -4,16 +4,21 @@ import { gameData, generateGrid, moveBody, overlapsSolid, groundYAt, TILE, PHYSI
 const D = gameData();
 
 describe('dữ liệu game — toàn vẹn tham chiếu', () => {
-  it('có đủ 29 cảnh giới đặt tên + Hỗn Độn vô hạn', () => {
-    expect(D.realms.length).toBe(29);
+  it('có đủ 65 cảnh giới đặt tên (Võ Đạo → Thái Cổ) + Vạn Giới Chân Cảnh vô hạn', () => {
+    expect(D.realms.length).toBe(65);
+    expect(D.realms[37].name).toBe('Tiên Tổ');
+    expect(D.realms[46].name).toBe('Thần Tổ');
+    expect(D.realms[64].name).toBe('Thái Cổ Đạo Tổ');
+    expect(realmDef(70).name).toMatch(/Vạn Giới Chân Cảnh/);
     expect(D.realms[0].name).toBe('Phàm Nhân');
     expect(D.realms[9].name).toBe('Võ Đạo Đại Đế');
     expect(D.realms[18].name).toBe('Độ Kiếp');
     expect(D.realms[28].name).toBe('Tiên Đế');
-    expect(realmDef(40).stage).toBe('hon_don');
+    expect(realmDef(40).stage).toBe('than');
+    expect(realmDef(80).stage).toBe('van_gioi');
   });
   it('nguyên liệu đột phá đều tồn tại', () => {
-    for (let i = 0; i < 45; i++) for (const m of realmDef(i).breakthrough.materials) expect(D.items[m.item], `${i}:${m.item}`).toBeTruthy();
+    for (let i = 0; i < 90; i++) for (const m of realmDef(i).breakthrough.materials) expect(D.items[m.item], `${i}:${m.item}`).toBeTruthy();
   });
   it('quest gate tồn tại', () => {
     for (const r of D.realms) if (r.breakthrough.questRequired) expect(D.quests[r.breakthrough.questRequired], r.id).toBeTruthy();
@@ -56,8 +61,9 @@ describe('dữ liệu game — toàn vẹn tham chiếu', () => {
       for (const it of q.rewards.items ?? []) expect(D.items[it.item], `${q.id} reward ${it.item}`).toBeTruthy();
     }
     const main = Object.values(D.quests).filter((q) => q.kind === 'main');
-    expect(new Set(main.map((q) => q.chapter)).size).toBe(7);
-    expect(main.length).toBeGreaterThanOrEqual(35);
+    expect(new Set(main.map((q) => q.chapter)).size).toBe(10);
+    expect(main.length).toBeGreaterThanOrEqual(60);
+    for (let c = 1; c <= 10; c++) expect(D.chapters[c], `chương ${c}`).toBeTruthy();
   });
   it('cửa hàng, công thức, phó bản, linh thú tham chiếu hợp lệ', () => {
     for (const s of Object.values(D.shops)) for (const it of s.items) expect(D.items[it.item], `${s.id}:${it.item}`).toBeTruthy();
@@ -66,6 +72,27 @@ describe('dữ liệu game — toàn vẹn tham chiếu', () => {
     for (const p of Object.values(D.pets)) { if (p.evolvesTo) expect(D.pets[p.evolvesTo]).toBeTruthy(); for (const s of p.skills) expect(D.skills[s]).toBeTruthy(); }
     for (const n of Object.values(D.npcs)) { if (n.shop) expect(D.shops[n.shop], n.id).toBeTruthy(); for (const t of n.teleports ?? []) expect(D.maps[t]).toBeTruthy(); }
     for (const it of Object.values(D.items)) if (it.use?.kind === 'learn_skill') expect(D.skills[it.use.skill]).toBeTruthy();
+  });
+  it('thế giới nhiều tầng: 10 tầng, mỗi bản đồ công khai có quái + NPC/hoạt động, có khu vực ẩn, không khóa theo nhiệm vụ', () => {
+    expect(D.tiers.length).toBe(10);
+    const spec = ['Thiên Võ Thành', 'Long Hổ Sơn', 'Võ Thần Điện', 'Huyết Chiến Cốc', 'Vạn Kiếm Sơn', 'Cửu U Chiến Trường', 'Linh Thiên Thành', 'Vạn Linh Sơn', 'Thần Thú Cốc', 'Linh Hải', 'Cổ Linh Tháp', 'Tiên Ma Chiến Trường', 'Thái Hư Thiên', 'Vô Cực Tiên Cung', 'Cửu Trọng Thiên', 'Thượng Cổ Tiên Vực', 'Thần Đình', 'Vạn Thần Chiến Trường', 'Thái Cổ Thần Sơn', 'Thần Ma Cấm Địa', 'Hỗn Độn Hải', 'Vô Tận Hư Không', 'Hỗn Nguyên Điện', 'Hỗn Độn Cổ Lộ', 'Thái Cổ Thần Thành', 'Khởi Nguyên Sơn', 'Vạn Đạo Bí Cảnh', 'Thời Không Trường Hà'];
+    const names = new Set(Object.values(D.maps).map((m) => m.name));
+    for (const n of spec) expect(names.has(n), n).toBe(true);
+    const pub = Object.values(D.maps).filter((m) => !m.instance);
+    expect(pub.length).toBeGreaterThanOrEqual(60);
+    for (const t of D.tiers) { expect(D.maps[t.hub], t.id).toBeTruthy(); expect(pub.some((m) => m.tier === t.id), t.id).toBe(true); }
+    for (const m of pub) {
+      expect(m.reqQuest, m.id).toBeFalsy();
+      expect(m.npcs.length + m.spawns.length, m.id).toBeGreaterThan(0);
+      if (!m.safe) expect(m.spawns.length, m.id).toBeGreaterThan(0);
+      expect(m.portals.length, `${m.id} có lối ra`).toBeGreaterThan(0);
+      expect(m.tier).not.toBe('special');
+    }
+    expect(pub.filter((m) => m.hidden).length).toBeGreaterThanOrEqual(6);
+    // đồ thị cổng liên thông: từ Tân Thủ Thôn đi tới mọi bản đồ không ẩn (qua cổng hoặc truyền tống)
+    const seen = new Set(['tan_thu_thon']); const stack = ['tan_thu_thon'];
+    while (stack.length) { const id = stack.pop()!; const m = D.maps[id]; const next = [...m.portals.map((p) => p.to), ...m.npcs.flatMap((n) => D.npcs[n.npc].teleports ?? [])]; for (const t of next) if (!seen.has(t)) { seen.add(t); stack.push(t); } }
+    for (const m of pub) if (!m.hidden) expect(seen.has(m.id), `không tới được ${m.id}`).toBe(true);
   });
   it('12 con đường công pháp, mỗi đường 5 kỹ năng có cơ chế khác nhau', () => {
     expect(PLAYER_SKILL_PATHS.length).toBe(12);
@@ -104,7 +131,7 @@ describe('công thức', () => {
   });
   it('tu vi yêu cầu tăng đơn điệu và hữu hạn tới Hỗn Độn sâu', () => {
     let prev = 0;
-    for (let r = 0; r < 60; r++) for (let l = 1; l <= 9; l++) { const v = tuViRequired(r, l); expect(v).toBeGreaterThan(prev); expect(Number.isFinite(v)).toBe(true); expect(v).toBeLessThan(Number.MAX_SAFE_INTEGER); prev = v; }
+    for (let r = 0; r < 120; r++) for (let l = 1; l <= 9; l++) { const v = tuViRequired(r, l); expect(v).toBeGreaterThan(prev); expect(Number.isFinite(v)).toBe(true); expect(v).toBeLessThan(Number.MAX_SAFE_INTEGER); prev = v; }
     expect(Number.isFinite(statCurve(2000))).toBe(true);
   });
   it('tỉ lệ đột phá được kẹp', () => {

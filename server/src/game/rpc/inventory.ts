@@ -106,9 +106,9 @@ rpc('inv.use', async (s, p) => {
       case 'teleport': {
         assert(!s.ent.inst.instanceKind, 'Không thể dùng trong phó bản');
         assert(now - s.lastCombatAt > 5000, 'Không thể dùng khi đang chiến đấu');
-        const city = NEAREST_CITY[s.ent.inst.def.world] ?? 'thanh_van_thanh';
         const { MAPS } = await import('@tt/shared');
-        const target = s.realmIdx >= MAPS[city].reqRealm && (!MAPS[city].reqQuest || s.quests.get(MAPS[city].reqQuest!)?.state === 'done') ? city : 'tan_thu_thon';
+        const city = NEAREST_CITY[s.ent.inst.def.tier] ?? NEAREST_CITY[s.ent.inst.def.world] ?? 'thanh_van_thanh';
+        const target = MAPS[city] && s.realmIdx >= MAPS[city].minRealm ? city : 'thanh_van_thanh';
         effect = () => s.world.enterMapById(s, target);
         break;
       }

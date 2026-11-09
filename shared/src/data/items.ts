@@ -1,11 +1,11 @@
 import type { EquipSlot } from '../constants.js';
 import { equipmentBaseStats } from '../formulas.js';
 import type { ItemDef, ItemType, PartialStats, SetDef } from '../types.js';
-import { REALMS } from './realms.js';
+import { REALMS, MAX_PILL_REALM, realmDef } from './realms.js';
 
 const items: Record<string, ItemDef> = {};
 
-function add(d: Partial<ItemDef> & Pick<ItemDef, 'id' | 'name' | 'type'>): ItemDef {
+export function add(d: Partial<ItemDef> & Pick<ItemDef, 'id' | 'name' | 'type'>): ItemDef {
   const stackable = d.stackable ?? !['weapon', 'armor', 'helmet', 'boots', 'ring', 'amulet', 'artifact', 'fashion', 'mount', 'tool', 'pet_gear'].includes(d.type);
   const item: ItemDef = {
     desc: '', icon: `icon_${d.type}`, rarity: 0, reqRealm: 0, stackable, maxStack: stackable ? 9999 : 1,
@@ -22,9 +22,9 @@ export function rarityForRealm(r: number): number {
 }
 
 // ---------- Nguyên liệu theo bậc ----------
-const HERBS = ['Thanh Linh Thảo', 'Huyết Sâm', 'Tử Vân Chi', 'Ngọc Tủy Liên', 'Long Diên Thảo', 'Tiên Linh Quả', 'Hỗn Nguyên Hoa'];
-const ORES = ['Thiết Tinh', 'Hàn Thiết', 'Xích Đồng', 'Huyền Thiết', 'Tinh Thần Sa', 'Tiên Kim', 'Hỗn Độn Thạch'];
-const FISH = ['Cá Chép Bạc', 'Linh Ngư', 'Hàn Băng Ngư', 'Kim Lân Ngư', 'Long Ngư', 'Tiên Hà Ngư', 'Hỗn Độn Kình'];
+const HERBS = ['Thanh Linh Thảo', 'Huyết Sâm', 'Tử Vân Chi', 'Ngọc Tủy Liên', 'Long Diên Thảo', 'Tiên Linh Quả', 'Hỗn Nguyên Hoa', 'Thái Hư Tiên Lan', 'Thần Huyết Liên', 'Thái Cổ Đạo Quả'];
+const ORES = ['Thiết Tinh', 'Hàn Thiết', 'Xích Đồng', 'Huyền Thiết', 'Tinh Thần Sa', 'Tiên Kim', 'Hỗn Độn Thạch', 'Thái Hư Ngọc', 'Thần Văn Thạch', 'Khởi Nguyên Tinh'];
+const FISH = ['Cá Chép Bạc', 'Linh Ngư', 'Hàn Băng Ngư', 'Kim Lân Ngư', 'Long Ngư', 'Tiên Hà Ngư', 'Hỗn Độn Kình', 'Thái Hư Linh Côn', 'Thần Hải Giao', 'Thời Không Ngư'];
 HERBS.forEach((n, i) => add({ id: `herb_t${i + 1}`, name: n, type: 'herb', rarity: Math.min(9, i + Math.floor(i / 2)), reqRealm: 0, value: 5 * Math.pow(3, i), desc: `Linh thảo bậc ${i + 1}, nguyên liệu luyện đan và đột phá.`, icon: `icon_herb_${i + 1}`, sources: ['Hái thuốc', 'Trồng ở linh điền', 'Quái vật'] }));
 ORES.forEach((n, i) => add({ id: `ore_t${i + 1}`, name: n, type: 'ore', rarity: Math.min(9, i + Math.floor(i / 2)), value: 6 * Math.pow(3, i), desc: `Khoáng thạch bậc ${i + 1}, dùng luyện khí và rèn trang bị.`, icon: `icon_ore_${i + 1}`, sources: ['Khai khoáng', 'Quái vật'] }));
 FISH.forEach((n, i) => add({ id: `fish_t${i + 1}`, name: n, type: 'material', rarity: Math.min(9, i + 1), value: 8 * Math.pow(3, i), desc: `Cá linh bậc ${i + 1}, nguyên liệu đan dược và thức ăn linh thú.`, icon: `icon_fish_${i + 1}`, sources: ['Câu cá'] }));
@@ -46,12 +46,12 @@ const HP_PILLS: [string, number, number][] = [['Hồi Xuân Đan', 0, 0.25], ['B
 HP_PILLS.forEach(([n, r, pct], i) => add({ id: `pill_hp_${i + 1}`, name: n, type: 'pill', rarity: rarityForRealm(r), reqRealm: r, value: 12 * Math.pow(4, i), desc: `Hồi ${pct * 100}% sinh lực tối đa.`, use: { kind: 'heal', hp: pct, pct: true }, cooldown: 6, icon: 'icon_pill_red', sources: ['Cửa hàng', 'Luyện đan'] }));
 const MP_PILLS: [string, number, number][] = [['Tụ Khí Đan', 0, 0.3], ['Ngưng Thần Đan', 3, 0.35], ['Thanh Tâm Đan', 8, 0.4], ['Linh Nguyên Đan', 12, 0.45], ['Tiên Linh Đan', 19, 0.55]];
 MP_PILLS.forEach(([n, r, pct], i) => add({ id: `pill_mp_${i + 1}`, name: n, type: 'pill', rarity: rarityForRealm(r), reqRealm: r, value: 10 * Math.pow(4, i), desc: `Hồi ${pct * 100}% chân khí tối đa.`, use: { kind: 'heal', mp: pct, pct: true }, cooldown: 6, icon: 'icon_pill_blue', sources: ['Cửa hàng', 'Luyện đan'] }));
-const TUVI_PILLS: [string, number, number][] = [['Tẩy Cân Đan', 0, 120], ['Dưỡng Khí Đan', 4, 2500], ['Trúc Cơ Linh Dịch', 10, 60000], ['Kim Nguyên Đan', 14, 900000], ['Tiên Nguyên Đan', 20, 2.5e7], ['Hỗn Nguyên Đan', 26, 4e8]];
+const TUVI_PILLS: [string, number, number][] = [['Tẩy Cân Đan', 0, 120], ['Dưỡng Khí Đan', 4, 2500], ['Trúc Cơ Linh Dịch', 10, 60000], ['Kim Nguyên Đan', 14, 900000], ['Tiên Nguyên Đan', 20, 2.5e7], ['Hỗn Nguyên Đan', 26, 4e8], ['Thái Hư Đan', 32, 3e9], ['Thần Nguyên Đan', 40, 1.5e10], ['Khởi Nguyên Đan', 52, 6e10]];
 TUVI_PILLS.forEach(([n, r, amt], i) => add({ id: `pill_tuvi_${i + 1}`, name: n, type: 'pill', rarity: rarityForRealm(r), reqRealm: r, value: 40 * Math.pow(5, i), desc: `Luyện hóa nhận ${amt.toLocaleString('vi-VN')} tu vi.`, use: { kind: 'tuvi', amount: amt }, cooldown: 3, icon: 'icon_pill_gold', sources: ['Luyện đan', 'Nhiệm vụ', 'Boss'] }));
 // đan đột phá — mỗi cảnh giới một loại
 const BT_PREFIX = ['', 'Nhập Môn', 'Luyện Cốt', 'Nội Kình', 'Ám Kình', 'Hóa Kình', 'Tiên Thiên', 'Tông Sư', 'Đại Tông Sư', 'Đế Võ', 'Dẫn Khí', 'Trúc Cơ', 'Kết Đan', 'Phá Anh', 'Hóa Thần', 'Phản Hư', 'Hợp Thể', 'Đại Thừa', 'Độ Ách', 'Phi Thăng', 'Địa Mạch', 'Cửu Thiên', 'Chân Linh', 'Huyền Diệu', 'Kim Thân', 'Đại La', 'Quân Lâm', 'Vương Đạo', 'Đế Tâm', 'Hỗn Độn'];
-for (let i = 1; i <= 29; i++) {
-  add({ id: `pill_bt_${i}`, name: `${BT_PREFIX[i]} Đan`, type: 'pill', rarity: rarityForRealm(i), reqRealm: Math.max(0, i - 1), value: Math.round(50 * Math.pow(1.7, i)), desc: `Đan dược cần thiết để đột phá lên cảnh giới ${REALMS[Math.min(i, REALMS.length - 1)].name}${i >= 29 ? ' và Hỗn Độn' : ''}. Tiêu hao khi đột phá.`, icon: 'icon_pill_purple', sources: ['Luyện đan', 'Boss', 'Cửa hàng tông môn'] });
+for (let i = 1; i <= MAX_PILL_REALM; i++) {
+  add({ id: `pill_bt_${i}`, name: i < BT_PREFIX.length ? `${BT_PREFIX[i]} Đan` : `${realmDef(i).name} Phá Cảnh Đan`, type: 'pill', rarity: rarityForRealm(i), reqRealm: Math.max(0, i - 1), value: Math.round(50 * Math.pow(1.7, i)), desc: `Đan dược cần thiết để đột phá lên cảnh giới ${realmDef(i).name}${i >= MAX_PILL_REALM ? ' và các trọng Vạn Giới Chân Cảnh' : ''}. Tiêu hao khi đột phá.`, icon: 'icon_pill_purple', sources: ['Luyện đan', 'Boss', 'Cửa hàng tông môn'] });
 }
 add({ id: 'pill_bt_assist', name: 'Hộ Mạch Đan', type: 'pill', rarity: 3, reqRealm: 2, value: 800, desc: 'Mang trong túi khi đột phá: +10% tỉ lệ thành công (tiêu hao 1 viên).', icon: 'icon_pill_green', sources: ['Luyện đan', 'Vạn Bảo Các'] });
 add({ id: 'pill_atk', name: 'Cuồng Lực Đan', type: 'pill', rarity: 2, value: 120, desc: 'Tăng 15% công trong 5 phút.', use: { kind: 'buff', buff: 'atk_up', duration: 300, stats: {} }, cooldown: 30, icon: 'icon_pill_orange' });
@@ -145,16 +145,16 @@ const SLOT_NAMES: Record<string, [string, string][]> = {
 };
 const TIER_PREFIX = ['Phàm', 'Võ Giả', 'Luyện Thể', 'Nội Kình', 'Ám Kình', 'Hóa Kình', 'Tiên Thiên', 'Tông Sư', 'Đại Tông Sư', 'Đế Võ', 'Linh Khí', 'Trúc Cơ', 'Kim Đan', 'Nguyên Anh', 'Hóa Thần', 'Luyện Hư', 'Hợp Thể', 'Đại Thừa', 'Độ Kiếp', 'Nhân Tiên', 'Địa Tiên', 'Thiên Tiên', 'Chân Tiên', 'Huyền Tiên', 'Kim Tiên', 'Đại La', 'Tiên Quân', 'Tiên Vương', 'Tiên Đế'];
 const EQUIP_SLOTS_GEN: EquipSlot[] = ['weapon', 'armor', 'helmet', 'boots', 'ring', 'amulet', 'artifact'];
-for (let r = 0; r < 29; r++) {
+for (let r = 0; r < MAX_PILL_REALM; r++) {
   for (const slot of EQUIP_SLOTS_GEN) {
     const names = SLOT_NAMES[slot];
     const [base, look] = names[r % names.length];
     const rarity = rarityForRealm(r);
     add({
-      id: `eq_${slot}_${r}`, name: `${TIER_PREFIX[r]} ${base}`, type: slot as ItemType, slot, rarity, reqRealm: r,
+      id: `eq_${slot}_${r}`, name: `${TIER_PREFIX[r] ?? realmDef(r).name} ${base}`, type: slot as ItemType, slot, rarity, reqRealm: r,
       stats: equipmentBaseStats(slot, r, rarity), value: Math.round(30 * Math.pow(1.55, r)),
       durability: 100, appearance: slot === 'weapon' ? `wpn_${look}_${Math.min(4, Math.floor(r / 6))}` : undefined,
-      desc: `Trang bị ${slot} dành cho cảnh giới ${REALMS[r].name}.`, icon: `icon_${slot}`, sources: ['Quái vật', 'Rèn đúc', 'Cửa hàng'],
+      desc: `Trang bị ${slot} dành cho cảnh giới ${realmDef(r).name}.`, icon: `icon_${slot}`, sources: ['Quái vật', 'Rèn đúc', 'Cửa hàng'],
     });
   }
 }

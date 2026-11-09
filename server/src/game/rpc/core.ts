@@ -1,4 +1,4 @@
-import { LIMITS, MAPS, NEAREST_CITY, NPCS, QUESTS, SHOPS, TILE, realmDef } from '@tt/shared';
+import { LIMITS, MAPS, NEAREST_CITY, NPCS, QUESTS, SHOPS, TILE, WORLD_TIERS, realmDef, type MapDef } from '@tt/shared';
 import { q, q1, tx } from '../../db.js';
 import { redis } from '../../redis.js';
 import { changeCurrency } from '../../services/currency.js';
@@ -85,7 +85,19 @@ async function finishHidden(s: PlayerSession, qid: string) {
 }
 
 // ---------- di chuyển giữa bản đồ ----------
-rpc('portal.use', (s, p) => {
+/** Quy tắc vào bản đồ: giới hạn cứng theo tầng thế giới (minRealm); cảnh giới khuyến nghị chỉ CẢNH BÁO (khám phá tự do); khu ẩn cần đã khám phá */
+export async function checkMapEntry(s: PlayerSession, target: MapDef, force: boolean): Promise<{ warn?: string }> {
+  if (s.realmIdx < target.minRealm) throw new GameError(`Linh khí ${target.name} quá mạnh — cần tối thiểu cảnh giới ${realmDef(target.minRealm).name}`);
+  if (target.hidden) {
+    const d = await q1('SELECT 1 FROM map_discovery WHERE character_id = $1 AND map_id = $2', [s.charId, target.id]);
+    if (!d) throw new GameError('Khu vực chưa được khám phá');
+  }
+  if (!force && s.realmIdx < target.reqRealm - 1) {
+    return { warn: `CẢNH BÁO: ${target.name} khuyến nghị cảnh giới ${realmDef(target.reqRealm).name} (nguy hiểm ${target.danger}/10). Quái vật ở đây có thể hạ bạn rất nhanh. Vẫn tiến vào?` };
+  }
+  return {};
+}
+rpc('portal.use', async (s, p) => {
   const id = str(p, 'id', 80);
   const inst = s.ent.inst;
   assert(!inst.instanceKind || inst.controller?.canLeaveByPortal, 'Không thể dùng cổng ở đây');
@@ -94,10 +106,10 @@ rpc('portal.use', (s, p) => {
   assert(Math.abs(portal.x - s.ent.x) < 90, 'Hãy đến gần cổng dịch chuyển');
   assert(!s.ent.dead, 'Đã tử vong');
   const target = MAPS[portal.to];
-  if (s.realmIdx < target.reqRealm) throw new GameError(`Cần cảnh giới ${realmDef(target.reqRealm).name} để vào ${target.name}`);
-  if (target.reqQuest && s.quests.get(target.reqQuest)?.state !== 'done') throw new GameError(`Cần hoàn thành nhiệm vụ "${QUESTS[target.reqQuest]?.name}"`);
-  const dest = target.portals.find((x) => x.id === portal.toPortal)!;
-  const arriveX = dest.x + (dest.x < target.width * TILE / 2 ? 60 : -60);
+  const chk = await checkMapEntry(s, target, p.force === true);
+  if (chk.warn) return { ok: false, warn: chk.warn };
+  const dest = target.portals.find((x) => x.id === portal.toPortal);
+  const arriveX = dest ? dest.x + (dest.x < target.width * TILE / 2 ? 60 : -60) : target.spawnX;
   s.world.enterMapById(s, target.id, arriveX);
   return { ok: true };
 });
@@ -108,8 +120,8 @@ rpc('teleport.npc', async (s, p) => {
   assert(npc?.teleports?.includes(mapId), 'Không thể dịch chuyển tới đó');
   assert(nearNpc(s, npcId), 'Quá xa NPC');
   const target = MAPS[mapId];
-  if (s.realmIdx < target.reqRealm) throw new GameError(`Cần cảnh giới ${realmDef(target.reqRealm).name}`);
-  if (target.reqQuest && s.quests.get(target.reqQuest)?.state !== 'done') throw new GameError(`Cần hoàn thành nhiệm vụ "${QUESTS[target.reqQuest]?.name}"`);
+  const chk = await checkMapEntry(s, target, p.force === true);
+  if (chk.warn) return { ok: false, warn: chk.warn };
   const cost = Math.round(20 * Math.pow(1.5, target.reqRealm));
   await s.enqueue(() => tx((c) => changeCurrency(c, s.charId, 'gold', -cost, 'teleport_fee', 'map', mapId)));
   s.world.enterMapById(s, mapId);
@@ -123,8 +135,8 @@ rpc('respawn', (s, p) => {
   if (inst.instanceKind) { s.revive(0.5); s.serverMoved(inst.def.spawnX, inst.grid.groundTop[Math.floor(inst.def.spawnX / TILE)] * TILE); return { ok: true }; }
   s.revive(0.5);
   if (where === 'city') {
-    const city = inst.def.safe ? inst.def.id : NEAREST_CITY[inst.def.world] ?? 'thanh_van_thanh';
-    if (MAPS[city] && s.realmIdx >= MAPS[city].reqRealm) s.world.enterMapById(s, city); else s.respawnAtSafe();
+    const city = inst.def.safe ? inst.def.id : NEAREST_CITY[inst.def.tier] ?? NEAREST_CITY[inst.def.world] ?? 'thanh_van_thanh';
+    if (MAPS[city] && s.realmIdx >= MAPS[city].minRealm) s.world.enterMapById(s, city); else s.respawnAtSafe();
   } else s.respawnAtSafe();
   return { ok: true };
 });
@@ -262,3 +274,14 @@ export function requireService(s: PlayerSession, service: string, npcId?: string
   if (!npcs.some((n) => Math.abs(n.x - s.ent.x) <= 200)) throw new GameError('Cần ở gần NPC cung cấp dịch vụ này');
 }
 export const _unused = { optStr, int };
+
+// ---------- bản đồ thế giới & khám phá ----------
+rpc('world.info', async (s) => {
+  const rows = await q<{ map_id: string; discovered_at: Date; visits: number }>('SELECT map_id, discovered_at, visits FROM map_discovery WHERE character_id = $1', [s.charId]);
+  const disc = new Set(rows.map((r) => r.map_id));
+  const maps = Object.values(MAPS).filter((m) => !m.instance && (!m.hidden || disc.has(m.id))).map((m) => ({
+    id: m.id, name: disc.has(m.id) ? m.name : '???', tier: m.tier, continent: m.continent, region: m.region, coords: m.coords, danger: m.danger,
+    reqRealm: m.reqRealm, minRealm: m.minRealm, pvp: m.pvp, safe: m.safe, discovered: disc.has(m.id), hidden: !!m.hidden, links: m.portals.map((p) => p.to),
+  }));
+  return { tiers: WORLD_TIERS.map((t) => ({ id: t.id, name: t.name, order: t.order, minRealm: t.minRealm, desc: t.desc, hub: t.hub, accessible: s.realmIdx >= t.minRealm })), maps, discovered: disc.size, total: maps.length, current: s.ent.inst.def.id };
+});

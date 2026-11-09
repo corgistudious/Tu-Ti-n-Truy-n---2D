@@ -127,7 +127,15 @@ export class World {
       events: this.activeEvents.filter((e) => e.map === '*' || e.map === inst.def.id).map((e) => ({ name: e.name, endsIn: e.endsAt - Date.now() })),
     });
     qEvent(s, 'reach', inst.def.id, 1);
+    if (!inst.instanceKind) this.recordDiscovery(s, inst.def.id);
   }
+  /** Lưu trạng thái khám phá (sương mù bản đồ thế giới); lần đầu tới khu vực mới có thông báo */
+  recordDiscovery(s: PlayerSession, mapId: string): void {
+    q<{ visits: number }>('INSERT INTO map_discovery(character_id, map_id) VALUES ($1,$2) ON CONFLICT (character_id, map_id) DO UPDATE SET visits = map_discovery.visits + 1 RETURNING visits', [s.charId, mapId])
+      .then((r) => { if (r[0]?.visits === 1) { s.notify(`Khám phá khu vực mới: ${MAPS[mapId].name}`, 'good'); this.discoveryHook?.(s, mapId); } })
+      .catch(() => undefined);
+  }
+  discoveryHook?: (s: PlayerSession, mapId: string) => void;
   async spawnOwnedPet(s: PlayerSession): Promise<void> {
     if (!s.summonedPetId || !s.ent) return;
     const pet = (await q<{ id: number; template_id: string; name: string; level: number; quality: number }>('SELECT * FROM pets WHERE id = $1 AND owner_id = $2', [s.summonedPetId, s.charId]))[0];
@@ -150,7 +158,7 @@ export class World {
     const rp = s.returnPoint;
     s.returnPoint = null;
     if (rp && MAPS[rp.map] && !MAPS[rp.map].instance) this.enterMapById(s, rp.map, rp.x);
-    else this.enterMapById(s, NEAREST_CITY[MAPS[s.ent.inst.def.id]?.world ?? 'nhan_gioi'] ?? 'thanh_van_thanh');
+    else this.enterMapById(s, 'thanh_van_thanh');
   }
   rememberReturn(s: PlayerSession): void {
     if (!s.ent.inst.instanceKind) s.returnPoint = { map: s.ent.inst.def.id, x: s.ent.x, y: s.ent.y };

@@ -31,11 +31,11 @@ function defaultDrops(realm: number, rank: MonsterRank, mat?: string): DropEntry
   ];
   if (mat) d.push({ item: mat, chance: big ? 1 : 0.35, min: 1, max: big ? 4 : 1 });
   const eqChance = rank === 'normal' ? 0.02 : rank === 'elite' ? 0.2 : 0.6;
-  for (const slot of ['weapon', 'armor', 'helmet', 'boots', 'ring', 'amulet', 'artifact']) d.push({ item: `eq_${slot}_${Math.min(28, realm)}`, chance: eqChance / 7 * (big ? 2 : 1), min: 1, max: 1 });
+  for (const slot of ['weapon', 'armor', 'helmet', 'boots', 'ring', 'amulet', 'artifact']) d.push({ item: `eq_${slot}_${Math.min(64, realm)}`, chance: eqChance / 7 * (big ? 2 : 1), min: 1, max: 1 });
   if (big) {
-    d.push({ item: `pill_bt_${Math.min(29, realm + 1)}`, chance: rank === 'elite' ? 0.06 : 0.35, min: 1, max: 1 });
+    d.push({ item: `pill_bt_${Math.min(65, realm + 1)}`, chance: rank === 'elite' ? 0.06 : 0.35, min: 1, max: 1 });
     d.push({ item: 'stone_refine', chance: 0.4, min: 1, max: 2 });
-    d.push({ item: `pill_tuvi_${Math.min(6, 1 + Math.floor(realm / 5))}`, chance: 0.4, min: 1, max: 2 });
+    d.push({ item: `pill_tuvi_${Math.min(9, 1 + Math.floor(realm / 6))}`, chance: 0.4, min: 1, max: 2 });
   }
   if (rank.includes('boss') || rank === 'rare') {
     d.push({ item: 'stone_reroll', chance: 0.3, min: 1, max: 1 });
@@ -46,7 +46,7 @@ function defaultDrops(realm: number, rank: MonsterRank, mat?: string): DropEntry
   return d;
 }
 
-function mob(id: string, name: string, sprite: string, rank: MonsterRank, realm: number, layer: number, o: Opt = {}): MonsterDef {
+export function mob(id: string, name: string, sprite: string, rank: MonsterRank, realm: number, layer: number, o: Opt = {}): MonsterDef {
   const rm = RANK_MULT[rank];
   const L = powerLevel(realm, layer);
   const boss = rank.includes('boss');
@@ -78,7 +78,7 @@ function mob(id: string, name: string, sprite: string, rank: MonsterRank, realm:
   return m;
 }
 
-const ph = (hpBelow: number, announce: string, skills: string[], extra: Partial<BossPhase> = {}): BossPhase => ({ hpBelow, announce, skills, ...extra });
+export const ph = (hpBelow: number, announce: string, skills: string[], extra: Partial<BossPhase> = {}): BossPhase => ({ hpBelow, announce, skills, ...extra });
 
 // ===== Nhân Giới =====
 mob('slime_green', 'Lục Linh Nhầy', 'slime', 'normal', 0, 2, { mat: 'mat_slime_gel', passive: true, speed: 60 });

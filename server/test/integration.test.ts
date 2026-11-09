@@ -659,3 +659,44 @@ describe('Dữ liệu & sinh bản đồ trên server', () => {
     }
   });
 });
+
+describe('Thế giới mở nhiều tầng (phiên 2)', () => {
+  it('khám phá tự do: cảnh báo nguy hiểm + xác nhận, giới hạn cứng theo tầng, khu ẩn, sương mù bản đồ, lịch sự kiện', async () => {
+    const b = await newPlayer('w');
+    const s = session(b);
+    // Tân Thủ Thôn -> Bích Thủy Hồ (khuyến nghị cảnh giới 3) => cảnh báo, chưa vào
+    const portal = MAPS['tan_thu_thon'].portals.find((p) => p.to === 'bich_thuy_ho')!;
+    await teleport(b, 'tan_thu_thon', portal.x + 20);
+    const r1 = await b.rpc('portal.use', { id: portal.id });
+    expect(r1.warn).toMatch(/CẢNH BÁO/);
+    expect(s.ent.inst.def.id).toBe('tan_thu_thon');
+    b.clearMessages();
+    await b.rpc('portal.use', { id: portal.id, force: true });
+    await b.waitFor((m) => m.t === 'map' && m.map === 'bich_thuy_ho');
+    // không còn khóa bản đồ theo nhiệm vụ: Linh Vân Châu cần Luyện Khí (tầng Tu Chân) — giới hạn cứng
+    setRealm(b, 9);
+    await teleport(b, 'thien_kiem_tong', MAPS['thien_kiem_tong'].npcs.find((n) => n.npc === 'npc_sect_gate')!.x);
+    await expect(b.rpc('teleport.npc', { npc: 'npc_sect_gate', map: 'linh_van_chau' })).rejects.toThrow(/tối thiểu cảnh giới/);
+    setRealm(b, 10);
+    await sql('UPDATE character_currencies SET gold = 100000 WHERE character_id = $1', [b.charId]);
+    await b.rpc('teleport.npc', { npc: 'npc_sect_gate', map: 'linh_van_chau' });
+    await b.waitFor((m) => m.t === 'map' && m.map === 'linh_van_chau');
+    // khu vực ẩn chưa khám phá không vào được
+    const { checkMapEntry } = await import('../src/game/rpc/core.js');
+    await expect(checkMapEntry(s, MAPS['co_mo_thanh_truc'], true)).rejects.toThrow(/chưa được khám phá/);
+    // sương mù: world.info chỉ hiện tên khu đã tới
+    await sleep(300);
+    const w = await b.rpc('world.info');
+    expect(w.tiers.length).toBe(10);
+    const names = w.maps.filter((m: any) => m.discovered).map((m: any) => m.id);
+    expect(names).toEqual(expect.arrayContaining(['tan_thu_thon', 'bich_thuy_ho', 'linh_van_chau']));
+    expect(w.maps.find((m: any) => m.id === 'than_dinh').name).toBe('???');
+    expect(w.maps.find((m: any) => m.id === 'co_mo_thanh_truc')).toBeUndefined();
+    // lịch sự kiện định kỳ tạo bản ghi idempotent
+    const { runEventScheduler } = await import('../src/http/admin.js');
+    await runEventScheduler(); await runEventScheduler();
+    const evs = await sql('SELECT event_key, count(*)::int n FROM events WHERE created_by IS NULL GROUP BY event_key');
+    for (const e of evs) expect(e.n).toBe(1);
+    b.close();
+  }, 60000);
+});
