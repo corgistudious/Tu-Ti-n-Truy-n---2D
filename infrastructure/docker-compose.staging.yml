@@ -1,0 +1,5 @@
+# Staging: dùng chung cấu hình production, khác tên dự án/cổng để chạy song song trên cùng VPS.
+# docker compose -f infrastructure/docker-compose.yml -f infrastructure/docker-compose.staging.yml -p tutien-staging --env-file .env.staging up -d --build
+services:
+  server: { environment: { NODE_ENV: staging, LOG_LEVEL: debug } }
+  nginx: { ports: !override ["8081:80", "8444:443"] }

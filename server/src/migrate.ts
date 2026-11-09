@@ -19,15 +19,15 @@ function migrationsDir(): string {
 /** Chạy migration có kiểm soát: mỗi file chỉ chạy một lần, lưu checksum, phát hiện file đã chạy bị sửa. */
 export async function migrate(): Promise<string[]> {
   const pool = db();
-  await pool.query(`CREATE TABLE IF NOT EXISTS schema_migrations (name TEXT PRIMARY KEY, checksum TEXT NOT NULL, applied_at TIMESTAMPTZ NOT NULL DEFAULT now())`);
   const dir = migrationsDir();
   const files = readdirSync(dir).filter((f) => f.endsWith('.sql')).sort();
-  const applied = new Map((await pool.query('SELECT name, checksum FROM schema_migrations')).rows.map((r) => [r.name as string, r.checksum as string]));
   const ran: string[] = [];
   // khóa advisory để nhiều instance không chạy cùng lúc
   const c = await pool.connect();
   try {
     await c.query('SELECT pg_advisory_lock(727272)');
+    await c.query(`CREATE TABLE IF NOT EXISTS schema_migrations (name TEXT PRIMARY KEY, checksum TEXT NOT NULL, applied_at TIMESTAMPTZ NOT NULL DEFAULT now())`);
+    const applied = new Map((await c.query('SELECT name, checksum FROM schema_migrations')).rows.map((r) => [r.name as string, r.checksum as string]));
     for (const f of files) {
       const sql = readFileSync(join(dir, f), 'utf8');
       const sum = createHash('sha256').update(sql).digest('hex');
@@ -58,6 +58,6 @@ export async function migrate(): Promise<string[]> {
   return ran;
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
+if (process.argv[1] && /migrate\.(ts|js)$/.test(process.argv[1])) {
   migrate().then((r) => { log.info('migrations done', { ran: r }); return closeDb(); }).catch((e) => { log.error('migration failed', { err: String(e) }); process.exit(1); });
 }

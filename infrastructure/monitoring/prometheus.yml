@@ -1,0 +1,6 @@
+# Thu thập chỉ số server (/metrics): tt_online, tt_instances, tt_monsters, tt_tick_ms, RSS
+global: { scrape_interval: 15s }
+scrape_configs:
+  - job_name: tutien
+    static_configs: [{ targets: ['server:8080'] }]
+rule_files: [alerts.yml]

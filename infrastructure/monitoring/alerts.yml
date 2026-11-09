@@ -1,0 +1,10 @@
+groups:
+  - name: tutien
+    rules:
+      - alert: TickQuaCham
+        expr: tt_tick_ms > 35
+        for: 2m
+        annotations: { summary: "Tick server > 35ms (ngân sách 50ms) — cân nhắc tách shard/kênh" }
+      - alert: ServerMatKetNoi
+        expr: up{job="tutien"} == 0
+        for: 1m

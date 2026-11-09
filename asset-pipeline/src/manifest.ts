@@ -56,6 +56,7 @@ export function requiredAssets(): AssetEntry[] {
   for (const n of Object.values(NPCS)) out.push({ ...entry({ id: `portrait_${n.id}`, category: 'portrait', path: `assets/portraits/${n.id}.png`, spec: { kind: 'image', w: 256, h: 256, transparent: true }, desc: `Chân dung ${n.name} — ${n.title}` }), notes: 'Chưa có: client cắt phóng to đầu nhân vật từ lớp sprite cho tới khi có chân dung ChatGPT' });
   for (const t of Object.keys(BGM_THEMES)) out.push(entry({ id: `bgm_${t}`, category: 'audio', path: `assets/audio/bgm_${t}.wav`, spec: { kind: 'audio', seconds: 16 }, desc: `Nhạc nền chủ đề ${t} (ngũ cung, lặp)` }));
   for (const s of Object.keys(SFX)) out.push(entry({ id: `sfx_${s}`, category: 'audio', path: `assets/audio/sfx_${s}.wav`, spec: { kind: 'audio' }, desc: `Hiệu ứng âm thanh ${s}` }));
+  out.push({ id: 'font_be_vietnam_pro', category: 'font', path: 'assets/fonts/BeVietnamPro-SemiBold.ttf', spec: { kind: 'image' }, desc: 'Font giao diện hỗ trợ đầy đủ tiếng Việt', status: 'approved', source: 'licensed-third-party', license: 'SIL Open Font License 1.1 (assets/fonts/OFL.txt) — The Be Vietnam Pro Project Authors', version: 1 });
   // nhân vật mẫu đầu tiên
   out.push(entry({ id: 'CHR_001', category: 'character_preview', path: 'assets/characters/CHR_001_preview.png', spec: sheet(charRows, FW, FH, COLS), desc: 'Thiếu Niên Nhập Đạo: tóc đen, mắt sáng, áo võ sinh xanh lam, đai nâu, quần tối, giày vải, kiếm gỗ. Idle/Run/Jump/Attack/Hurt/Death/Cast.' }));
   return out;

@@ -14,6 +14,7 @@ import { PlayerSession } from './player.js';
 import { checkRealmObjectives, questEvent as qEvent } from './quests.js';
 
 const CHANNEL_CAP = 60;
+const MAX_CHANNELS = 40;
 const RECONNECT_GRACE_MS = 30_000;
 const SERVER_ID = `node-${process.pid}`;
 
@@ -71,17 +72,26 @@ export class World {
   }
 
   // ---------------- instance ----------------
+  /** Chọn kênh còn chỗ; nếu mọi kênh đầy thì mở thêm kênh động (giữ mỗi kênh <= CHANNEL_CAP để tick ổn định) */
   getPublicInstance(mapId: string, prefer?: number): MapInstance {
     const def = MAPS[mapId];
     if (!def || def.instance) throw new Error('not a public map ' + mapId);
-    const order = prefer ? [prefer, ...Array.from({ length: def.channels }, (_, i) => i + 1).filter((c) => c !== prefer)] : Array.from({ length: def.channels }, (_, i) => i + 1);
-    for (const ch of order) {
+    const get = (ch: number): MapInstance => {
       const key = `${mapId}#${ch}`;
       let inst = this.instances.get(key);
       if (!inst) { inst = new MapInstance(this, def, key, ch, null); inst.spawnInitial(); this.instances.set(key, inst); }
-      if (inst.players.size < CHANNEL_CAP || ch === order[order.length - 1]) return inst;
+      return inst;
+    };
+    if (prefer) { const p = get(prefer); if (p.players.size < CHANNEL_CAP) return p; }
+    for (let ch = 1; ch <= MAX_CHANNELS; ch++) {
+      if (ch > def.channels && !this.instances.has(`${mapId}#${ch}`)) {
+        // chỉ mở kênh mới khi các kênh hiện có đều đầy
+        return get(ch);
+      }
+      const inst = get(ch);
+      if (inst.players.size < CHANNEL_CAP) return inst;
     }
-    throw new Error('unreachable');
+    return get(MAX_CHANNELS);
   }
   createInstance(mapId: string, ownerKey: string, controller: InstanceController | null, spawnDefault = false): MapInstance {
     const def = MAPS[mapId];
@@ -225,6 +235,7 @@ export class World {
     }
     for (const [key, inst] of this.instances) {
       if (inst.instanceKind && inst.players.size === 0 && inst.emptySince && now - inst.emptySince > 60_000) this.instances.delete(key);
+      if (!inst.instanceKind && inst.channel > inst.def.channels && inst.players.size === 0 && inst.emptySince && now - inst.emptySince > 300_000) this.instances.delete(key);
     }
     for (const [k, v] of this.partyInvites) if (now - v.at > 60_000) this.partyInvites.delete(k);
     for (const [k, v] of this.duelRequests) if (now - v.at > 60_000) this.duelRequests.delete(k);

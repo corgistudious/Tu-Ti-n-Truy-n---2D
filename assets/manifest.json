@@ -5372,6 +5372,20 @@
       "license": "Nguyên bản — sinh bằng mã trong dự án (asset-pipeline), thuộc sở hữu dự án",
       "version": 1,
       "sha256": "d3ce4311e1501599440e55753081f0a73903d42ef26bb98b0b2851be7414e506"
+    },
+    "font_be_vietnam_pro": {
+      "id": "font_be_vietnam_pro",
+      "category": "font",
+      "path": "assets/fonts/BeVietnamPro-SemiBold.ttf",
+      "spec": {
+        "kind": "image"
+      },
+      "desc": "Font giao diện hỗ trợ đầy đủ tiếng Việt",
+      "status": "approved",
+      "source": "licensed-third-party",
+      "license": "SIL Open Font License 1.1 (assets/fonts/OFL.txt) — The Be Vietnam Pro Project Authors",
+      "version": 1,
+      "sha256": "bd8e27eb02720b9d91e59e4f10a90878643219f25ce6a8d9a4f06a8a88d3bb71"
     }
   }
 }

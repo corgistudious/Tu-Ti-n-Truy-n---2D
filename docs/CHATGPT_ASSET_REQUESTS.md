@@ -3267,3 +3267,17 @@ Nền trong suốt PNG RGBA, không bóng đổ nền, không chữ, không wate
 Giữ nguyên thiết kế nhân vật giống hệt nhau giữa MỌI khung hình và animation.
 Đầu ra: một file PNG duy nhất đúng kích thước trên.
 ```
+
+## font (1)
+
+### font_be_vietnam_pro — trạng thái: approved
+
+```
+TU TIÊN TRUYỆN 2D — HD Chibi Pixel Art. Nhân vật chibi đầu lớn vừa phải, thân cân đối, khí chất tiên hiệp phương Đông nguyên bản.
+Pixel rõ ràng (không nhòe, không khử răng cưa, không gradient mềm), viền tối 1px, bảng màu sống động nhưng không chói, nền TRONG SUỐT (PNG RGBA).
+Góc nhìn ngang (side-view), nhân vật quay mặt sang PHẢI. Không sao chép bất kỳ game nào (không Ninja School, không tài sản có bản quyền).
+
+Tài nguyên: font_be_vietnam_pro — Font giao diện hỗ trợ đầy đủ tiếng Việt
+Ảnh undefined×undefinedpx.
+Đầu ra: một file PNG duy nhất đúng kích thước trên.
+```

@@ -69,6 +69,7 @@ function validateAll(): boolean {
   let ok = true, count = 0;
   for (const a of Object.values(m.assets)) {
     const p = join(CLIENT, a.path);
+    if (a.category === 'font') continue;
     if (!existsSync(p)) { if (a.category !== 'portrait') { console.log(`THIẾU ${a.id} (${a.path})`); ok = false; } continue; }
     const r = validateFile(p, a.spec);
     count++;

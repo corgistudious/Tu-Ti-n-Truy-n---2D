@@ -1,0 +1,44 @@
+# Tu Tiên Truyện 2D — production/staging stack
+# Dùng: cp .env.example .env (điền mật khẩu thật) ; docker compose -f infrastructure/docker-compose.yml --env-file .env up -d --build
+name: tutien
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-tutien}
+      POSTGRES_USER: ${POSTGRES_USER:-tutien}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Cần đặt POSTGRES_PASSWORD}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-tutien}"], interval: 10s, retries: 10 }
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD:?Cần đặt REDIS_PASSWORD}"]
+    volumes: [redisdata:/data]
+    healthcheck: { test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"], interval: 10s, retries: 10 }
+  server:
+    build: { context: .., dockerfile: infrastructure/Dockerfile.server }
+    restart: unless-stopped
+    depends_on: { postgres: { condition: service_healthy }, redis: { condition: service_healthy } }
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      DATABASE_URL: postgres://${POSTGRES_USER:-tutien}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-tutien}
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379
+      PUBLIC_URL: ${PUBLIC_URL:?Cần đặt PUBLIC_URL (https://...)}
+      CORS_ORIGINS: ${CORS_ORIGINS:-*}
+      SMTP_URL: ${SMTP_URL:-}
+      MAIL_FROM: ${MAIL_FROM:-Tu Tiên Truyện 2D <no-reply@example.com>}
+      REQUIRE_EMAIL_VERIFIED: ${REQUIRE_EMAIL_VERIFIED:-false}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ASSET_API_ENABLED: ${ASSET_API_ENABLED:-false}
+    expose: ["8080"]
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    depends_on: [server]
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ${CERTS_DIR:-./certs}:/etc/nginx/certs:ro
+volumes: { pgdata: {}, redisdata: {} }

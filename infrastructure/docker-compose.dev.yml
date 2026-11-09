@@ -1,0 +1,10 @@
+# Phát triển cục bộ: chỉ Postgres + Redis (server chạy bằng npm run dev)
+name: tutien-dev
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment: { POSTGRES_DB: tutien, POSTGRES_USER: tutien, POSTGRES_PASSWORD: tutien_dev }
+    ports: ["5432:5432"]
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
