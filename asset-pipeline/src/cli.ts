@@ -27,6 +27,12 @@ export function generateAll(): number {
   const prev = new Canvas(FW * COLS, FH * ANIMS.length);
   ANIMS.forEach((a, r) => { for (let i = 0; i < a.frames; i++) prev.blit(compositeCharacter({ skin: '#f2c9a0', hair: 2, hairColor: '#1a1a1a', face: 1, eyes: 1, outfit: 0, outfitColor: '#3a6aaa', weapon: { look: 'sword', tier: 0 } }, a.name, i), i * FW, r * FH); });
   w(prev, 'characters/CHR_001_preview.png');
+  // biểu tượng ứng dụng: CHR_001 phóng to 2x trên nền tối
+  const icon = new Canvas(128, 128);
+  icon.rect(0, 0, 128, 128, [26, 20, 34, 255]);
+  const f0 = compositeCharacter({ skin: '#f2c9a0', hair: 2, hairColor: '#1a1a1a', face: 1, eyes: 1, outfit: 0, outfitColor: '#3a6aaa', weapon: { look: 'sword', tier: 0 } }, 'idle', 0);
+  for (let y = 0; y < 64; y++) for (let x = 0; x < 64; x++) { const c = f0.get(x, y + 14); if (c[3]) icon.rect(x * 2, y * 2, 2, 2, c); }
+  icon.save(join(CLIENT, 'icon.png')); n++;
   for (const k of Object.keys(ARCHETYPES)) w(renderMonsterSheet(k), `monsters/${k}.png`);
   for (const t of Object.keys(THEMES)) { w(renderTileset(t), `tiles/${t}.png`); for (const l of [0, 1, 2] as const) w(renderParallax(t, l), `parallax/${t}_${l}.png`); }
   const icons = renderItemIcons(Object.values(ITEMS));

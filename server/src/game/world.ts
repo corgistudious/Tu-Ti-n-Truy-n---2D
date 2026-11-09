@@ -112,7 +112,7 @@ export class World {
     inst.addPlayer(s.ent);
     if (s.summonedPetId) this.spawnOwnedPet(s).catch(() => undefined);
     s.send({
-      t: 'map', map: inst.def.id, key: inst.key, ch: inst.channel, inst: inst.instanceKind, x: px, y: py, self: s.selfState(),
+      t: 'map', map: inst.def.id, key: inst.key, ch: inst.channel, inst: inst.instanceKind, x: px, y: py, self: s.selfState(), grid: inst.grid.rows, ground: inst.grid.groundTop,
       nodes: Object.fromEntries([...inst.nodeReadyAt].filter(([, t]) => t > Date.now()).map(([k, t]) => [k, t - Date.now()])),
       events: this.activeEvents.filter((e) => e.map === '*' || e.map === inst.def.id).map((e) => ({ name: e.name, endsIn: e.endsAt - Date.now() })),
     });
