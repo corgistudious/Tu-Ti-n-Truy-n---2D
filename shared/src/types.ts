@@ -166,7 +166,7 @@ export interface DropEntry { item: string; chance: number; min: number; max: num
 export interface PortalDef { id: string; x: number; y: number; to: string; toPortal: string; reqRealm?: number; reqQuest?: string }
 export interface SpawnDef { monster: string; count: number; x1: number; x2: number }
 export interface NodeDef { id: string; kind: 'herb' | 'ore' | 'fishing'; x: number; y: number; table: string; respawn: number }
-export interface MapNpcDef { npc: string; x: number; y: number }
+export interface MapNpcDef { npc: string; x: number; y: number; nightX?: number }
 export interface InteractDef { id: string; x: number; y: number; name: string; quest: string; objective: string }
 
 export type WorldTierId = 'pham_nhan' | 'vo_dao' | 'tu_chan' | 'linh_gioi' | 'tien_gioi' | 'thuong_tien' | 'than_vuc' | 'hon_don' | 'thai_co' | 'van_gioi' | 'special';
@@ -227,6 +227,7 @@ export interface NpcDef {
   shop?: string;
   services?: ('storage' | 'enhance' | 'craft' | 'market' | 'auction' | 'guild' | 'arena' | 'housing' | 'teleport' | 'mail' | 'breakthrough' | 'skills' | 'pets')[];
   teleports?: string[];
+  faction?: string;
 }
 
 export type ObjectiveType =
@@ -259,6 +260,8 @@ export interface QuestDef {
   rewards: { exp: number; tuvi: number; gold: number; spirit_stones?: number; items?: { item: string; qty: number }[]; skill?: string; title?: string };
   repeatable?: 'daily' | 'weekly';
   hiddenTrigger?: { map: string; x: number };
+  /** Lựa chọn khi trả nhiệm vụ — hậu quả khác nhau (danh vọng thế lực / phần thưởng) */
+  choices?: { id: string; text: string; rep: Record<string, number>; items?: { item: string; qty: number }[]; outcome: string }[];
 }
 
 export type ProfessionId = 'alchemy' | 'forging' | 'talisman' | 'formation' | 'mining' | 'herbalism' | 'fishing' | 'farming' | 'tailoring';
@@ -320,6 +323,7 @@ export interface GameData {
   version: string;
   tiers: WorldTierDef[];
   chapters: Record<number, string>;
+  power: Record<string, unknown>;
   realms: RealmDef[];
   items: Record<string, ItemDef>;
   skills: Record<string, SkillDef>;

@@ -700,3 +700,66 @@ describe('Thế giới mở nhiều tầng (phiên 2)', () => {
     b.close();
   }, 60000);
 });
+
+describe('Hệ thống sức mạnh & cơ duyên (phiên 2)', () => {
+  it('linh căn thức tỉnh, kinh mạch, thưởng nguyên tố, lựa chọn nhiệm vụ → danh vọng → giá cửa hàng, cơ duyên có giới hạn, khu ẩn', async () => {
+    const b = await newPlayer('pw');
+    const s = session(b);
+    // thức tỉnh linh căn khi trả "Thức Tỉnh Linh Căn"
+    setRealm(b, 9);
+    for (const id of ['mq_4_05']) s.quests.set(id, { state: 'done', progress: {}, times: 1, completedAt: new Date(), dirty: true });
+    s.quests.set('mq_4_06', { state: 'active', progress: { o1: 1, o2: 1 }, times: 0, completedAt: null, dirty: true });
+    await teleport(b, 'thien_kiem_tong', MAPS['thien_kiem_tong'].npcs.find((n) => n.npc === 'npc_sect_master')!.x);
+    await b.rpc('quest.turnIn', { id: 'mq_4_06' });
+    expect(s.power.grade).toBeGreaterThanOrEqual(1);
+    expect(s.power.element).toBeTruthy();
+    const info = await b.rpc('power.info');
+    expect(info.root.cultivation).toBeGreaterThan(1);
+    // thưởng sát thương nguyên tố cho con đường hợp linh căn
+    const { elementBonus } = await import('../src/game/power.js');
+    const { ROOT_ELEMENTS } = await import('@tt/shared');
+    expect(elementBonus(s, ROOT_ELEMENTS[s.power.element!].paths[0])).toBeGreaterThan(0);
+    // kinh mạch: cần đan + vàng, theo thứ tự, tăng chỉ số khi thành công
+    await sql('UPDATE character_currencies SET gold = 10000000 WHERE character_id = $1', [b.charId]);
+    await give(b, 'pill_meridian_1', 30);
+    await expect(b.rpc('power.meridian', { idx: 1 })).rejects.toThrow(/thứ tự/);
+    const hp0 = s.stats.maxHp;
+    let opened = false;
+    for (let i = 0; i < 10 && !opened; i++) opened = (await b.rpc('power.meridian', { idx: 0 })).ok;
+    expect(opened).toBe(true);
+    expect(s.stats.maxHp).toBeGreaterThan(hp0);
+    // lựa chọn nhiệm vụ: Vạn Bảo Các — trung thực → danh vọng tăng
+    setRealm(b, 11);
+    s.quests.set('mq_5_02', { state: 'done', progress: {}, times: 1, completedAt: new Date(), dirty: true });
+    await teleport(b, 'van_bao_cac', MAPS['van_bao_cac'].npcs.find((n) => n.npc === 'npc_treasure_pavilion')!.x);
+    await b.rpc('quest.accept', { id: 'cq_trade_contract' });
+    await give(b, 'ore_t3', 15);
+    await expect(b.rpc('quest.turnIn', { id: 'cq_trade_contract' })).rejects.toThrow(/lựa chọn/);
+    const res = await b.rpc('quest.turnIn', { id: 'cq_trade_contract', choice: 'honest' });
+    expect(res.outcome).toMatch(/khách quý/);
+    const reps = await b.rpc('rep.list');
+    expect(reps.find((r: any) => r.id === 'van_bao').value).toBeGreaterThanOrEqual(2500);
+    // danh vọng Thân Thiện -> giảm giá ở cửa hàng thương hội
+    const g0 = await gold(b);
+    await sql('UPDATE character_currencies SET spirit_stones = 1000 WHERE character_id = $1', [b.charId]);
+    await b.rpc('shop.buy', { npc: 'npc_treasure_pavilion', item: 'stone_reroll', qty: 10 });
+    const st = (await sql('SELECT spirit_stones FROM character_currencies WHERE character_id = $1', [b.charId]))[0];
+    expect(Number(st.spirit_stones)).toBe(1000 - Math.round(8 * 0.95) * 10);
+    void g0;
+    // cơ duyên: một lần/nhân vật + giới hạn toàn server
+    const { grantFortune } = await import('../src/game/power.js');
+    const { FORTUNES } = await import('@tt/shared');
+    const coMo = FORTUNES.find((f) => f.id === 'fo_co_mo')!;
+    expect(await grantFortune(s, coMo)).toBe(true);
+    expect(await grantFortune(s, coMo)).toBe(false);
+    await sql("INSERT INTO fortune_global(fortune_id, claimed) VALUES ('fo_thai_so_kiem', 10) ON CONFLICT (fortune_id) DO UPDATE SET claimed = 10");
+    expect(await grantFortune(s, FORTUNES.find((f) => f.id === 'fo_thai_so_kiem')!)).toBe(false);
+    // khu ẩn đã khám phá: vào được từ lối vào gốc
+    await teleport(b, 'rung_thanh_truc', 400);
+    await b.rpc('world.enterHidden', { map: 'co_mo_thanh_truc' });
+    await b.waitFor((m) => m.t === 'map' && m.map === 'co_mo_thanh_truc');
+    const fl = await b.rpc('fortune.list');
+    expect(fl.found.map((f: any) => f.id)).toContain('fo_co_mo');
+    b.close();
+  }, 60000);
+});

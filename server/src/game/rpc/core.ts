@@ -1,4 +1,4 @@
-import { LIMITS, MAPS, NEAREST_CITY, NPCS, QUESTS, SHOPS, TILE, WORLD_TIERS, realmDef, type MapDef } from '@tt/shared';
+import { npcX, LIMITS, MAPS, NEAREST_CITY, NPCS, QUESTS, SHOPS, TILE, WORLD_TIERS, realmDef, type MapDef } from '@tt/shared';
 import { q, q1, tx } from '../../db.js';
 import { redis } from '../../redis.js';
 import { changeCurrency } from '../../services/currency.js';
@@ -21,12 +21,12 @@ rpc('npc.talk', (s, p) => {
   const qsList = npcQuests(s, npcId);
   return {
     npc: { id: npc.id, name: npc.name, title: npc.title, greeting: npc.greeting, services: npc.services ?? [], shop: npc.shop ?? null, teleports: npc.teleports ?? [] },
-    offer: qsList.offer.map((id) => ({ id, name: QUESTS[id].name, dialogue: QUESTS[id].dialogue.offer, rewards: QUESTS[id].rewards, objectives: QUESTS[id].objectives.map((o) => o.desc) })),
-    progress: qsList.progress.map((id) => ({ id, name: QUESTS[id].name, text: QUESTS[id].dialogue.progress, complete: QUESTS[id].dialogue.complete })),
+    offer: qsList.offer.map((id) => ({ id, name: QUESTS[id].name, choices: QUESTS[id].choices?.map((c) => ({ id: c.id, text: c.text })), dialogue: QUESTS[id].dialogue.offer, rewards: QUESTS[id].rewards, objectives: QUESTS[id].objectives.map((o) => o.desc) })),
+    progress: qsList.progress.map((id) => ({ id, name: QUESTS[id].name, text: QUESTS[id].dialogue.progress, complete: QUESTS[id].dialogue.complete, choices: QUESTS[id].choices?.map((c) => ({ id: c.id, text: c.text, rep: c.rep })) })),
   };
 });
 rpc('quest.accept', (s, p) => { accept(s, str(p, 'id', 60)); return { ok: true }; });
-rpc('quest.turnIn', async (s, p) => turnIn(s, str(p, 'id', 60)));
+rpc('quest.turnIn', async (s, p) => turnIn(s, str(p, 'id', 60), optStr(p, 'choice', 40)));
 rpc('quest.abandon', (s, p) => {
   const id = str(p, 'id', 60);
   const qs = s.quests.get(id);
@@ -271,7 +271,7 @@ rpc('npc.service', (s, p) => {
 export function requireService(s: PlayerSession, service: string, npcId?: string): void {
   const inst = s.ent.inst;
   const npcs = inst.def.npcs.filter((n) => NPCS[n.npc]?.services?.includes(service as never) && (!npcId || n.npc === npcId));
-  if (!npcs.some((n) => Math.abs(n.x - s.ent.x) <= 200)) throw new GameError('Cần ở gần NPC cung cấp dịch vụ này');
+  if (!npcs.some((n) => Math.abs(npcX(n, Date.now()) - s.ent.x) <= 200)) throw new GameError('Cần ở gần NPC cung cấp dịch vụ này');
 }
 export const _unused = { optStr, int };
 

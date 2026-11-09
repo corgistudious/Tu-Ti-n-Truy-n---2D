@@ -320,7 +320,8 @@ rpc('shop.buy', async (s, p) => {
   assert(entry, 'Cửa hàng không bán vật phẩm này');
   const ov = await shopOverride(itemId);
   assert(!ov?.disabled, 'Vật phẩm tạm ngừng bán');
-  const price = (ov?.price ?? entry.price) * qty;
+  const { priceFactor } = await import('../power.js');
+  const price = Math.max(1, Math.round((ov?.price ?? entry.price) * priceFactor(s, npcId))) * qty;
   assert(Number.isSafeInteger(price), 'Giá trị quá lớn');
   return mutate(s, async (c) => {
     await changeCurrency(c, s.charId, entry.currency, -price, 'shop_buy', 'item', itemId);

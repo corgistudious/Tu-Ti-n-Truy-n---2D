@@ -5,6 +5,7 @@ export interface StatInput {
   realmIdx: number; layer: number;
   equipment: ItemRow[];
   permanent: PartialStats;      // phần trăm (0.02 = +2%)
+  flat?: PartialStats;          // cộng thẳng (chí mạng, xuyên giáp, kháng...) — từ thể chất/lịch luyện
   buffs: { id: string; power: number }[];
 }
 
@@ -29,7 +30,9 @@ export function computeStats(inp: StatInput): Stats {
   }
   addStats(s, gear);
   for (const [sid, n] of Object.entries(setCount)) for (const b of SET_DEFS[sid]?.bonuses ?? []) if (n >= b.count) addStats(s, b.stats);
-  for (const k of Object.keys(inp.permanent) as StatKey[]) s[k] *= 1 + (inp.permanent[k] ?? 0);
+  const ADDITIVE: StatKey[] = ['crit', 'critDmg', 'pen', 'res', 'moveSpeed'];
+  for (const k of Object.keys(inp.permanent) as StatKey[]) { if (ADDITIVE.includes(k)) s[k] += inp.permanent[k] ?? 0; else s[k] *= 1 + (inp.permanent[k] ?? 0); }
+  for (const k of Object.keys(inp.flat ?? {}) as StatKey[]) s[k] += inp.flat![k] ?? 0;
   for (const b of inp.buffs) {
     if (b.id === 'atk_up') { s.atk *= 1 + b.power; s.matk *= 1 + b.power; }
     if (b.id === 'def_up') { s.def *= 1 + b.power; s.mdef *= 1 + b.power; }

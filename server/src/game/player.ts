@@ -9,6 +9,7 @@ import { computeStats } from '../services/stats.js';
 import type { ItemRow } from '../services/items.js';
 import { GameError } from '../services/errors.js';
 import { castSkill, eff, isDisabled, skill as getSkill, applyStatus } from './combat.js';
+import { powerModifiers, cultivationMultiplier, checkFortunes } from './power.js';
 import type { CombatEnt, PlayerEnt } from './entities.js';
 import type { World } from './world.js';
 
@@ -62,6 +63,9 @@ export class PlayerSession {
   housingBonus = 0;
   summonedPetId: number | null = null;
   lastAggressor = 0;
+  power: import('./power.js').PowerState = { element: null, grade: 0, physique: 'pham_the', meridians: 0 };
+  rep = new Map<string, number>();
+  fortuneAcc = 0;
   lastAggressorAt = 0;
   private queue: Promise<unknown> = Promise.resolve();
   private msgWindow = { start: 0, count: 0 };
@@ -90,6 +94,7 @@ export class PlayerSession {
     if (g[0]) { this.guildId = g[0].guild_id; this.guildRank = g[0].rank; this.guildName = g[0].name; }
     const h = await q<{ buildings: Record<string, number> }>('SELECT buildings FROM housing WHERE character_id = $1', [this.charId]);
     this.housingBonus = (h[0]?.buildings?.tu_linh_tran ?? 0) * 0.15;
+    await (await import('./power.js')).loadPower(this);
     await this.reloadEquipment();
     this.resetDailyQuests();
     this.loaded = true;
@@ -101,7 +106,10 @@ export class PlayerSession {
   }
   recomputeStats(): void {
     const prevMax = this.stats?.maxHp;
-    this.stats = computeStats({ realmIdx: this.row.realm_idx, layer: this.row.layer, equipment: this.equipment, permanent: this.permanent, buffs: [] });
+    const mods = powerModifiers(this);
+    const perm: PartialStats = { ...this.permanent };
+    for (const [k, v] of Object.entries(mods.pct)) (perm as Record<string, number>)[k] = ((perm as Record<string, number>)[k] ?? 0) + (v as number);
+    this.stats = computeStats({ realmIdx: this.row.realm_idx, layer: this.row.layer, equipment: this.equipment, permanent: perm, flat: mods.flat, buffs: [] });
     if (this.ent) {
       this.ent.stats = this.stats;
       if (prevMax && this.ent.hp > this.stats.maxHp) this.ent.hp = this.stats.maxHp;
@@ -164,7 +172,8 @@ export class PlayerSession {
   /** Cộng tu vi; tự lên tầng trong cùng cảnh giới; tầng 9 đầy thì dừng chờ đột phá */
   addTuVi(amount: number, source: string): void {
     if (amount <= 0 || !Number.isFinite(amount)) return;
-    let gained = Math.floor(amount * this.world.expMultiplier(this.ent?.inst?.def.id));
+    const rootMult = source === 'meditate' ? cultivationMultiplier(this) : source === 'kill' ? 1 + (cultivationMultiplier(this) - 1) / 2 : 1;
+    let gained = Math.floor(amount * rootMult * this.world.expMultiplier(this.ent?.inst?.def.id));
     let leveled = false;
     while (gained > 0) {
       const req = tuViRequired(this.row.realm_idx, this.row.layer);
@@ -201,6 +210,7 @@ export class PlayerSession {
         const inHouse = e.inst.instanceKind === 'housing' && e.inst.ownerKey === String(this.charId);
         const rate = meditationRate(this.row.realm_idx, this.row.layer, e.inst.def.spiritDensity, inHouse ? this.housingBonus + this.world.housingFurnitureBonus(this.charId) : 0);
         this.addTuVi(rate, 'meditate');
+        if (++this.fortuneAcc >= 30) { this.fortuneAcc = 0; checkFortunes(this, 'meditate', { map: e.inst.def.id }).catch(() => undefined); }
       }
     }
     if (this.channel && now >= this.channel.until) { const c = this.channel; this.channel = null; e.anim = 'idle'; c.onDone?.(); }

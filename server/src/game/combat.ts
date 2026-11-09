@@ -1,4 +1,5 @@
 import { SKILLS, computeDamage, statusChance, type SkillDef, type StatusApply, type Stats, type StatusId } from '@tt/shared';
+import { elementBonus } from './power.js';
 import type { BaseEnt, CombatEnt, MonsterEnt, PetEnt, PlayerEnt, StatusInst } from './entities.js';
 import type { MapInstance } from './mapInstance.js';
 
@@ -93,6 +94,8 @@ export function hit(inst: MapInstance, src: CombatEnt, tgt: CombatEnt, skill: Sk
       inst.emitNear(tgt.x, { t: 'ev', k: 'combo', i: tgt.id, s: skill.id });
     }
   }
+  const srcP = src.kind === 'p' ? (src as PlayerEnt) : undefined;
+  if (srcP) bonus += elementBonus(srcP.s, skill.path);
   const attack = skill.scaling === 'atk' ? es.atk : es.matk;
   const defense = skill.scaling === 'atk' ? et.def : et.mdef;
   let amount: number; let crit = false;

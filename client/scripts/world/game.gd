@@ -157,6 +157,8 @@ func _build_map(m: Dictionary) -> void:
 		lab.size = Vector2(180, 36)
 		ls.add_child(lab)
 		map_root.add_child(ls)
+		ls.set_meta("day_x", float(n.x))
+		ls.set_meta("night_x", float(n.get("nightX", n.x)))
 		npc_nodes[n.npc] = ls
 	for p in map_def.get("portals", []):
 		var mk = Marker.new()
@@ -495,6 +497,14 @@ func _physics_process(delta: float) -> void:
 		_auto_pickup(40.0)
 	if Engine.get_physics_frames() % 600 == 0:
 		_update_daynight()
+	if Engine.get_physics_frames() % 120 == 0:
+		# lịch trình NPC: một số NPC về quán trọ ban đêm (đồng bộ công thức với server)
+		var hour := int(fmod(Time.get_unix_time_from_system() / 60.0, 24.0))
+		var night := hour >= 20 or hour < 5
+		for n in npc_nodes.values():
+			var tx: float = n.get_meta("night_x") if night else n.get_meta("day_x")
+			if abs(n.position.x - tx) > 1:
+				n.position.x = move_toward(n.position.x, tx, 4.0)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not ready_world or hud.typing():

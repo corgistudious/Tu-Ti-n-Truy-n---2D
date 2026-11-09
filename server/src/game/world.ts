@@ -12,6 +12,7 @@ import type { CombatEnt, MonsterEnt, PlayerEnt } from './entities.js';
 import { MapInstance, type InstanceController } from './mapInstance.js';
 import { PlayerSession } from './player.js';
 import { checkRealmObjectives, questEvent as qEvent } from './quests.js';
+import { checkFortunes } from './power.js';
 
 const CHANNEL_CAP = 60;
 const MAX_CHANNELS = 40;
@@ -239,7 +240,10 @@ export class World {
     const now = Date.now();
     for (const s of [...this.sessions.values()]) {
       if (!s.ws && s.disconnectedAt && now - s.disconnectedAt > RECONNECT_GRACE_MS) await this.removeSession(s);
-      else if (s.ws) await redis().expire(`online:acc:${s.accountId}`, 120).catch(() => undefined);
+      else if (s.ws) {
+        await redis().expire(`online:acc:${s.accountId}`, 120).catch(() => undefined);
+        if (s.ent && !s.ent.inst.instanceKind) await checkFortunes(s, 'explore', { map: s.ent.inst.def.id }).catch(() => undefined);
+      }
     }
     for (const [key, inst] of this.instances) {
       if (inst.instanceKind && inst.players.size === 0 && inst.emptySince && now - inst.emptySince > 60_000) this.instances.delete(key);
@@ -287,6 +291,7 @@ export class World {
       p.s.addTuVi((m.def.tuvi + m.def.exp * 0.5) * scale * partyBonus, 'kill');
       p.s.addExp(m.def.exp * scale);
       qEvent(p.s, 'kill', m.def.id, 1);
+      checkFortunes(p.s, 'kill', { map: inst.def.id, target: m.def.id }).catch(() => undefined);
       this.petExpHook?.(p.s, Math.round(m.def.exp * scale * 0.3));
     }
     const owners = top.s.partyId ? [...recipients].filter((p) => p.s.partyId === top!.s.partyId).map((p) => p.s.charId) : [top.s.charId];

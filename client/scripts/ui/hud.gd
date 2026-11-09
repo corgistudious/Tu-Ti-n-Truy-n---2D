@@ -92,8 +92,8 @@ func _build_top_right() -> void:
 	event_lbl = UI.lbl("", 12, Color("#ffb060"), true)
 	v.add_child(event_lbl)
 	var grid = GridContainer.new()
-	grid.columns = 5
-	for entry in [["Túi", "inventory"], ["Nhân vật", "character"], ["Kỹ năng", "skills"], ["Nhiệm vụ", "quests"], ["Tu luyện", "cultivation"], ["Bản đồ", "map"], ["Xã hội", "social"], ["Tông môn", "guild"], ["Linh thú", "pets"], ["Động phủ", "housing"], ["Chế tạo", "crafting"], ["Thư", "mail"], ["Xếp hạng", "ranking"], ["Phó bản", "dungeon"], ["Cài đặt", "settings"]]:
+	grid.columns = 6
+	for entry in [["Túi", "inventory"], ["Nhân vật", "character"], ["Kỹ năng", "skills"], ["Nhiệm vụ", "quests"], ["Tu luyện", "cultivation"], ["Căn cơ", "power"], ["Bản đồ", "map"], ["Xã hội", "social"], ["Tông môn", "guild"], ["Linh thú", "pets"], ["Động phủ", "housing"], ["Chế tạo", "crafting"], ["Thư", "mail"], ["Xếp hạng", "ranking"], ["Phó bản", "dungeon"], ["Cài đặt", "settings"]]:
 		var key: String = entry[1]
 		var b = UI.btn(entry[0], func(): panels.open(key))
 		b.add_theme_font_size_override("font_size", 12)
@@ -482,3 +482,5 @@ func on_event(m: Dictionary) -> void:
 		"breakthrough": panels.refresh_if_open("cultivation")
 		"combo": pass
 		"house": panels.house_state = m.d
+		"fortune": banner("CƠ DUYÊN: " + str(m.name)); Sfx.play("breakthrough"); toast(str(m.desc) + " — " + str(m.rewards), "good")
+		"rep": toast("Danh vọng %s %+d" % [GameData.data.get("power", {}).get("factions", {}).get(m.faction, {}).get("name", m.faction), int(m.delta)], "good" if int(m.delta) > 0 else "warn")

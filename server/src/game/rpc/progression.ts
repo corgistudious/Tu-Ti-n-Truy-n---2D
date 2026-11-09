@@ -11,6 +11,7 @@ import type { MapInstance, InstanceController } from '../mapInstance.js';
 import type { MonsterEnt, PlayerEnt } from '../entities.js';
 import type { PlayerSession } from '../player.js';
 import { questEvent } from '../quests.js';
+import { checkFortunes } from '../power.js';
 import { requireService } from './core.js';
 import { pushInventory } from './inventory.js';
 import { int, rpc, str } from './registry.js';
@@ -316,6 +317,7 @@ rpc('gather.start', async (s, p) => {
     })).then(async () => {
       s.notify(`Thu được ${ITEMS[loot.item].name} x${qty}`, 'good');
       questEvent(s, 'gather', loot.item, qty);
+      checkFortunes(s, 'gather', { map: inst.def.id, target: node.kind }).catch(() => undefined);
       await pushInventory(s);
     }).catch((e) => s.notify((e as Error).message, 'warn'));
   });

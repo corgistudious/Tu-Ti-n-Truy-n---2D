@@ -62,6 +62,7 @@ func open(name: String) -> void:
 		"ranking": _ranking("realm")
 		"dungeon": _dungeon()
 		"settings": _settings()
+		"power": _power()
 
 func confirm(text: String, cb: Callable) -> void:
 	var w = UI.window("Xác nhận", 420, 150)
@@ -357,7 +358,14 @@ func _map() -> void:
 			var tag := ("PK " if m.pvp == "open" else "") + ("An toàn " if m.safe else "") + ("Ẩn " if m.hidden else "")
 			var l := UI.lbl("%s%s\n  %s · nguy hiểm %d/10 %s" % ["> " if here else "", m.name, GameData.realm_name(int(m.reqRealm)), int(m.danger), tag], 12, col)
 			l.custom_minimum_size.x = 210
-			grid.add_child(l)
+			if m.hidden and m.discovered:
+				var cell := UI.vbox(2)
+				cell.add_child(l)
+				var mid: String = m.id
+				cell.add_child(UI.btn("Tiến vào khu ẩn", func(): w.root.queue_free(); await _rpc("world.enterHidden", {"map": mid})))
+				grid.add_child(cell)
+			else:
+				grid.add_child(l)
 		v.add_child(grid)
 	show_window(w.root, "map")
 
@@ -376,6 +384,19 @@ func npc_dialog(npc_id: String) -> void:
 	for q in d.progress:
 		var qid: String = q.id
 		v.add_child(UI.lbl("【%s】 %s" % [q.name, q.text], 14, Color("#80d0ff"), true))
+		var choices: Array = q.get("choices", []) if q.get("choices") != null else []
+		if choices.size() > 0:
+			v.add_child(UI.lbl("Lựa chọn của bạn (ảnh hưởng danh vọng thế lực):", 13, UI.GOLD))
+			for ch in choices:
+				var cid: String = ch.id
+				v.add_child(UI.btn(ch.text, func():
+					var rc = await _rpc("quest.turnIn", {"id": qid, "choice": cid})
+					if rc.ok:
+						Sfx.play("levelup")
+						_dialog_lines("Hậu quả", str(rc.d.get("outcome", "")))
+						hud.refresh_quests()
+						w.root.queue_free()))
+			continue
 		v.add_child(UI.btn("Trả nhiệm vụ: " + q.name, func():
 			var rr = await _rpc("quest.turnIn", {"id": qid})
 			if rr.ok:
@@ -976,3 +997,48 @@ func _input(event: InputEvent) -> void:
 		_capturing = false
 		get_viewport().set_input_as_handled()
 		_key_captured.emit(event.physical_keycode)
+
+# ======================= SỨC MẠNH: LINH CĂN / THỂ CHẤT / KINH MẠCH / DANH VỌNG / CƠ DUYÊN =======================
+func _power() -> void:
+	var r = await _rpc("power.info")
+	if not r.ok: return
+	var d: Dictionary = r.d
+	var w := UI.window("Căn Cơ & Thế Lực", 820, 540)
+	var tabs := TabContainer.new()
+	tabs.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	w.body.add_child(tabs)
+	var a := UI.vbox(4); a.name = "Linh căn & Thể chất"
+	if d.root:
+		a.add_child(UI.lbl("Linh căn: %s — %s" % [d.root.name, d.root.gradeName], 18, UI.GOLD))
+		a.add_child(UI.lbl("Tốc độ tu luyện x%.2f · +%d%% sát thương công pháp: %s" % [float(d.root.cultivation), int(float(d.root.dmg) * 100), ", ".join(d.root.paths.map(func(x): return GameData.PATH_NAMES.get(x, x)))], 13, UI.PAPER, true))
+		a.add_child(UI.btn("Tẩy luyện linh căn (Trắc Linh Thạch Tinh Phách)", func(): await _rpc("power.refineRoot"); w.root.queue_free(); _power()))
+	else:
+		a.add_child(UI.lbl("Linh căn chưa thức tỉnh — hoàn thành chương 4 \"Bí Mật Linh Căn\".", 15, UI.DIM, true))
+	a.add_child(UI.lbl("Thể chất: %s — %s" % [d.physique.name, d.physique.desc], 15, UI.GOLD, true))
+	a.add_child(UI.lbl("Lịch luyện (kinh nghiệm chiến đấu): cấp %d" % int(d.combatLevel), 13))
+	tabs.add_child(a)
+	var mer := UI.vbox(2); mer.name = "Kinh mạch"
+	var msc := UI.scroll(360); msc.name = "Kinh mạch"; msc.add_child(mer)
+	for m in d.meridians:
+		var row := UI.hbox()
+		var stat_txt := ("+%d%% %s" % [int(float(m.bonus) * 100), UI.stat_name(str(m.stat))]) if m.stat != null else ("+%.1f%% mọi chỉ số chính" % (float(m.bonus) * 100))
+		row.add_child(UI.lbl("%s %s — %s (cảnh giới %d, %s x%d, %s vàng, %d%%)" % ["[x]" if m.open else "[ ]", m.name, stat_txt, int(m.reqRealm), GameData.item_name(m.pill), int(m.pillQty), GameData.fmt(m.gold), int(float(m.rate) * 100)], 12, UI.GREEN if m.open else UI.PAPER, true))
+		if not m.open:
+			var idx := int(m.idx)
+			row.add_child(UI.btn("Đả thông", func(): await _rpc("power.meridian", {"idx": idx}); w.root.queue_free(); _power()))
+		mer.add_child(row)
+	tabs.add_child(msc)
+	var rep := UI.vbox(2); rep.name = "Danh vọng"
+	var rr = await _rpc("rep.list")
+	if rr.ok:
+		for f in rr.d:
+			rep.add_child(UI.lbl("%s (%s): %d — %s%s" % [f.name, f.kind, int(f.value), f.tier, ("  giá %+d%%" % int(-float(f.discount) * 100)) if float(f.discount) != 0 else ""], 13, UI.GREEN if int(f.value) > 0 else (UI.RED if int(f.value) < 0 else UI.PAPER)))
+	tabs.add_child(rep)
+	var fo := UI.vbox(2); fo.name = "Cơ duyên"
+	var fr = await _rpc("fortune.list")
+	if fr.ok:
+		for f in fr.d.found:
+			fo.add_child(UI.lbl("【%s】 %s" % [f.name, f.desc], 13, UI.GOLD, true))
+		fo.add_child(UI.lbl("Còn %d cơ duyên chưa gặp — phụ thuộc nơi chốn, thời gian, cảnh giới, hành động..." % int(fr.d.undiscovered), 12, UI.DIM, true))
+	tabs.add_child(fo)
+	show_window(w.root, "power")

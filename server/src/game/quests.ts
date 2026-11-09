@@ -1,9 +1,10 @@
-import { MAPS, NPCS, QUESTS, TILE, groundYAt, type QuestDef, type ObjectiveType } from '@tt/shared';
+import { MAPS, NPCS, QUESTS, TILE, groundYAt, npcX, type QuestDef, type ObjectiveType } from '@tt/shared';
 import { tx, type Tx } from '../db.js';
 import { changeCurrency } from '../services/currency.js';
 import { consumeTemplate, countTemplate, grantItems } from '../services/items.js';
 import { GameError, assert } from '../services/errors.js';
 import type { PlayerSession } from './player.js';
+import { addRep, awakenRoot } from './power.js';
 import type { EscortEnt } from './entities.js';
 
 export function questEvent(s: PlayerSession, type: ObjectiveType, target: string, n: number): void {
@@ -108,7 +109,7 @@ export function nearNpc(s: PlayerSession, npcId: string, range = 160): boolean {
   const inst = s.ent.inst;
   const place = inst.def.npcs.find((n) => n.npc === npcId);
   if (!place) return false;
-  return Math.abs(place.x - s.ent.x) <= range;
+  return Math.abs(npcX(place, Date.now()) - s.ent.x) <= range;
 }
 
 /** Tiến độ hiển thị (gồm đếm vật phẩm thu thập trong túi) */
@@ -129,11 +130,13 @@ export async function questView(s: PlayerSession, c: Tx): Promise<unknown[]> {
   return out;
 }
 
-export async function turnIn(s: PlayerSession, qid: string): Promise<{ rewards: QuestDef['rewards'] }> {
+export async function turnIn(s: PlayerSession, qid: string, choiceId?: string): Promise<{ rewards: QuestDef['rewards']; outcome?: string }> {
   const d = QUESTS[qid];
   const qs = s.quests.get(qid);
   assert(d && qs && qs.state === 'active', 'Không có nhiệm vụ này');
   assert(nearNpc(s, d.turnIn), 'Hãy đến gần NPC trả nhiệm vụ');
+  const choice = d.choices ? d.choices.find((c) => c.id === choiceId) : undefined;
+  if (d.choices && !choice) throw new GameError('Hãy đưa ra lựa chọn', 'CHOICE_REQUIRED');
   // talk/deliver đến NPC trả nhiệm vụ tính là hoàn thành khi trả
   for (const o of d.objectives) if ((o.type === 'talk' || o.type === 'deliver') && o.target === d.turnIn) qs.progress[o.id] = o.count;
   for (const o of d.objectives) if (o.type === 'realm' && s.realmIdx >= Number(o.target)) qs.progress[o.id] = 1;
@@ -150,6 +153,15 @@ export async function turnIn(s: PlayerSession, qid: string): Promise<{ rewards: 
     if (r.spirit_stones) await changeCurrency(c, s.charId, 'spirit_stones', r.spirit_stones, 'quest_reward', 'quest', qid);
     if (r.items?.length) await grantItems(c, s.charId, r.items.map((i) => ({ item: i.item, qty: i.qty, bound: true })), `quest:${qid}`);
     if (r.title && !s.row.titles.includes(r.title)) { s.row.titles.push(r.title); await c.query('UPDATE characters SET titles = $2 WHERE id = $1', [s.charId, JSON.stringify(s.row.titles)]); }
+    // danh vọng: thế lực của NPC giao nhiệm vụ + hậu quả lựa chọn
+    const giverFaction = NPCS[d.giver]?.faction;
+    if (giverFaction) await addRep(c, s, giverFaction, d.kind === 'main' ? 300 : d.kind === 'daily' ? 50 : 150);
+    if (choice) {
+      for (const [f, v] of Object.entries(choice.rep)) await addRep(c, s, f, v);
+      if (choice.items?.length) await grantItems(c, s.charId, choice.items.map((i) => ({ ...i, bound: true })), `quest_choice:${qid}`);
+      await c.query('INSERT INTO quest_choices(character_id, quest_id, choice_id) VALUES ($1,$2,$3) ON CONFLICT (character_id, quest_id) DO UPDATE SET choice_id = $3, chosen_at = now()', [s.charId, qid, choice.id]);
+    }
+    if (qid === 'mq_4_06') await awakenRoot(c, s);
     qs.state = 'done'; qs.completedAt = new Date(); qs.times += 1; qs.dirty = true;
     await s.flushQuests(c);
   }).catch((e) => { if (qs.state === 'done') { qs.state = 'active'; qs.times -= 1; } throw e; });
@@ -158,5 +170,6 @@ export async function turnIn(s: PlayerSession, qid: string): Promise<{ rewards: 
   if (d.rewards.title) s.notify(`Nhận danh hiệu: ${d.rewards.title}`, 'good');
   // nhiệm vụ cho phép gọi sự kiện "talk" của các nhiệm vụ khác
   questEvent(s, 'talk', d.turnIn, 1);
-  return { rewards: d.rewards };
+  s.recomputeStats();
+  return { rewards: d.rewards, outcome: choice?.outcome };
 }

@@ -11,6 +11,7 @@ export { MAPS, NPCS, SHOPS, PETS, DUNGEONS, BUILDINGS, HOUSING_LEVELS, GATHER_TA
 export { QUESTS } from './data/quests.js';
 export { RECIPES, PROFESSION_NAMES } from './data/recipes.js';
 export { WORLD_TIERS, CHAPTERS, EVENT_SCHEDULE, HIDDEN_ORIGIN } from './data/worlds_ext.js';
+export { ROOT_ELEMENTS, ROOT_GRADES, AWAKEN_TABLE, PHYSIQUES, MERIDIANS, FACTIONS, REP_TIERS, FORTUNES, repTier, combatLevel, combatLevelStats, isNight, npcX, type RootElement, type FortuneDef } from './data/power.js';
 
 import { createHash } from 'node:crypto';
 import type { GameData } from './types.js';
@@ -22,12 +23,13 @@ import { MAPS, NPCS, SHOPS, PETS, DUNGEONS, BUILDINGS, GATHER_TABLES, WORLD_EVEN
 import { QUESTS } from './data/quests.js';
 import { RECIPES } from './data/recipes.js';
 import { WORLD_TIERS, CHAPTERS } from './data/worlds_ext.js';
+import { ROOT_ELEMENTS, ROOT_GRADES, PHYSIQUES, MERIDIANS, FACTIONS, REP_TIERS } from './data/power.js';
 
 let cached: GameData | null = null;
 /** Toàn bộ dữ liệu game (nguồn duy nhất). Client tải bản này qua /api/data/bundle. */
 export function gameData(): GameData {
   if (cached) return cached;
-  const body = { tiers: WORLD_TIERS, chapters: CHAPTERS, realms: REALMS, items: ITEMS, skills: SKILLS, monsters: MONSTERS, maps: MAPS, npcs: NPCS, quests: QUESTS, recipes: RECIPES, gatherTables: GATHER_TABLES, shops: SHOPS, pets: PETS, dungeons: DUNGEONS, buildings: BUILDINGS, sets: SET_DEFS, events: WORLD_EVENTS };
+  const body = { tiers: WORLD_TIERS, chapters: CHAPTERS, power: { roots: ROOT_ELEMENTS, grades: ROOT_GRADES, physiques: PHYSIQUES, meridians: MERIDIANS, factions: FACTIONS, repTiers: REP_TIERS.map((t) => ({ ...t, min: Number.isFinite(t.min) ? t.min : -1e15 })) }, realms: REALMS, items: ITEMS, skills: SKILLS, monsters: MONSTERS, maps: MAPS, npcs: NPCS, quests: QUESTS, recipes: RECIPES, gatherTables: GATHER_TABLES, shops: SHOPS, pets: PETS, dungeons: DUNGEONS, buildings: BUILDINGS, sets: SET_DEFS, events: WORLD_EVENTS };
   const version = createHash('sha256').update(JSON.stringify(body)).digest('hex').slice(0, 12);
   cached = { version, ...body };
   return cached;
